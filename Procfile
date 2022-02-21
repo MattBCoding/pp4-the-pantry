@@ -1,1 +1,1 @@
-web: gunicorn pp4-the-pantry.wsgi
+web: gunicorn pantry.wsgi
