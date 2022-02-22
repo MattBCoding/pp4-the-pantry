@@ -73,8 +73,9 @@ p {
     --success-secondary-light: #ccfbf1;
     --info-primary-light: #1e40af;
     --info-secondary-light: #dbeafe;
-    --surface-shadow-light: #2e3835;
-    --shadow-strength-light: .02;
+    --surface-shadow-light: rgba(46, 56, 53, 0.02);
+    --button-bg-light: #064e3b;
+    --button-text-light: #ffffff;
     /* dark */
     --primary-color-dark: #064e3b;
     --accent-color-dark: #ecfdf5;
@@ -90,8 +91,9 @@ p {
     --success-secondary-dark: #ccfbf1;
     --info-primary-dark: #1e40af;
     --info-secondary-dark: #dbeafe;
-    --surface-shadow-dark: #040b09;
-    --shadow-strength-dark: 0.8;
+    --surface-shadow-dark: rgba(4, 11, 9, 0.8);
+    --button-bg-dark: #064e3b;
+    --button-text-dark: #ffffff;
 }
 
 :root {
@@ -113,6 +115,8 @@ p {
     --info-secondary: var(--info-secondary-light);
     --surface-shadow: var(--surface-shadow-light);
     --shadow-strength: var(--shadow-strength-light);
+    --button-bg: var(--button-bg-light);
+    --button-text: var(--button-text-light);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -135,6 +139,8 @@ p {
         --info-secondary: var(--info-secondary-dark);
         --surface-shadow: var(--surface-shadow-dark);
         --shadow-strength: var(--shadow-strength-dark);
+        --button-bg: var(--button-bg-dark);
+        --button-text: var(--button-text-dark);
     }
 }
 
@@ -157,6 +163,8 @@ p {
     --info-secondary: var(--info-secondary-light);
     --surface-shadow: var(--surface-shadow-light);
     --shadow-strength: var(--shadow-strength-light);
+    --button-bg: var(--button-bg-light);
+    --button-text: var(--button-text-light);
 }
 
 [data-theme="dark"] {
@@ -177,6 +185,8 @@ p {
     --info-secondary: var(--info-secondary-dark);
     --surface-shadow: var(--surface-shadow-dark);
     --shadow-strength: var(--shadow-strength-dark);
+    --button-bg: var(--button-bg-dark);
+    --button-text: var(--button-text-dark);
 }
 
 body {
@@ -302,7 +312,6 @@ select {
     top: 2.5rem;
     left: -3rem;
     background-color: var(--bg-primary);
-    color: var(--text-primary);
     padding: 1rem;
 }
 
@@ -310,16 +319,13 @@ select {
     width: max-content;
 }
 
+#account-menu a {
+    color: var(--text-primary);
+}
+
 .dropdown-divider {
     background-color: var(--accent-color);
     width: 100%;
-}
-
-/* temp styling for all auth templates to make them readable */
-.account-container {
-    background-color: var(--bg-primary);
-    margin: 1rem 1rem 0;
-    padding: 1rem;
 }
 
 @media (max-width: 800px) {
@@ -390,4 +396,64 @@ select {
         width: 100%;
         height: 100%;
     }
+}
+
+/* light/dark mode toggle */
+
+#color-mode {
+    flex-shrink: 0;
+    -webkit-appearance: none;
+    outline: none;
+    position: relative;
+    width: 3rem;
+    height: 1.5rem;
+    background-image: url(../images/day.jpg);
+    background-size: cover;
+    border-radius: 0.75rem;
+    transition: background-image .9s;
+    cursor: pointer;
+}
+
+#color-mode:before {
+    content: "";
+    width: 1.35rem;
+    height: 1.35rem;
+    background-color: var(--bg-quaternary);
+    border-radius: 50%;
+    position: absolute;
+    top: 8%;
+    left: 5%;
+    transition: all .9s;
+    background-color: #ffc400;
+}
+
+#color-mode:checked {
+    background-image: url(../images/night.jpg);
+}
+
+#color-mode:checked:before {
+    transform: translate(100%);
+    background-color: #c7d1c7;
+}
+
+.primary-action {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+}
+
+.secondary-action {
+    border: 1px solid var(--button-bg);
+}
+
+/* allauth template styling */
+/* temp styling for all auth templates to make them readable */
+.account-container {
+    background-color: var(--bg-secondary);
+    margin: 1rem 1rem 0;
+    padding: 1rem;
+}
+
+.account-menu-list {
+    list-style: none;
+    padding: 0;
 }

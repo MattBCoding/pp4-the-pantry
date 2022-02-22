@@ -14,18 +14,15 @@
 
   <div>
     <strong>Menu:</strong>
-    <ul>
+    <ul class="account-menu-list flex">
       {% if user.is_authenticated %}
-      <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
-      <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
+      <li><a class="secondary-action btn" href="{% url 'account_email' %}">Change E-mail</a></li>
+      <li><a class="secondary-action btn" href="{% url 'account_logout' %}">Sign Out</a></li>
       {% else %}
-      <li><a href="{% url 'account_login' %}">Sign In</a></li>
-      <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+      <li><a class="secondary-action btn" href="{% url 'account_login' %}">Sign In</a></li>
+      <li><a class="secondary-action btn" href="{% url 'account_signup' %}">Sign Up</a></li>
       {% endif %}
     </ul>
-  </div>
-  <div>
-    <p>Test Message</p>
   </div>
   {% block content %}
   {% endblock %}
