@@ -1,0 +1,329 @@
+
+/* 
+Bootstrap breakpoints
+Breakpoint	        Class infix Dimensions
+X-Small	            None	    <576px
+Small	            sm	        ≥576px
+Medium	            md	        ≥768px
+Large	            lg	        ≥992px
+Extra large	        xl	        ≥1200px
+Extra extra large	xxl	        ≥1400px 
+*/
+
+/* import the fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+/* general rules */
+
+/* ------------------- */
+/* Reset               */
+/* ------------------- */
+
+/* https://piccalil.li/blog/a-modern-css-reset/ */
+
+/* Box sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Reset margins */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+figure,
+picture {
+    margin: 0; 
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    font-weight: 400;
+}
+
+/* end of reset */
+
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-family: 'Poppins', sans-serif;
+    /* light */
+    --primary-color-light: #064e3b;
+    --accent-color-light: #d1fae5;
+    --text-primary-light: #000000;
+    --text-secondary-light: #ffffff;
+    --bg-primary-light: #f1f4f1;
+    --bg-secondary-light: #e3e8e3;
+    --bg-tertiary-light: #c7d1c7;
+    --bg-quaternary-light: #abbaab;
+    --alert-primary-light: #7f1d1d;
+    --alert-secondary-light: #fef2f2;
+    --success-primary-light: #134e4a;
+    --success-secondary-light: #ccfbf1;
+    --info-primary-light: #1e40af;
+    --info-secondary-light: #dbeafe;
+    --surface-shadow-light: #2e3835;
+    --shadow-strength-light: .02;
+    /* dark */
+    --primary-color-dark: #064e3b;
+    --accent-color-dark: #ecfdf5;
+    --text-primary-dark: #ffffff;
+    --text-secondary-dark: #000000;
+    --bg-primary-dark: #383838;
+    --bg-secondary-dark: #333333;
+    --bg-tertiary-dark: #252525;
+    --bg-quaternary-dark: #1e1e1e;
+    --alert-primary-dark: #7f1d1d;
+    --alert-secondary-dark: #fef2f2;
+    --success-primary-dark: #134e4a;
+    --success-secondary-dark: #ccfbf1;
+    --info-primary-dark: #1e40af;
+    --info-secondary-dark: #dbeafe;
+    --surface-shadow-dark: #040b09;
+    --shadow-strength-dark: 0.8;
+}
+
+:root {
+    color-scheme: light;
+    --primary-color: var(--primary-color-light);
+    --accent-color: var(--accent-color-light);
+    --text-primary: var(--text-primary-light);
+    --text-secondary: var(--text-secondary-light);
+    --bg-primary: var(--bg-primary-light);
+    --bg-secondary: var(--bg-secondary-light);
+    --bg-tertiary: var(--bg-tertiary-light);
+    --bg-quaternary: var(--bg-quaternary-light);
+    --bg-image: url(../images/bg-light.png);
+    --alert-primary: var(--alert-primary-light);
+    --alert-secondary: var(--alert-secondary-light);
+    --success-primary: var(--success-primary-light);
+    --success-secondary: var(--success-secondary-light);
+    --info-primary: var(--info-primary-light);
+    --info-secondary: var(--info-secondary-light);
+    --surface-shadow: var(--surface-shadow-light);
+    --shadow-strength: var(--shadow-strength-light);
+}
+
+body {
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: var(--bg-image);
+    transition: 500ms linear;
+}
+
+img,
+picture {
+    max-width: 100%;
+    display: block;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Utility Style Rules */
+.flex {
+    display: flex;
+    gap: var(--gap, 1rem);
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+/* primary header */
+#logo {
+    height: 100px;
+}
+
+.logo-container > a {
+    align-items: center;
+}
+
+.primary-header {
+    align-items: center;
+    background-color: var(--primary-color);
+    justify-content: space-between;
+    padding: 0 2rem;
+}
+
+.primary-header a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.primary-navigation {
+    list-style: none;
+    padding: 0;
+    flex-direction: row;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.primary-navigation a {
+    text-decoration: none;
+}
+
+.mobile-nav-toggle {
+    display: none;
+}
+
+.account-navigation {
+    list-style: none;
+    padding: 0;
+    flex-direction: column;
+}
+
+.account-nav-toggle {
+    display: block;
+    position: relative;
+    z-index: 3000;
+    background: transparent;
+    border: 0;
+    width: 2rem;
+    aspect-ratio: 1;
+}
+
+#user-icon {
+    fill: #ffffff;
+    width: 100%;
+    height: 100%;
+}
+
+#account-menu[data-visible="false"] {
+    display: none;
+}
+
+#account-menu {
+    position: absolute;
+    top: 2.5rem;
+    left: -3rem;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    padding: 1rem;
+}
+
+#account-menu > li {
+    width: max-content;
+}
+
+.dropdown-divider {
+    background-color: var(--accent-color);
+    width: 100%;
+}
+
+/* temp styling for all auth templates to make them readable */
+.account-container {
+    background-color: var(--bg-primary);
+    margin: 1rem 1rem 0;
+    padding: 1rem;
+}
+
+@media (max-width: 800px) {
+    .primary-navigation {
+        position: fixed;
+        z-index: 1000;
+        background: var(--bg-quaternary);
+        top: 0;
+        right: 0;
+        max-width: 180px;
+        padding: min(20rem, 15vh) 2rem;
+        flex-direction: column;
+        gap: 3rem;
+        height: 100vh;
+        color: var(--text-primary);
+        transform: translateX(100%);
+        transition: transform 500ms ease-in-out;
+    }
+
+    .primary-navigation[data-visible="true"] {
+        transform: translateX(0);
+    }
+    
+    .primary-navigation a {
+        color: var(--text-primary);
+    }
+
+    .primary-navigation > .active {
+        border-bottom: .2rem solid var(--primary-color);
+    }
+
+    .mobile-nav-toggle {
+        display: block;
+        position: absolute;
+        z-index: 2000;
+        right: 1rem;
+        top: 2rem;
+        background: transparent;
+        border: 0;
+        background-image: url(../images/icon-hamburger.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 1.5rem;
+        aspect-ratio: 1;
+    }
+
+    .mobile-nav-toggle[aria-expanded="true"] {
+        background-image: url(../images/icon-close.svg);
+        background-color: var(--alert-primary);
+    }
+
+    .mobile-nav-toggle:focus-visible {
+        outline: 5px solid white;
+        outline-offset: 5px;
+    }
+
+    #account-menu {
+        position: absolute;
+        top: -5rem;
+        left: -10rem;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        padding: 1rem;
+    }
+
+    #user-icon {
+        fill: var(--text-primary);
+        width: 100%;
+        height: 100%;
+    }
+}

@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['pp4-the-pantry.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['pp4-the-pantry.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -49,8 +49,10 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
     # my apps
     'recipes',
+    'profiles',
 ]
 
 MIDDLEWARE = [
@@ -128,6 +130,13 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 
+# allauth custom configuration settings
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_PRESERVER_USERNAME_CASING = False
+ACCOUNT_USERNAME_REQUIRED = False
+
 SITE_ID = 1
 
 
@@ -144,6 +153,13 @@ USE_L10N = True
 
 USE_TZ = True
 
+# email configuration settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'mattbcoding.projects@gmail.com'
+EMAIL_HOST_PASSWORD = 'ljauivwywwzbexcy'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/

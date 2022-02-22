@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # allauth required path
     path('accounts/', include('allauth.urls')),
+    path('profile/', include('profiles.urls')),
     path('hello/', say_hello, name='hello'),
 ]
