@@ -115,6 +115,70 @@ p {
     --shadow-strength: var(--shadow-strength-light);
 }
 
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: dark;
+        --primary-color: var(--primary-color-dark);
+        --accent-color: var(--accent-color-dark);
+        --text-primary: var(--text-primary-dark);
+        --text-secondary: var(--text-secondary-dark);
+        --bg-primary: var(--bg-primary-dark);
+        --bg-secondary: var(--bg-secondary-dark);
+        --bg-tertiary: var(--bg-tertiary-dark);
+        --bg-quaternary: var(--bg-quaternary-dark);
+        --bg-image: url(../images/bg-dark.png);
+        --alert-primary: var(--alert-primary-dark);
+        --alert-secondary: var(--alert-secondary-dark);
+        --success-primary: var(--success-primary-dark);
+        --success-secondary: var(--success-secondary-dark);
+        --info-primary: var(--info-primary-dark);
+        --info-secondary: var(--info-secondary-dark);
+        --surface-shadow: var(--surface-shadow-dark);
+        --shadow-strength: var(--shadow-strength-dark);
+    }
+}
+
+[data-theme="light"] {
+    color-scheme: light;
+    --primary-color: var(--primary-color-light);
+    --accent-color: var(--accent-color-light);
+    --text-primary: var(--text-primary-light);
+    --text-secondary: var(--text-secondary-light);
+    --bg-primary: var(--bg-primary-light);
+    --bg-secondary: var(--bg-secondary-light);
+    --bg-tertiary: var(--bg-tertiary-light);
+    --bg-quaternary: var(--bg-quaternary-light);
+    --bg-image: url(../images/bg-light.png);
+    --alert-primary: var(--alert-primary-light);
+    --alert-secondary: var(--alert-secondary-light);
+    --success-primary: var(--success-primary-light);
+    --success-secondary: var(--success-secondary-light);
+    --info-primary: var(--info-primary-light);
+    --info-secondary: var(--info-secondary-light);
+    --surface-shadow: var(--surface-shadow-light);
+    --shadow-strength: var(--shadow-strength-light);
+}
+
+[data-theme="dark"] {
+    --primary-color: var(--primary-color-dark);
+    --accent-color: var(--accent-color-dark);
+    --text-primary: var(--text-primary-dark);
+    --text-secondary: var(--text-secondary-dark);
+    --bg-primary: var(--bg-primary-dark);
+    --bg-secondary: var(--bg-secondary-dark);
+    --bg-tertiary: var(--bg-tertiary-dark);
+    --bg-quaternary: var(--bg-quaternary-dark);
+    --bg-image: url(../images/bg-dark.png);
+    --alert-primary: var(--alert-primary-dark);
+    --alert-secondary: var(--alert-secondary-dark);
+    --success-primary: var(--success-primary-dark);
+    --success-secondary: var(--success-secondary-dark);
+    --info-primary: var(--info-primary-dark);
+    --info-secondary: var(--info-secondary-dark);
+    --surface-shadow: var(--surface-shadow-dark);
+    --shadow-strength: var(--shadow-strength-dark);
+}
+
 body {
     color: var(--text-primary);
     min-height: 100vh;
