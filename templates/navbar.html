@@ -3,7 +3,7 @@
 <!-- Header Section -->
 <header class="flex primary-header">
     <div class="logo-container">
-        <a class="flex" href="">
+        <a class="flex" href="{% url 'home' %}">
             <svg id="logo" data-name="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                 viewBox="0 0 1435.35 2160">
                 <defs>
@@ -205,13 +205,13 @@
     <nav>
         <ul id="primary-navigation" data-visible="false" class="primary-navigation flex">
             <li class="active">
-                <a href="">Home</a>
+                <a href="{% url 'home' %}">Home</a>
             </li>
             <li>
                 <a href="">Recipes</a>
             </li>
             <li>
-                <a href="">Meal Planner</a>
+                <a href="{% url 'profiles' %}">Profiles</a>
             </li>
             <!-- user account icon toggle goes here-->
             <!-- dropdown menu and button shown if user logged in -->

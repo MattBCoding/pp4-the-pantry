@@ -106,7 +106,7 @@ p {
     --bg-secondary: var(--bg-secondary-light);
     --bg-tertiary: var(--bg-tertiary-light);
     --bg-quaternary: var(--bg-quaternary-light);
-    --bg-image: url(../images/bg-light.png);
+    --bg-image: url(https://res.cloudinary.com/mattbcoding/image/upload/v1645611935/bg-light_xhdfaq.png);
     --alert-primary: var(--alert-primary-light);
     --alert-secondary: var(--alert-secondary-light);
     --success-primary: var(--success-primary-light);
@@ -130,7 +130,7 @@ p {
         --bg-secondary: var(--bg-secondary-dark);
         --bg-tertiary: var(--bg-tertiary-dark);
         --bg-quaternary: var(--bg-quaternary-dark);
-        --bg-image: url(../images/bg-dark.png);
+        --bg-image: url(https://res.cloudinary.com/mattbcoding/image/upload/v1645611935/bg-dark_pzxv3k.png);
         --alert-primary: var(--alert-primary-dark);
         --alert-secondary: var(--alert-secondary-dark);
         --success-primary: var(--success-primary-dark);
@@ -154,7 +154,7 @@ p {
     --bg-secondary: var(--bg-secondary-light);
     --bg-tertiary: var(--bg-tertiary-light);
     --bg-quaternary: var(--bg-quaternary-light);
-    --bg-image: url(../images/bg-light.png);
+    --bg-image: url(https://res.cloudinary.com/mattbcoding/image/upload/v1645611935/bg-light_xhdfaq.png);
     --alert-primary: var(--alert-primary-light);
     --alert-secondary: var(--alert-secondary-light);
     --success-primary: var(--success-primary-light);
@@ -176,7 +176,7 @@ p {
     --bg-secondary: var(--bg-secondary-dark);
     --bg-tertiary: var(--bg-tertiary-dark);
     --bg-quaternary: var(--bg-quaternary-dark);
-    --bg-image: url(../images/bg-dark.png);
+    --bg-image: url(https://res.cloudinary.com/mattbcoding/image/upload/v1645611935/bg-dark_pzxv3k.png);
     --alert-primary: var(--alert-primary-dark);
     --alert-secondary: var(--alert-secondary-dark);
     --success-primary: var(--success-primary-dark);
@@ -365,7 +365,7 @@ select {
         top: 2rem;
         background: transparent;
         border: 0;
-        background-image: url(../images/icon-hamburger.svg);
+        background-image: url(https://res.cloudinary.com/mattbcoding/image/upload/v1645611935/icon-hamburger_v1i4ph.svg);
         background-repeat: no-repeat;
         background-position: center;
         width: 1.5rem;
@@ -373,7 +373,7 @@ select {
     }
 
     .mobile-nav-toggle[aria-expanded="true"] {
-        background-image: url(../images/icon-close.svg);
+        background-image: url(https://res.cloudinary.com/mattbcoding/image/upload/v1645611935/icon-close_wznjg2.svg);
         background-color: var(--alert-primary);
     }
 
@@ -407,7 +407,7 @@ select {
     position: relative;
     width: 3rem;
     height: 1.5rem;
-    background-image: url(../images/day.jpg);
+    background-image: url(https://res.cloudinary.com/mattbcoding/image/upload/v1645611935/day_yobjgz.jpg);
     background-size: cover;
     border-radius: 0.75rem;
     transition: background-image .9s;
@@ -428,7 +428,7 @@ select {
 }
 
 #color-mode:checked {
-    background-image: url(../images/night.jpg);
+    background-image: url(https://res.cloudinary.com/mattbcoding/image/upload/v1645611935/night_hqgt2v.jpg);
 }
 
 #color-mode:checked:before {
@@ -457,3 +457,32 @@ select {
     list-style: none;
     padding: 0;
 }
+
+/* profile card styling */
+.profile-list {
+    background-color: var(--bg-secondary);
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.profile-card {
+    width: max(250px, 25%);
+    background-color: var(--bg-tertiary);
+}
+
+.profile-card > .card-img-top {
+    max-height: 60%;
+    object-fit: cover;
+}
+
+.profile-card .card-title,
+.profile-card .card-subtitle {
+    text-transform: capitalize;
+}
+
+
+/* to be deleted only in for development purposes */
+.temp-div {
+    height: 600px;
+}
+/* end of temporary styling */

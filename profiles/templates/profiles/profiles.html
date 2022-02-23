@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h2>Profiles Page</h2>
+<section class="profile-list">
+    <div class="container flex">
+        {% for profile in profiles %}
+        <div class="card profile-card">
+            <img src="{{ profile.profile_image.url }}" class="card-img-top" alt="profile photo">
+            <div class="card-body">
+                <h5 class="card-title">{{ profile.username }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ profile.location }}</h6>
+                <p class="card-text">{{ profile.headline }}</p>
+                <!-- insert link to filtered search results for this user-profile -->
+                <a href="" class="btn secondary action">Recipes</a>
+            </div>
+        </div> 
+        {% endfor %}
+        </div>
+    </section>
+{% endblock %}
