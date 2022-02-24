@@ -136,6 +136,9 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_PRESERVER_USERNAME_CASING = False
 ACCOUNT_USERNAME_REQUIRED = False
+# this is the name of the url path that the user is taken to when they log in.
+# LOGIN_REDIRECT_URLNAME = 'user-profile'
+ACCOUNT_ADAPTER = 'profiles.adapter.MyAccountAdapter'
 
 SITE_ID = 2
 

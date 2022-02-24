@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load cloudinary %}
+{% block body %}
+<h2>Profile Form Page</h2>
+<section class="account-container">
+    <h2>Please complete your profile</h2>
+    <div class="form-container">
+        <form class="edit-profile-form" action="{% url 'edit-profile' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+            <div>
+                <label for="formInput#text">{{field.label}}</label>
+                {{field}}
+            </div>
+            {% endfor %}
+            <input class="btn primary-action" type="submit" value="submit" />
+        </form>
+    </div>
+</section>
+{% endblock %}

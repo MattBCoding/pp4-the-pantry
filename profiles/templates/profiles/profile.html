@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load cloudinary %}
+{% block body %}
+<section class="account-container">
+    <h2>Profile Page for {{ profile.user }}</h2>
+    <p>
+        {% cloudinary profile.profile_image %}
+    </p>
+    {% if request.user == profile.user %}
+    <a class="btn primary-action" href="{% url 'edit-profile' %}">Edit Profile</a>
+    {% endif %}
+    <h5>insert here buttons to change account settings, password email address etc</h5>
+    <p>request.user = {{ request.user }}</p>
+    <p>request.user.profile.user = {{ request.user.profile.user }}</p>
+
+    <p>id = {{ profile.id }}</p>
+    <p>user = {{ profile.user }}</p>
+    <p>username = {{ profile.username }}</p>
+    <p>headline = {{ profile.headline }}</p>
+    <p>bio = {{ profile.bio }}</p>
+    <p>location = {{ profile.location }}</p>
+    {% if profile.social_youtube %}
+        <p>youtube = <a href="{{ profile.social_youtube }}" target="_blank">{{ profile.social_youtube }}</a></p>
+    {% endif %}
+    {% if profile.social_website %}
+        <p>website = {{ profile.social_website }}</p>
+    {% endif %}
+</section>
+{% endblock %}

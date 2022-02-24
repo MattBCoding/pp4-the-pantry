@@ -17,8 +17,8 @@ class Profile(models.Model):
     bio = models.TextField(blank=True, null=True)
     location = models.CharField(max_length=200, blank=True, null=True)
     profile_image = CloudinaryField('image', default="https://res.cloudinary.com/mattbcoding/image/upload/v1645611940/default-chef_x2n0oe.png")
-    social_youtube = models.CharField(max_length=200, blank=True, null=True)
-    social_website = models.CharField(max_length=200, blank=True, null=True)
+    social_youtube = models.URLField(max_length=200, blank=True, null=True)
+    social_website = models.URLField(max_length=200, blank=True, null=True)
 
     def __str__(self):
         return str(self.username)
