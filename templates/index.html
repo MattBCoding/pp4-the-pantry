@@ -1,7 +1,52 @@
 {% extends 'base.html' %}
-
+{% load cloudinary %}
 {% block body %}
 <section>
-    <div class="temp-div"></div>
+    <section class="account-container">
+        <div class="container">
+          <div class="">
+            <h2>Search for <span>Recipes</span></h2>
+          </div>
+  
+          <div class="">
+            <!-- search recipes form -->
+            <form id="searchForm" class="form" action="{% url 'home' %}" method="get">
+              <div class="form__field">
+                <label for="formInput#search">Search By Recipe </label>
+                <input id="formInput#search" type="text" name="search_query"
+                  value="{{search_query}}" placeholder="Search by Recipe Name" />
+              </div>
+  
+              <input class="btn primary-action" type="submit" value="Search" />
+            </form>
+  
+          </div>
+        </div>
+      </section>
+      <!-- Search Result: Recipe List -->
+      <section class="account-container">
+        <div class="container">
+          <div class="flex">
+  
+              {% for recipe in recipes %}
+              <a href="{% url 'view-recipe' recipe.id %}">
+                  <div class="card recipe-card">
+                      <div class="card-img-top">
+                          {% cloudinary recipe.featured_image %}
+                      </div>
+                  
+                      <div class="card-body">
+                          <h5 class="card-title">{{ recipe.title }}</h5>
+                          <h6 class="card-subtitle mb-2 text-muted">{{ recipe.owner.username }}</h6>
+                          <p class="card-text">{{ recipe.description }}</p>
+                      </div>
+                  </div>
+              </a>
+  
+            {% endfor %}
+            
+          </div>
+        </div>
+      </section>
 </section>
 {% endblock body %}

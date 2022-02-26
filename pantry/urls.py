@@ -15,7 +15,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from recipes.views import say_hello
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,7 +22,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('accounts/login/profiles/', include('profiles.urls')),
     path('profiles/', include('profiles.urls')),
-
     path('', include('recipes.urls')),
-    path('hello/', say_hello, name='hello'),
 ]

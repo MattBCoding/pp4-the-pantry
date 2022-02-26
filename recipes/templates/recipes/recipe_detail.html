@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load cloudinary %}
+{% block body %}
+<section class="account-container flex">
+    <div>
+        <div class="profile-image">
+        {% cloudinary recipe.featured_image %}
+        </div>
+        <h2>{{ recipe.title }} </h2>
+        <p>{{ recipe.description }}</p>
+        {% if request.user == recipe.owner.user %}
+        <a class="btn primary-action" href="">Edit Recipe</a>
+        {% endif %}
+    </div>
+    <div>
+        <div>
+            <h5>Ingredients</h5>
+            <ul>
+                {% for ingredient in recipe.get_ingredients %}
+                <li>
+                    {{ ingredient.ingredient }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <h5>Steps</h5>
+            <ul>
+                {% for step in recipe.get_steps %}
+                <li>
+                    {{ step.step }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% if recipe.youtube_link %}
+        <p>{{ recipe.youtube_link }}</p>
+        {% endif %}
+    </div>
+    
+</section>
+{% endblock %}
