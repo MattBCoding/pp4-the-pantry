@@ -4,16 +4,56 @@
 <h2>Recipe Form Page</h2>
 <section class="account-container">
     <h2>Please complete your recipe</h2>
-    <div class="form-container">
-        <form class="add-recipe-form" action="{% url 'add-recipe' %}" method="post" enctype="multipart/form-data">
+    <div class="form-container p-2">
+        <form class="add-update-recipe-form" action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {% for field in form %}
-            <div>
-                <label for="formInput#text">{{field.label}}</label>
+            <div class="flex mt-2">
+                {{field.label_tag}}
                 {{field}}
             </div>
             {% endfor %}
-            <input class="btn primary-action" type="submit" value="submit" />
+            <div>
+                {% if formsetIngredient %}
+                <h5>Ingredients</h5>
+                <div id="ingredient-management-form">
+                    {{ formsetIngredient.management_form }}
+                </div>
+                <div id="ingredient-form-list" class="mt-2">
+                    {% for form in formsetIngredient %}
+                    <div class="flex ingredient-form-container mt-2">
+                        {{ form.as_p }}
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="mt-2">
+                    <button class="btn primary-action" id="add-ingredient">Add Another</button>
+                    <button class="btn secondary-action" id="delete-ingredient">Delete</button>
+                </div>
+                <div class="hidden" id="empty-ingredient-form">{{ formsetIngredient.empty_form }}</div>
+                {% endif %}
+            </div>
+            <div>
+                {% if formsetStep %}
+                <h5>Steps</h5>
+                <div id="step-management-form">
+                    {{ formsetStep.management_form }}
+                </div>
+                <div class="mt-2" id="step-form-list">
+                    {% for form in formsetStep %}
+                    <div class="flex step-form-container mt-2">
+                        {{ form.as_p }}
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="mt-2">
+                    <button class="btn primary-action" id="add-step" type="button">Add Another</button>
+                    <button class="btn secondary-action" id="delete-step" type="button">Delete</button>
+                </div>
+                <div class="hidden" id="empty-step-form">{{ formsetStep.empty_form }}</div>
+                {% endif %}
+            </div>
+            <button class="btn primary-action mt-2" type="submit" value="submit">Submit</button>
         </form>
     </div>
 </section>

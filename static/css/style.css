@@ -443,6 +443,7 @@ select {
 
 .secondary-action {
     border: 1px solid var(--button-bg);
+    color: var(--button-text);
 }
 
 /* allauth template styling */
@@ -500,6 +501,11 @@ select {
 .profile-image > img {
     height: 100%;
     object-fit: cover;
+}
+
+/* Recipe Create/Edit styling */
+.hidden {
+    display: none;
 }
 
 /* to be deleted only in for development purposes */

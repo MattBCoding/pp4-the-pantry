@@ -85,3 +85,47 @@ accountToggle.addEventListener('click', () => {
         accountToggle.setAttribute('aria-expanded', false);
     }
 })
+
+// Create or Edit Recipe form
+const addIngredientButton = document.getElementById('add-ingredient');
+const deleteIngredientButton = document.getElementById('delete-ingredient');
+const addStepButton = document.getElementById('add-step');
+const deleteStepButton = document.getElementById('delete-step');
+
+addIngredientButton.addEventListener('click', addNewForm);
+addStepButton.addEventListener('click', addNewForm);
+
+function addNewForm(e) {
+    const regex = new RegExp('__prefix__', 'g');
+    if (e) {
+        e.preventDefault();
+        if (e.target == addIngredientButton) {
+            const currentIngredientForms = document.getElementsByClassName('ingredient-form-container');
+            const currentIngredientCount = currentIngredientForms.length;
+            const ingredientTotalForms = document.getElementById('ingredient-management-form').firstElementChild;
+            const ingredientFormList = document.getElementById('ingredient-form-list');
+            const emptyIngredientForm = document.getElementById('empty-ingredient-form').cloneNode(true);
+            emptyIngredientForm.setAttribute('class', 'flex ingredient-form-container mt-2');
+            emptyIngredientForm.setAttribute('id', `form-${currentIngredientCount}`);
+            emptyIngredientForm.innerHTML = emptyIngredientForm.innerHTML.replace(regex, currentIngredientCount);
+            ingredientTotalForms.setAttribute('value', currentIngredientCount + 1);
+            ingredientFormList.append(emptyIngredientForm)
+            
+            // console.log('it was the ingredient button')
+        } else if (e.target == addStepButton) {
+            const currentStepForms = document.getElementsByClassName('step-form-container');
+            const currentStepCount = currentStepForms.length
+            const stepTotalForms = document.getElementById('step-management-form').firstElementChild;
+            const stepFormList = document.getElementById('step-form-list');
+            const emptyStepForm = document.getElementById('empty-step-form').cloneNode(true);
+            emptyStepForm.setAttribute('class', 'flex step-form-container mt-2');
+            emptyStepForm.setAttribute('id', `form-${currentStepCount}`);
+            emptyStepForm.innerHTML = emptyStepForm.innerHTML.replace(regex, currentStepCount);
+            stepTotalForms.setAttribute('value', currentStepCount + 1);
+            stepFormList.append(emptyStepForm)
+
+            // console.log('it was the step button')
+        }
+
+    }
+}

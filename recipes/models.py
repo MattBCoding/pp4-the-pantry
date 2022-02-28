@@ -28,7 +28,6 @@ class Recipe(models.Model):
 
 
 class Ingredient(models.Model):
-    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     ingredient = models.CharField(max_length=100)
     quantity = models.CharField(max_length=50)
@@ -38,7 +37,7 @@ class Ingredient(models.Model):
 
 
 class Step(models.Model):
-    step = models.CharField(max_length=300, blank=False, null=False)
+    step = models.CharField(max_length=800, blank=False, null=False)
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
 
     def __str__(self):
