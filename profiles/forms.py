@@ -1,8 +1,8 @@
-from django.forms import ModelForm
+from django import forms
 from .models import Profile
 
 
-class ProfileForm(ModelForm):
+class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = [
@@ -20,3 +20,7 @@ class ProfileForm(ModelForm):
 
             for name, field in self.fields.items():
                 field.widget.attrs.update({'class': 'input'})
+
+
+class DeleteUserForm(forms.Form):
+    email = forms.EmailField()

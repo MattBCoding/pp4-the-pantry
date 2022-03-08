@@ -8,6 +8,7 @@
     </p>
     {% if request.user == profile.user %}
     <a class="btn primary-action" href="{% url 'edit-profile' %}">Edit Profile</a>
+    <a class="btn secondary-action" href="{% url 'delete-user' profile.id %}">Delete My Account</a>
     {% endif %}
     <h5>insert here buttons to change account settings, password email address etc</h5>
     <p>request.user = {{ request.user }}</p>
