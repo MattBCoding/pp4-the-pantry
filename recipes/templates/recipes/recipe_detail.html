@@ -10,6 +10,7 @@
         <p>{{ recipe.description }}</p>
         {% if request.user == recipe.owner.user %}
         <a class="btn primary-action" href="{% url 'update-recipe' recipe.id %}">Edit Recipe</a>
+        <a class="btn secondary-action" href="{% url 'delete-recipe' recipe.id %}?next={{ request.path|urlencode }}">Delete Recipe</a>
         {% endif %}
     </div>
     <div>

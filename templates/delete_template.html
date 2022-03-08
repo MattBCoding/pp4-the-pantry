@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load cloudinary %}
+{% block body %}
+<section class="account-container flex">
+    
+    <h5>Confirm Delete</h5>
+    <form action="" class="" method="POST">
+        {% csrf_token %}
+        <p>Are you sure you want to delete "{{object}}"?</p>
+        <a href="{{request.GET.next}}" class="btn primary-action">Go Back</a>
+        <input type="submit" class="btn secondary-action" value="Delete">
+    </form>
+    
+</section>
+{% endblock %}

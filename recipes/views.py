@@ -88,8 +88,8 @@ def updateRecipe(request, pk):
     )
     ingredientQueryset = recipe.ingredient_set.all()
     stepQueryset = recipe.step_set.all()
-    formsetIngredient = IngredientFormset(request.POST or None, queryset=ingredientQueryset)
-    formsetStep = StepFormset(request.POST or None, queryset=stepQueryset)
+    formsetIngredient = IngredientFormset(request.POST or None, queryset=ingredientQueryset, prefix='ingredient')
+    formsetStep = StepFormset(request.POST or None, queryset=stepQueryset, prefix='step')
     context = {
         'form': form,
         'formsetIngredient': formsetIngredient,
@@ -113,3 +113,14 @@ def updateRecipe(request, pk):
         return redirect('view-recipe', recipe.id)
     
     return render(request, 'recipes/recipe_form.html/', context)
+
+
+@login_required
+def deleteRecipe(request, pk):
+    owner = get_object_or_404(Profile, user=request.user)
+    recipe = owner.recipe_set.get(id=pk)
+    if request.method == 'POST':
+        recipe.delete()
+        return redirect('home')
+    context = {'object': recipe}
+    return render(request, 'delete_template.html', context)
