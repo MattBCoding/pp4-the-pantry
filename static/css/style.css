@@ -508,6 +508,20 @@ select {
     display: none;
 }
 
+/* Recipe search results */
+.recipe-results {
+    flex-wrap: wrap;
+
+}
+
+.recipe-card {
+    width: max(24%, 300px);
+}
+
+.card {
+    width: 100%;
+}
+
 /* to be deleted only in for development purposes */
 .temp-div {
     height: 600px;

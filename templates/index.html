@@ -26,11 +26,11 @@
       <!-- Search Result: Recipe List -->
       <section class="account-container">
         <div class="container">
-          <div class="flex">
+          <div class="flex recipe-results">
   
               {% for recipe in recipes %}
-              <a href="{% url 'view-recipe' recipe.id %}">
-                  <div class="card recipe-card">
+              <a class="recipe-card" href="{% url 'view-recipe' recipe.id %}">
+                  <div class="card">
                       <div class="card-img-top">
                           {% cloudinary recipe.featured_image %}
                       </div>
@@ -38,7 +38,11 @@
                       <div class="card-body">
                           <h5 class="card-title">{{ recipe.title }}</h5>
                           <h6 class="card-subtitle mb-2 text-muted">{{ recipe.owner.username }}</h6>
-                          <p class="card-text">{{ recipe.description }}</p>
+                          <div>
+                            {% if recipe.youtube_link %}
+                            <i class="fa-brands fa-youtube"></i>
+                            {% endif %}
+                          </div>
                       </div>
                   </div>
               </a>

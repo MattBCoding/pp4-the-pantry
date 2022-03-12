@@ -86,6 +86,11 @@ accountToggle.addEventListener('click', () => {
     }
 })
 
+// adds csrf token to htmx submissions
+document.body.addEventListener('htmx:configRequest', (event) => {
+    event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+})
+
 // Create or Edit Recipe form
 const addIngredientButton = document.getElementById('add-ingredient');
 const deleteIngredientButton = document.getElementById('delete-ingredient');
