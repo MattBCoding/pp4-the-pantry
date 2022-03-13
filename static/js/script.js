@@ -65,9 +65,7 @@ window.onload = () => {
 }
 
 // sync with system changes
-window
-.matchMedia('(prefers-color-scheme: dark)')
-.addEventListener('change', ({matches:isDark}) => {
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({matches:isDark}) => {
     theme.value = isDark ? 'dark' : 'light'
     setPreference()
 })
@@ -87,24 +85,27 @@ accountToggle.addEventListener('click', () => {
 })
 
 // adds csrf token to htmx submissions
-document.body.addEventListener('htmx:configRequest', (event) => {
-    event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
-})
+// document.body.addEventListener('htmx:configRequest', (event) => {
+//     event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+// })
 
 // Create or Edit Recipe form
-const addIngredientButton = document.getElementById('add-ingredient');
 const deleteIngredientButton = document.getElementById('delete-ingredient');
-const addStepButton = document.getElementById('add-step');
 const deleteStepButton = document.getElementById('delete-step');
 
-addIngredientButton.addEventListener('click', addNewForm);
-addStepButton.addEventListener('click', addNewForm);
 
-function addNewForm(e) {
+document.addEventListener('click', (event)=>{
+    console.log(event.target, event.target.id)
+    if (event.target.id == 'add-ingredient' || event.target.id == 'add-step') {
+        addNewForm(event);
+    }
+})
+
+function addNewForm(event) {
     const regex = new RegExp('__prefix__', 'g');
-    if (e) {
-        e.preventDefault();
-        if (e.target == addIngredientButton) {
+    if (event) {
+        event.preventDefault();
+        if (event.target.id == 'add-ingredient') {
             const currentIngredientForms = document.getElementsByClassName('ingredient-form-container');
             const currentIngredientCount = currentIngredientForms.length;
             const ingredientTotalForms = document.getElementById('ingredient-management-form').firstElementChild;
@@ -116,8 +117,8 @@ function addNewForm(e) {
             ingredientTotalForms.setAttribute('value', currentIngredientCount + 1);
             ingredientFormList.append(emptyIngredientForm)
             
-            // console.log('it was the ingredient button')
-        } else if (e.target == addStepButton) {
+            console.log('it was the ingredient button')
+        } else if (event.target.id == 'add-step') {
             const currentStepForms = document.getElementsByClassName('step-form-container');
             const currentStepCount = currentStepForms.length
             const stepTotalForms = document.getElementById('step-management-form').firstElementChild;
@@ -129,7 +130,7 @@ function addNewForm(e) {
             stepTotalForms.setAttribute('value', currentStepCount + 1);
             stepFormList.append(emptyStepForm)
 
-            // console.log('it was the step button')
+            console.log('it was the step button')
         }
 
     }

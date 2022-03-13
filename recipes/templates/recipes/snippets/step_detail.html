@@ -1,0 +1,5 @@
+<div id="step-{{recipe.id}}">
+    <p>{{step.step}}</p>
+    <button hx-trigger="click" hx-get="{{ step.get_hx_edit_url }}" hx-target="#step-{{recipe.id}}">Edit</button>
+    <button>Delete</button>
+</div>

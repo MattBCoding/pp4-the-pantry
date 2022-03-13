@@ -5,6 +5,8 @@ from django.forms.models import modelformset_factory
 from .models import Profile, Recipe, Step, Ingredient
 from .utils import searchRecipes
 from .forms import IngredientForm, RecipeForm, StepForm
+from django.http import Http404, HttpResponse
+from django.urls import reverse
 
 
 # Create your views here.
@@ -17,100 +19,71 @@ def home(request):
     return render(request, 'index.html/', context)
 
 def viewRecipe(request, pk):
-    recipe = get_object_or_404(Recipe, id=pk)
+    hx_url = reverse("view-recipe-hx", kwargs={"pk": pk})
     context = {
-        'recipe': recipe
+        'hx_url': hx_url
     }
     return render(request, 'recipes/recipe_detail.html/', context)
 
+def viewRecipeHx(request, pk):
+    if not request.htmx:
+        raise Http404
+    try:
+        recipe = Recipe.objects.get(id=pk)
+    except:
+        recipe = None
+    if recipe is None:
+        return HttpResponse("Not Found!")
+    context = {
+        'recipe': recipe
+    }
+    return render(request, 'recipes/snippets/recipe_detail.html/', context)
 
 @login_required
 def addRecipe(request):
     profile = get_object_or_404(Profile, user=request.user)
     form = RecipeForm(request.POST or None, request.FILES or None)
-    IngredientFormset = modelformset_factory(
-        Ingredient,
-        form = IngredientForm,
-        extra = 1
-        )
-    StepFormset = modelformset_factory(
-        Step,
-        form = StepForm,
-        extra = 1
-        )
-    ingredientQueryset = Ingredient.objects.none()
-    stepQueryset = Step.objects.none()
-    formsetIngredient = IngredientFormset(request.POST or None, queryset=ingredientQueryset, prefix='ingredient')
-    formsetStep = StepFormset(request.POST or None, queryset=stepQueryset, prefix='step')
     context = {
         'form': form,
-        'formsetIngredient': formsetIngredient,
-        'formsetStep': formsetStep
     }
     if request.method == 'POST':
         form = RecipeForm(request.POST, request.FILES)
+        if form.is_valid():
+            print('FORM IS VALID -------------------------->')
+            recipe = form.save(commit=False)
+            recipe.owner = profile
+            recipe.save()
 
-        if all([form.is_valid(), formsetIngredient.is_valid(), formsetStep.is_valid()]):
-            displayedRecipeForm = form.save(commit=False)
-            displayedRecipeForm.owner = profile
-            displayedRecipeForm.save()
-            for form in formsetIngredient:
-                displayedIngredientForm = form.save(commit=False)
-                # if displayedIngredientForm.recipe is None:
-                displayedIngredientForm.recipe = displayedRecipeForm
-                displayedIngredientForm.save()
-            for form in formsetStep:
-                displayedStepForm = form.save(commit=False)
-                # if displayedStepForm.recipe is None:
-                displayedStepForm.recipe = displayedRecipeForm
-                displayedStepForm.save()
-            print(displayedRecipeForm)
-            return redirect('view-recipe', displayedRecipeForm.id)
+            if request.htmx:
+                print('REQUEST IS HTMX -------------------------->')
+                headers = {
+                    'HX-Redirect': recipe.get_update_url()
+                }
+                return HttpResponse('created', headers=headers)
+            return redirect(recipe.get_update_url())      
     
-    return render(request, 'recipes/recipe_form.html/', context)
+    return render(request, 'recipes/create_recipe.html/', context)
 
 
 @login_required
 def updateRecipe(request, pk):
-    owner = get_object_or_404(Profile, user=request.user)
+    # owner = get_object_or_404(Profile, user=request.user)
     recipe = get_object_or_404(Recipe, pk=pk)
     # if recipe.owner == owner:
     form = RecipeForm(request.POST or None, request.FILES or None, instance=recipe)
-    IngredientFormset = modelformset_factory(
-        Ingredient,
-        form = IngredientForm,
-        extra = 0
-    )
-    StepFormset = modelformset_factory(
-        Step,
-        form = StepForm,
-        extra = 0
-    )
-    ingredientQueryset = recipe.ingredient_set.all()
-    stepQueryset = recipe.step_set.all()
-    formsetIngredient = IngredientFormset(request.POST or None, queryset=ingredientQueryset, prefix='ingredient')
-    formsetStep = StepFormset(request.POST or None, queryset=stepQueryset, prefix='step')
+    new_ingredient_url = reverse('create-ingredient-hx', kwargs={'recipe_pk':recipe.id})
+    new_step_url = reverse('create-step-hx', kwargs={'recipe_pk':recipe.id})
     context = {
         'form': form,
-        'formsetIngredient': formsetIngredient,
-        'formsetStep': formsetStep,
         'recipe': recipe,
+        'new_ingredient_url': new_ingredient_url,
+        'new_step_url': new_step_url
     }
-    if all([form.is_valid(), formsetIngredient.is_valid(), formsetStep.is_valid()]):
-        displayedRecipeForm = form.save(commit=False)
-        displayedRecipeForm.save()
-        for form in formsetIngredient:
-            displayedIngredientForm = form.save(commit=False)
-            # if displayedIngredientForm.recipe is None:
-            displayedIngredientForm.recipe = displayedRecipeForm
-            displayedIngredientForm.save()
-        for form in formsetStep:
-            displayedStepForm = form.save(commit=False)
-            # if displayedStepForm.recipe is None:
-            displayedStepForm.recipe = displayedRecipeForm
-            displayedStepForm.save()
-    # else:
-        return redirect('view-recipe', recipe.id)
+    if form.is_valid():
+        form.save()
+
+    if request.htmx:
+        return render(request, 'recipes/snippets/recipe_form.html', context)
     
     return render(request, 'recipes/recipe_form.html/', context)
 
@@ -124,3 +97,99 @@ def deleteRecipe(request, pk):
         return redirect('home')
     context = {'object': recipe}
     return render(request, 'delete_template.html', context)
+
+
+@login_required
+def updateIngredientHx(request, recipe_pk=None, pk=None):
+    if not request.htmx:
+        print('Not a HTMX request ----------------->')
+        raise Http404
+    try:
+        recipe = Recipe.objects.get(id=recipe_pk)
+        print(recipe)
+    except:
+        recipe = None
+    if recipe is None:
+        return HttpResponse("Not Found!")
+    instance = None
+    if pk is not None:
+        try:
+            instance = Ingredient.objects.get(recipe=recipe, id=pk)
+        except:
+            instance = None
+    print('This instance is... ------------->')
+    print(instance)
+    print(pk)
+    print(recipe_pk)
+    form = IngredientForm(request.POST or None, instance=instance)
+    url = reverse('create-ingredient-hx', kwargs={'recipe_pk':recipe.id})
+    if instance:
+        url = instance.get_hx_edit_url()
+    print(form)
+    print(url)
+    context = {
+        'url': url,
+        'ingredientform': form,
+        'ingredient': instance
+    }
+    
+    if form.is_valid():
+        print('Form is valid -------------------------->')
+        ingredient = form.save(commit=False)
+        if instance is None:
+            ingredient.recipe = recipe
+        ingredient.save()
+        context['ingredient'] = ingredient
+        return render(request, 'recipes/snippets/ingredient_detail.html/', context)
+    if not form.is_valid():
+        print('something is wrong with the form')
+    
+    return render(request, 'recipes/snippets/ingredient_form.html/', context)
+
+
+@login_required
+def updateStepHx(request, recipe_pk=None, pk=None):
+    if not request.htmx:
+        print('Not a HTMX request ----------------->')
+        raise Http404
+    try:
+        recipe = Recipe.objects.get(id=recipe_pk)
+        print(recipe)
+    except:
+        recipe = None
+    if recipe is None:
+        return HttpResponse("Not Found!")
+    instance = None
+    if pk is not None:
+        try:
+            instance = Step.objects.get(recipe=recipe, id=pk)
+        except:
+            instance = None
+    print('This instance is... ------------->')
+    print(instance)
+    print(pk)
+    print(recipe_pk)
+    form = StepForm(request.POST or None, instance=instance)
+    url = reverse('create-step-hx', kwargs={'recipe_pk':recipe.id})
+    if instance:
+        url = instance.get_hx_edit_url()
+    print(form)
+    print(url)
+    context = {
+        'url': url,
+        'stepform': form,
+        'ingredient': instance
+    }
+    
+    if form.is_valid():
+        print('Form is valid -------------------------->')
+        step = form.save(commit=False)
+        if instance is None:
+            step.recipe = recipe
+        step.save()
+        context['step'] = step
+        return render(request, 'recipes/snippets/step_detail.html/', context)
+    if not form.is_valid():
+        print('something is wrong with the form')
+    
+    return render(request, 'recipes/snippets/step_form.html/', context)

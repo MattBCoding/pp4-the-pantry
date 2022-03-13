@@ -1,0 +1,18 @@
+<form class="add-update-recipe-form" 
+      action="" 
+      method="POST" 
+      enctype="multipart/form-data" 
+      hx-post="" 
+      hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+      hx-swap="outerHTML">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="flex mt-2">
+        {{field.label_tag}}
+        {{field}}
+    </div>
+    {% endfor %}
+    
+    <div class="htmx-indicator">Loading....</div>
+    <button class="btn primary-action mt-2 htmx-inverted-indicator" type="submit" value="submit">Submit</button>
+</form>

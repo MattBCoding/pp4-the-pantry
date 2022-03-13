@@ -522,6 +522,24 @@ select {
     width: 100%;
 }
 
+/* HTMX styling */
+
+.htmx-indicator {
+    display: none;
+}
+
+.htmx-request .htmx-indicator {
+    display: inline;
+}
+
+.htmx-inverted-indicator {
+    display: inline;
+}
+
+.htmx-request .htmx-inverted-indicator {
+    display: none;
+}
+
 /* to be deleted only in for development purposes */
 .temp-div {
     height: 600px;

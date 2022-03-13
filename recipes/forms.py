@@ -23,6 +23,8 @@ class RecipeForm(forms.ModelForm):
 
 
 class IngredientForm(forms.ModelForm):
+    required_css_class = 'required-field'
+    error_css_class = 'error-field'
     class Meta:
         model = Ingredient
         fields = [
