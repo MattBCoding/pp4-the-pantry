@@ -1,4 +1,6 @@
+from concurrent.futures.process import _process_chunk
 from distutils import command
+from re import I
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.forms.models import modelformset_factory
@@ -80,23 +82,16 @@ def updateRecipe(request, pk):
         'new_step_url': new_step_url
     }
     if form.is_valid():
+        print('FORM IS VALID FROM updateRecipe------------------------->')
         form.save()
 
     if request.htmx:
+        print('REQUEST IS HTMX FROM updateRecipe------------------------->')
+        context = context
         return render(request, 'recipes/snippets/recipe_form.html', context)
     
     return render(request, 'recipes/recipe_form.html/', context)
 
-
-@login_required
-def deleteRecipe(request, pk):
-    owner = get_object_or_404(Profile, user=request.user)
-    recipe = owner.recipe_set.get(id=pk)
-    if request.method == 'POST':
-        recipe.delete()
-        return redirect('home')
-    context = {'object': recipe}
-    return render(request, 'delete_template.html', context)
 
 
 @login_required
@@ -193,3 +188,42 @@ def updateStepHx(request, recipe_pk=None, pk=None):
         print('something is wrong with the form')
     
     return render(request, 'recipes/snippets/step_form.html/', context)
+
+def deleteIngredientHx(request, recipe_pk=None, pk=None):
+    try:
+        ingredient = Ingredient.objects.get(recipe=recipe_pk, id=pk)
+    except:
+        ingredient = None
+    if ingredient is None:
+        if request.htmx:
+            return HttpResponse("Ingredient not found!")
+        raise Http404
+    if request.method == 'POST':
+        ingredient.delete()
+        return_url = reverse('update-recipe', kwargs={'pk': recipe_pk})
+        if request.htmx:
+            print('HTMX request ----------------------------->')
+            headers = {
+                'HX-Redirect': return_url
+            }
+            return HttpResponse('', headers=headers) 
+            # render(request, 'recipes/snippets/ingredient-delete-response.html', {'ingredient': ingredient})
+        return redirect(return_url)
+    context = {
+        'ingredient': ingredient
+    }
+
+    return render(request, 'recipes/snippets/ingredient_delete.html', context)
+
+
+@login_required
+def deleteRecipe(request, pk):
+    owner = get_object_or_404(Profile, user=request.user)
+    recipe = owner.recipe_set.get(id=pk)
+    if request.method == 'POST':
+        recipe.delete()
+        # NEED TO UPDATE DELETE REDIRECT
+        # so that it redirects to appropriate place based on where the user came from
+        return redirect('home')
+    context = {'object': recipe}
+    return render(request, 'delete_template.html', context)

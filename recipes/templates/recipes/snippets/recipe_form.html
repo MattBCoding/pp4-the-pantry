@@ -1,10 +1,12 @@
+{% load cloudinary %}
 <form class="add-update-recipe-form" 
       action="" 
       method="POST" 
       enctype="multipart/form-data" 
       hx-post="" 
       hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
-      hx-swap="outerHTML">
+      hx-swap="outerHTML"
+      hx-encoding="multipart/form-data">
     {% csrf_token %}
     {% for field in form %}
     <div class="flex mt-2">

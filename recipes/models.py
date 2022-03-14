@@ -56,6 +56,15 @@ class Ingredient(models.Model):
         }
         print('the get hx edit url function was called')
         return reverse('update-ingredient-hx', kwargs=kwargs)
+    
+    def get_hx_delete_url(self):
+        kwargs = {
+            'recipe_pk': self.recipe.id,
+            'pk': self.id
+        }
+        print('the get hx DELETE url function was called')
+        return reverse('delete-ingredient-hx', kwargs=kwargs)
+
 
 
 class Step(models.Model):
