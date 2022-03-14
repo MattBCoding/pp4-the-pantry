@@ -62,7 +62,7 @@ class Ingredient(models.Model):
             'recipe_pk': self.recipe.id,
             'pk': self.id
         }
-        print('the get hx DELETE url function was called')
+        print('the get hx DELETE url function was called on the Ingredient Model')
         return reverse('delete-ingredient-hx', kwargs=kwargs)
 
 
@@ -80,3 +80,12 @@ class Step(models.Model):
             'pk': self.id
         }
         return reverse('update-step-hx', kwargs=kwargs)
+    
+    def get_hx_delete_url(self):
+        kwargs = {
+            'recipe_pk': self.recipe.id,
+            'pk': self.id
+        }
+        print('the get hx DELETE url function was called on the Step Model')
+        return reverse('delete-step-hx', kwargs=kwargs)
+

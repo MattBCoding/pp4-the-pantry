@@ -189,6 +189,7 @@ def updateStepHx(request, recipe_pk=None, pk=None):
     
     return render(request, 'recipes/snippets/step_form.html/', context)
 
+@login_required
 def deleteIngredientHx(request, recipe_pk=None, pk=None):
     try:
         ingredient = Ingredient.objects.get(recipe=recipe_pk, id=pk)
@@ -214,6 +215,33 @@ def deleteIngredientHx(request, recipe_pk=None, pk=None):
     }
 
     return render(request, 'recipes/snippets/ingredient_delete.html', context)
+
+@login_required
+def deleteStepHx(request, recipe_pk=None, pk=None):
+    try:
+        step = Step.objects.get(recipe=recipe_pk, id=pk)
+    except:
+        step = None
+    if step is None:
+        if request.htmx:
+            return HttpResponse("Step not found!")
+        raise Http404
+    if request.method == 'POST':
+        step.delete()
+        return_url = reverse('update-recipe', kwargs={'pk': recipe_pk})
+        if request.htmx:
+            print('HTMX request ----------------------------->')
+            headers = {
+                'HX-Redirect': return_url
+            }
+            return HttpResponse('', headers=headers) 
+            # render(request, 'recipes/snippets/ingredient-delete-response.html', {'ingredient': ingredient})
+        return redirect(return_url)
+    context = {
+        'step': step
+    }
+
+    return render(request, 'recipes/snippets/step_delete.html', context)
 
 
 @login_required

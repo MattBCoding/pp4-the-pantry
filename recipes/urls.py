@@ -10,6 +10,7 @@ urlpatterns = [
     path('hx/view-recipe/<str:pk>/', views.viewRecipeHx, name='view-recipe-hx'),
     path('hx/view-recipe/<str:recipe_pk>/ingredient/<str:pk>/', views.updateIngredientHx, name='update-ingredient-hx'),
     path('hx/delete-recipe/<str:recipe_pk>/ingredient/<str:pk>/', views.deleteIngredientHx, name='delete-ingredient-hx'),
+    path('hx/delete-recipe/<str:recipe_pk>/step/<str:pk>/', views.deleteStepHx, name='delete-step-hx'),
     path('hx/view-recipe/<str:recipe_pk>/ingredient/', views.updateIngredientHx, name='create-ingredient-hx'),
     path('hx/view-recipe/<str:recipe_pk>/step/<str:pk>/', views.updateStepHx, name='update-step-hx'),
     path('hx/view-recipe/<str:recipe_pk>/step/', views.updateStepHx, name='create-step-hx'),
