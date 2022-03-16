@@ -1,5 +1,5 @@
 {% load cloudinary %}
-<form class="add-update-recipe-form" 
+<form class="create-recipe-form" 
       action="" 
       method="POST" 
       enctype="multipart/form-data" 
@@ -9,7 +9,7 @@
       hx-encoding="multipart/form-data">
     {% csrf_token %}
     {% for field in form %}
-    <div class="flex mt-2">
+    <div class="flex mt-2 form-pair">
         {{field.label_tag}}
         {{field}}
     </div>

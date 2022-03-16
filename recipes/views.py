@@ -1,9 +1,5 @@
-from concurrent.futures.process import _process_chunk
-from distutils import command
-from re import I
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.forms.models import modelformset_factory
 from .models import Profile, Recipe, Step, Ingredient
 from .utils import searchRecipes
 from .forms import IngredientForm, RecipeForm, StepForm
@@ -97,7 +93,7 @@ def updateRecipe(request, pk):
 @login_required
 def updateIngredientHx(request, recipe_pk=None, pk=None):
     if not request.htmx:
-        print('Not a HTMX request ----------------->')
+        print('Not a HTMX request -----------------> updateIngredientHx views.py')
         raise Http404
     try:
         recipe = Recipe.objects.get(id=recipe_pk)
@@ -145,7 +141,7 @@ def updateIngredientHx(request, recipe_pk=None, pk=None):
 @login_required
 def updateStepHx(request, recipe_pk=None, pk=None):
     if not request.htmx:
-        print('Not a HTMX request ----------------->')
+        print('Not a HTMX request -----------------> updateStepHx views.py')
         raise Http404
     try:
         recipe = Recipe.objects.get(id=recipe_pk)

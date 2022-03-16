@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 {% load cloudinary %}
 {% block body %}
-<h2>Recipe Form Page</h2>
-<section class="account-container">
+<h2>create recipe Page</h2>
+<section class="account-container p-2 mt-2 mx-2">
     <div id="create-recipe">
         <h2>Please create your recipe</h2>
         <div class="form-container p-2">
             <h4>Step 1</h4>
-            <form class="add-update-recipe-form" action="" method="POST" enctype="multipart/form-data">
+            <form class="create-recipe-form" action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for field in form %}
-                <div class="flex mt-2">
+                <div class="flex mt-2 form-pair">
                     {{field.label_tag}}
                     {{field}}
                 </div>
@@ -19,11 +19,11 @@
                 <div class="htmx-indicator">Loading....</div>
                 <button class="btn primary-action mt-2 htmx-inverted-indicator" type="submit" value="submit">Submit</button>
             </form>
-            <div class="inactive">
+            <div class="inactive mt-2">
                 <h4>Step 2</h4>
-                <h5>Ingredients</h5>
+                <h5 class="mt-1">Ingredients</h5>
                 
-                <h5>Steps</h5>
+                <h5 class="mt-1">Steps</h5>
             </div>
             
         </div>

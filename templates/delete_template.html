@@ -7,7 +7,7 @@
     <form action="" class="" method="POST">
         {% csrf_token %}
         <p>Are you sure you want to delete "{{object}}"?</p>
-        <a href="{{request.GET.next}}" class="btn primary-action">Go Back</a>
+        <a href="{% url 'view-recipe' object.id %}" class="btn primary-action">Go Back</a>
         <input type="submit" class="btn secondary-action" value="Delete">
     </form>
     

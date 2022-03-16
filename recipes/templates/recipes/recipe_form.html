@@ -6,15 +6,18 @@
     <h2>Please complete your recipe</h2>
     <div class="form-container p-2">
         {% include 'recipes/snippets/recipe_form.html' %}
-
-        <h5>Ingredients</h5>
-        {% for ingredient in recipe.get_ingredients %}
-        {% include 'recipes/snippets/ingredient_detail.html' with ingredient=ingredient %}
-        {% endfor %}
-        {% if new_ingredient_url %}
-        <div id="ingredient-create"></div>
-        <button hx-get="{{new_ingredient_url}}" hx-trigger="click" hx-target="#ingredient-create" hx-swap="beforeend" class="btn primary-action m-2">Add Ingredient</button>
-        {% endif %}
+        <div class="ingredient-form-container m-2">
+            <h5>Ingredients</h5>
+            {% for ingredient in recipe.get_ingredients %}
+            {% include 'recipes/snippets/ingredient_detail.html' with ingredient=ingredient %}
+            {% endfor %}
+        </div>
+            {% if new_ingredient_url %}
+            <div class="ingredient-form-container m-2">
+                <div id="ingredient-create"></div>
+            </div>
+            <button hx-get="{{new_ingredient_url}}" hx-trigger="click" hx-target="#ingredient-create" hx-swap="beforeend" class="btn primary-action m-2">Add Ingredient</button>
+            {% endif %}
         
         <h5>Steps</h5>
         {% for step in recipe.get_steps %}
