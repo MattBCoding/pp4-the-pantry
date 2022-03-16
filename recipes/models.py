@@ -1,6 +1,8 @@
 from enum import unique
 from django.db import models
 import uuid
+
+from django.urls import reverse
 from profiles.models import Profile
 from cloudinary.models import CloudinaryField
 
@@ -25,15 +27,44 @@ class Recipe(models.Model):
 
     def get_steps(self):
         return self.step_set.all()
+    
+    def get_hx_url(self):
+        return reverse("view-recipe-hx", kwargs={"pk": self.id})
+
+    def get_ingredients(self):
+        return self.ingredient_set.all()
+
+    def get_steps(self):
+        return self.step_set.all()
+
+    def get_update_url(self):
+        return reverse("update-recipe", kwargs={"pk": self.id})
 
 
 class Ingredient(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
-    ingredient = models.CharField(max_length=100)
-    quantity = models.CharField(max_length=50)
+    ingredient = models.CharField(max_length=100, blank=False, null=False)
+    quantity = models.CharField(max_length=50, blank=False, null=False)
 
     def __str__(self):
         return str(self.ingredient)
+    
+    def get_hx_edit_url(self):
+        kwargs = {
+            'recipe_pk': self.recipe.id,
+            'pk': self.id
+        }
+        print('the get hx edit url function was called')
+        return reverse('update-ingredient-hx', kwargs=kwargs)
+    
+    def get_hx_delete_url(self):
+        kwargs = {
+            'recipe_pk': self.recipe.id,
+            'pk': self.id
+        }
+        print('the get hx DELETE url function was called on the Ingredient Model')
+        return reverse('delete-ingredient-hx', kwargs=kwargs)
+
 
 
 class Step(models.Model):
@@ -42,3 +73,19 @@ class Step(models.Model):
 
     def __str__(self):
         return str(self.step)
+
+    def get_hx_edit_url(self):
+        kwargs = {
+            'recipe_pk': self.recipe.id,
+            'pk': self.id
+        }
+        return reverse('update-step-hx', kwargs=kwargs)
+    
+    def get_hx_delete_url(self):
+        kwargs = {
+            'recipe_pk': self.recipe.id,
+            'pk': self.id
+        }
+        print('the get hx DELETE url function was called on the Step Model')
+        return reverse('delete-step-hx', kwargs=kwargs)
+

@@ -8,16 +8,16 @@
             <h2>Search for <span>Recipes</span></h2>
           </div>
   
-          <div class="">
+          <div>
             <!-- search recipes form -->
-            <form id="searchForm" class="form" action="{% url 'home' %}" method="get">
-              <div class="form__field">
-                <label for="formInput#search">Search By Recipe </label>
-                <input id="formInput#search" type="text" name="search_query"
+            <form class="search-form" id="search-form" action="{% url 'home' %}" method="get">
+              <div class="my-1">
+                <label for="formInput#search">Search By Recipe</label>
+                <input class="mx-2 ps-1 search-bar" id="formInput#search" type="text" name="search_query"
                   value="{{search_query}}" placeholder="Search by Recipe Name" />
-              </div>
+                </div>
+                <input class="btn primary-action" type="submit" value="Search" />
   
-              <input class="btn primary-action" type="submit" value="Search" />
             </form>
   
           </div>
@@ -31,19 +31,35 @@
               {% for recipe in recipes %}
               <a class="recipe-card" href="{% url 'view-recipe' recipe.id %}">
                   <div class="card">
+                    <div class="card-container m-1">
                       <div class="card-img-top">
                           {% cloudinary recipe.featured_image %}
                       </div>
                   
                       <div class="card-body">
+                        <div class="title-container flex">
                           <h5 class="card-title">{{ recipe.title }}</h5>
+                          <!-- insert if statement to check if user has added this recipe to their favourites -->
+                          <!-- icon if they have added -->
+                          <!-- <i class="fa-solid fa-heart"></i> -->
+                          <!-- icon if they haven't added -->
+                          <i class="fa-regular fa-heart"></i>
+                        </div>
+                          {% if recipe.owner.username != None %}
                           <h6 class="card-subtitle mb-2 text-muted">{{ recipe.owner.username }}</h6>
+                          {% endif %}
                           <div>
                             {% if recipe.youtube_link %}
                             <i class="fa-brands fa-youtube"></i>
                             {% endif %}
+                            <!-- insert if statement to check if user has liked this recipe -->
+                            <!-- icon if they have added -->
+                            <!-- <i class="fa-solid fa-thumbs-up"></i> -->
+                            <!-- icon if they haven't added -->
+                            <i class="fa-regular fa-thumbs-up"></i>
                           </div>
                       </div>
+                    </div>
                   </div>
               </a>
   

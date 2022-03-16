@@ -1,0 +1,6 @@
+<div id="ingredient-{{ingredient.id}}">
+    <p>{{ingredient.ingredient}}</p>
+    <p>{{ingredient.quantity}}</p>
+    <button hx-trigger="click" hx-get="{{ ingredient.get_hx_edit_url }}" hx-target="#ingredient-{{ingredient.id}}" class="btn primary-action">Edit</button>
+    <a class="btn secondary-action" href="{{ ingredient.get_hx_delete_url }}?next={{ request.path|urlencode }}">Delete</a>
+</div>

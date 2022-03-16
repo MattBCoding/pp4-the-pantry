@@ -1,0 +1,5 @@
+<div id="step-{{step.id}}">
+    <p>{{step.step}}</p>
+    <button hx-trigger="click" hx-get="{{ step.get_hx_edit_url }}" hx-target="#step-{{step.id}}"class="btn primary-action">Edit</button>
+    <a class="btn secondary-action" href="{{ step.get_hx_delete_url }}?next={{ request.path|urlencode }}">Delete</a>
+</div>

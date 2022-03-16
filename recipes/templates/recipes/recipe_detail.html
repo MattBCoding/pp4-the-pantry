@@ -1,43 +1,8 @@
 {% extends "base.html" %}
-{% load cloudinary %}
 {% block body %}
-<section class="account-container flex">
-    <div>
-        <div class="profile-image">
-        {% cloudinary recipe.featured_image %}
-        </div>
-        <h2>{{ recipe.title }} </h2>
-        <p>{{ recipe.description }}</p>
-        {% if request.user == recipe.owner.user %}
-        <a class="btn primary-action" href="{% url 'update-recipe' recipe.id %}">Edit Recipe</a>
-        <a class="btn secondary-action" href="{% url 'delete-recipe' recipe.id %}?next={{ request.path|urlencode }}">Delete Recipe</a>
-        {% endif %}
-    </div>
-    <div>
-        <div>
-            <h5>Ingredients</h5>
-            <ul>
-                {% for ingredient in recipe.get_ingredients %}
-                <li>
-                    {{ ingredient.quantity }} of {{ ingredient.ingredient }}
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div>
-            <h5>Steps</h5>
-            <ul>
-                {% for step in recipe.get_steps %}
-                <li>
-                    {{ step.step }}
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-        {% if recipe.youtube_link %}
-        <a href="{{ recipe.youtube_link }}" target="_blank" class="youtube-link">Watch this recipe on YouTube</a>
-        {% endif %}
-    </div>
-    
-</section>
+
+<div hx-get="{{hx_url}}" hx-trigger="revealed">
+    <div class="htmx-indicator">Loading...</div>
+</div>
+
 {% endblock %}
