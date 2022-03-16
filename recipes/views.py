@@ -9,12 +9,16 @@ from django.urls import reverse
 
 # Create your views here.
 def home(request):
+    
+    return render(request, 'index.html/')
+
+def recipes(request):
     recipes, search_query = searchRecipes(request)
     context = {
         'recipes': recipes,
         'search_query': search_query
     }
-    return render(request, 'index.html/', context)
+    return render(request, 'recipes/recipes.html/', context)
 
 def viewRecipe(request, pk):
     hx_url = reverse("view-recipe-hx", kwargs={"pk": pk})

@@ -480,6 +480,101 @@ select {
     padding: 0;
 }
 
+/* Home page styling */
+.register-section {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.register-card-container {
+    flex-direction: column-reverse;
+    background-color: var(--bg-tertiary);
+}
+
+.register-card {
+    background-color: var(--bg-quaternary);
+    position: relative;
+    border-radius: 2%;
+}
+
+.register-card li {
+    list-style: none;
+    text-align: start;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+/* .active-li > i,
+.inactive-li > i {
+    font-size: inherit;
+    padding-right: 0.5rem;
+} */
+
+.active-li > i {
+    color: var(--primary-color);
+}
+
+.inactive-li > i {
+    color: var(--accent-color);
+}
+
+/* .register-card li > div {
+    display: inline;
+} */
+
+.happy-chef-watermark {
+    position: absolute;
+    top: 0;
+    background: url(https://res.cloudinary.com/mattbcoding/image/upload/v1647445084/half-smiling-chef_v3fba2.png) 100% 50%/contain no-repeat;
+    height: 100%;
+    width: 100%;
+    z-index: 5;
+}
+
+.register-card-content {
+    position: relative;
+    z-index: 10;
+}
+
+/* footer styling */
+footer {
+    height: 200px;
+    background-color: var(--primary-color);
+    color: var(--text-secondary);
+}
+
+.footer-bottom {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-channels {
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    max-width: 30rem;
+    width: 100%;
+}
+
+.social-icons {
+    font-size: 2rem;
+    list-style: none;
+}
+
+.social-icons > a {
+    text-decoration: none;
+    color: var(--button-text-primary);
+}
+
+.social-icons i:hover {
+    transform: scale(1.05);
+}
+
 /* profile card styling */
 .profile-list {
     background-color: var(--bg-secondary);

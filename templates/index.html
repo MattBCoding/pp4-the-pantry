@@ -1,72 +1,73 @@
 {% extends 'base.html' %}
 {% load cloudinary %}
 {% block body %}
-<section>
-    <section class="account-container">
-        <div class="container">
-          <div class="">
-            <h2>Search for <span>Recipes</span></h2>
-          </div>
-  
-          <div>
-            <!-- search recipes form -->
-            <form class="search-form" id="search-form" action="{% url 'home' %}" method="get">
-              <div class="my-1">
-                <label for="formInput#search">Search By Recipe</label>
-                <input class="mx-2 ps-1 search-bar" id="formInput#search" type="text" name="search_query"
-                  value="{{search_query}}" placeholder="Search by Recipe Name" />
-                </div>
-                <input class="btn primary-action" type="submit" value="Search" />
-  
-            </form>
-  
-          </div>
+
+<!-- hero section introducing site -->
+<section class="account-container mt-2 p-2">
+    <h2>Hero Section Heading</h2>
+</section>
+
+<!-- section to encourage people to register -->
+<section class="account-container mt-2 p-2 register-section flex">
+    <h2>Register Section Heading</h2>
+    <p class="">Everyone is welcome at The Pantry, you can search and browse through any and all of our recipes for free. Joining us is a free and simple process, just register for a secure account and you'll be able to take advantage of all our member benefits immediately.</p>
+    <div class="register-card-container flex p-2">
+        <div class="register-card non-member mt-2 py-2">
+            <h5>Non-Member</h5>
+            <ul class="mt-2">
+                <li class="active-li"><i class="fa-solid fa-check"></i><div>Browse our recipe collection</div></li>
+                <li class="active-li"><i class="fa-solid fa-check"></i><div>Search our recipe collection</div></li>
+                <li class="inactive-li"><i class="fa-solid fa-xmark"></i><div>Add your own recipes to our collection</div></li>
+                <li class="inactive-li"><i class="fa-solid fa-xmark"></i><div>Save your favourite recipes for easy access</div></li>
+                <li class="inactive-li"><i class="fa-solid fa-xmark"></i><div>Interact with our community of amateur chefs</div></li>
+                <li class="inactive-li"><i class="fa-solid fa-xmark"></i><div>Advanced search options</div></li>
+            </ul>
+            <div class="secondary-action btn">No Action Needed</div>
         </div>
-      </section>
-      <!-- Search Result: Recipe List -->
-      <section class="account-container">
-        <div class="container">
-          <div class="flex recipe-results">
-  
-              {% for recipe in recipes %}
-              <a class="recipe-card" href="{% url 'view-recipe' recipe.id %}">
-                  <div class="card">
-                    <div class="card-container m-1">
-                      <div class="card-img-top">
-                          {% cloudinary recipe.featured_image %}
-                      </div>
-                  
-                      <div class="card-body">
-                        <div class="title-container flex">
-                          <h5 class="card-title">{{ recipe.title }}</h5>
-                          <!-- insert if statement to check if user has added this recipe to their favourites -->
-                          <!-- icon if they have added -->
-                          <!-- <i class="fa-solid fa-heart"></i> -->
-                          <!-- icon if they haven't added -->
-                          <i class="fa-regular fa-heart"></i>
-                        </div>
-                          {% if recipe.owner.username != None %}
-                          <h6 class="card-subtitle mb-2 text-muted">{{ recipe.owner.username }}</h6>
-                          {% endif %}
-                          <div>
-                            {% if recipe.youtube_link %}
-                            <i class="fa-brands fa-youtube"></i>
-                            {% endif %}
-                            <!-- insert if statement to check if user has liked this recipe -->
-                            <!-- icon if they have added -->
-                            <!-- <i class="fa-solid fa-thumbs-up"></i> -->
-                            <!-- icon if they haven't added -->
-                            <i class="fa-regular fa-thumbs-up"></i>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-              </a>
-  
-            {% endfor %}
-            
-          </div>
+        <div class="register-card member mt-2 py-2">
+            <div class="happy-chef-watermark"></div>
+            <!-- <img src="https://res.cloudinary.com/mattbcoding/image/upload/v1647443458/smiling-chef_mufoxg.png" alt=""> -->
+            <div class="register-card-content">
+                <h5>Member</h5>
+                <ul class="mt-2">
+                    <li class="active-li"><i class="fa-solid fa-check"></i><div>Browse our recipe collection</div></li>
+                    <li class="active-li"><i class="fa-solid fa-check"></i><div>Search our recipe collection</div></li>
+                    <li class="active-li"><i class="fa-solid fa-check"></i><div>Add your own recipes to our collection</div></li>
+                    <li class="active-li"><i class="fa-solid fa-check"></i><div>Save your favourite recipes for easy access</div></li>
+                    <li class="active-li"><i class="fa-solid fa-check"></i><div>Interact with our community of amateur chefs</div></li>
+                    <li class="active-li"><i class="fa-solid fa-check"></i><div>Advanced search options</div></li>
+                </ul>
+                <a href="{% url 'account_signup' %}"class="primary-action btn">Register Now</a>
+            </div>
         </div>
-      </section>
+    </div>
+</section>
+
+<!-- feature section encouraging people to search recipes -->
+<section class="account-container mt-2 p-2">
+    <h2>Recipe Search Section Heading</h2>
+    <div class="container">
+        <div class="">
+          <h2>Search our <span>Recipes</span></h2>
+        </div>
+
+        <div>
+          <!-- search recipes form -->
+          <form class="search-form" id="search-form" action="{% url 'recipes' %}" method="GET">
+            <div class="my-1">
+              <label for="formInput#search">Search By Recipe</label>
+              <input class="mx-2 ps-1 search-bar" id="formInput#search" type="text" name="search_query"
+                value="{{search_query}}" placeholder="Search Our Recipes" />
+              </div>
+              <input class="btn primary-action mt-2" type="submit" value="Search" />
+
+          </form>
+
+        </div>
+      </div>
+</section>
+<!-- section to highlight some recipes  -->
+<section class="account-container mt-2 p-2">
+    <h2>Example Recipes Section Heading</h2>
 </section>
 {% endblock body %}
