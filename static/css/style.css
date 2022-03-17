@@ -480,6 +480,14 @@ select {
     padding: 0;
 }
 
+body.flex {
+    flex-direction: column;
+}
+
+main {
+    flex-grow: 2;
+}
+
 /* Home page styling */
 .register-section {
     flex-direction: column;
@@ -539,6 +547,14 @@ select {
     position: relative;
     z-index: 10;
 }
+
+.not-btn {
+    cursor: default;
+}
+.primary-action.not-btn:hover {
+    color: var(--button-text-primary);
+}
+
 
 /* footer styling */
 footer {

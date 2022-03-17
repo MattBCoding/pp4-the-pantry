@@ -22,7 +22,7 @@
                 <li class="inactive-li"><i class="fa-solid fa-xmark"></i><div>Interact with our community of amateur chefs</div></li>
                 <li class="inactive-li"><i class="fa-solid fa-xmark"></i><div>Advanced search options</div></li>
             </ul>
-            <div class="secondary-action btn">No Action Needed</div>
+            <div class="secondary-action btn not-btn">No Action Needed</div>
         </div>
         <div class="register-card member mt-2 py-2">
             <div class="happy-chef-watermark"></div>
@@ -37,7 +37,12 @@
                     <li class="active-li"><i class="fa-solid fa-check"></i><div>Interact with our community of amateur chefs</div></li>
                     <li class="active-li"><i class="fa-solid fa-check"></i><div>Advanced search options</div></li>
                 </ul>
+                {% if user.is_authenticated %}
+                <div class="primary-action btn not-btn">Hi {{profile.username}}</div>
+
+                {% else %}
                 <a href="{% url 'account_signup' %}"class="primary-action btn">Register Now</a>
+                {% endif %}
             </div>
         </div>
     </div>

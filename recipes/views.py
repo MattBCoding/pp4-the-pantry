@@ -9,8 +9,14 @@ from django.urls import reverse
 
 # Create your views here.
 def home(request):
-    
-    return render(request, 'index.html/')
+    if request.user.is_authenticated:
+        profile = get_object_or_404(Profile, user=request.user)
+        context = {
+            'profile': profile,
+        }
+    else:
+        context = {}
+    return render(request, 'index.html/', context)
 
 def recipes(request):
     recipes, search_query = searchRecipes(request)
