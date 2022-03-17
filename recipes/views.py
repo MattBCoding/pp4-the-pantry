@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Profile, Recipe, Step, Ingredient
 from .utils import searchRecipes
 from .forms import IngredientForm, RecipeForm, StepForm
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 
 
@@ -38,14 +38,35 @@ def viewRecipeHx(request, pk):
         raise Http404
     try:
         recipe = Recipe.objects.get(id=pk)
+        total_likes = recipe.total_likes()
+        liked = False
+        if request.user.is_authenticated:
+            if request.user is not recipe.owner.user:
+                current_user = get_object_or_404(Profile, user=request.user)
+                if recipe.likes.filter(id=current_user.id).exists():
+                    liked = True
     except:
         recipe = None
     if recipe is None:
         return HttpResponse("Not Found!")
     context = {
-        'recipe': recipe
+        'recipe': recipe,
+        'total_likes': total_likes,
+        'liked': liked
     }
     return render(request, 'recipes/snippets/recipe_detail.html/', context)
+
+def likeRecipe(request, pk):
+    recipe = get_object_or_404(Recipe, id=request.POST.get('recipe_id'))
+    profile = get_object_or_404(Profile, user=request.user)
+    liked = False
+    if recipe.likes.filter(id=profile.id).exists():
+        recipe.likes.remove(profile.id)
+        liked = False
+    else:
+        recipe.likes.add(profile.id)
+        liked = True
+    return HttpResponseRedirect(reverse('view-recipe', args=[str(pk)]))
 
 @login_required
 def addRecipe(request):

@@ -17,6 +17,7 @@ class Recipe(models.Model):
     # ingredients = models.CharField(max_length=200, blank=True, null=True)
     # steps = models.CharField(max_length=300, blank=True, null=True)
     created_on = models.DateTimeField(auto_now=True)
+    likes = models.ManyToManyField(Profile, related_name='recipe_likes')
     #add tags
 
     def __str__(self):
@@ -39,6 +40,9 @@ class Recipe(models.Model):
 
     def get_update_url(self):
         return reverse("update-recipe", kwargs={"pk": self.id})
+    
+    def total_likes(self):
+        return self.likes.count()
 
 
 class Ingredient(models.Model):
