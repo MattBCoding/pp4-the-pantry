@@ -1,0 +1,20 @@
+{% if user.is_authenticated %}
+{% if request.user != recipe.owner.user %}
+{% if liked %}
+<form action="{% url 'like-recipe' recipe.pk %}" method="POST" hx-post="{% url 'like-recipe' recipe.pk %}"
+    hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-swap="outerHTML">
+    {% csrf_token %}
+    <button type="submit" name="recipe_id" value="{{ recipe.pk }}" class="btn primary-action">Liked</button>
+    <span id="total-likes" hx-swap-oob="true">Total Likes = {{ total_likes }}</span>
+</form>
+
+{% else %}
+<form action="{% url 'like-recipe' recipe.pk %}" method="POST" hx-post="{% url 'like-recipe' recipe.pk %}"
+    hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-swap="outerHTML">
+    {% csrf_token %}
+    <button type="submit" name="recipe_id" value="{{ recipe.pk }}" class="btn primary-action">Like</button>
+    <span id="total-likes" hx-swap-oob="true">Total Likes = {{ total_likes }}</span>
+</form>
+{% endif %}
+{% endif %}
+{% endif %}

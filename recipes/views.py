@@ -66,6 +66,14 @@ def likeRecipe(request, pk):
     else:
         recipe.likes.add(profile.id)
         liked = True
+    if request.htmx:
+        total_likes = recipe.total_likes()
+        context = {
+            'recipe': recipe,
+            'total_likes': total_likes,
+            'liked': liked
+        }
+        return render(request, 'recipes/snippets/like_recipe.html/', context)
     return HttpResponseRedirect(reverse('view-recipe', args=[str(pk)]))
 
 @login_required

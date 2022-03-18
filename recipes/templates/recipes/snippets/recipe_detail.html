@@ -10,22 +10,10 @@
             {% if recipe.description != None %}
             <p>{{ recipe.description }}</p>
             {% endif %}
-            {% if user.is_authenticated %}
-                {% if request.user != recipe.owner.user %}
-                    {% if liked %}
-                    <form action="{% url 'like-recipe' recipe.pk %}" method="POST">
-                        {% csrf_token %}
-                        <button type="submit" name="recipe_id" value="{{ recipe.pk }}" class="btn primary-action">Unlike</button>
-                    </form>
-                    {% else %}
-                    <form action="{% url 'like-recipe' recipe.pk %}" method="POST">
-                        {% csrf_token %}
-                        <button type="submit" name="recipe_id" value="{{ recipe.pk }}" class="btn primary-action">Like</button>
-                    </form>
-                    {% endif %}
-                {% endif %}
-            {% endif %}
-            <span>Total Likes = {{ total_likes }}</span>
+            <div>
+                {% include 'recipes/snippets/like_recipe.html' %}
+                <span id="total-likes">Total Likes = {{ total_likes }}</span>
+            </div>
             {% if request.user == recipe.owner.user %}
             <div class="flex m-2 recipe-button-container">
                 <a class="btn primary-action mt-1" href="{% url 'update-recipe' recipe.id %}?next={{ request.path|urlencode }}">Edit Recipe</a>
