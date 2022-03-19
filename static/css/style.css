@@ -78,6 +78,16 @@ p {
     --button-bg-secondary-light: #90AEA4;
     --button-text-primary-light: #ffffff;
     --button-text-secondary-light: #000000;
+    --like-button-text-light: #1d1d1d;
+    --like-button-text-hover-light: #000000;
+    --like-button-text-active-light: #ffffff;
+    --like-button-bg-light: var(--bg-secondary-light);
+    --like-button-bg-hover-light: var(--bg-primary-light);
+    --like-button-bg-active-light: var(--alert-primary-light);
+    --like-button-border-light: var(--bg-quaternary-light);
+    --like-button-border-active-light: var(--alert-primary-light);
+    --like-button-shadow-light: #00127750;
+
     /* dark */
     --primary-color-dark: #064e3b;
     --accent-color-dark: #ecfdf5;
@@ -98,6 +108,15 @@ p {
     --button-bg-secondary-dark: #90AEA4;
     --button-text-primary-dark: #ffffff;
     --button-text-secondary-dark: #000000;
+    --like-button-text-dark: #f6f8ff;
+    --like-button-text-hover-dark: #ffffff;
+    --like-button-text-active-dark: #ffffff;
+    --like-button-bg-dark: var(--bg-secondary-dark);
+    --like-button-bg-hover-dark: var(--bg-primary-dark);
+    --like-button-bg-active-dark: var(--alert-primary-dark);
+    --like-button-border-dark: var(--bg-quaternary-dark);
+    --like-button-border-active-dark: var(--alert-primary-dark);
+    --like-button-shadow-dark: #00127731;
 }
 
 :root {
@@ -123,6 +142,15 @@ p {
     --button-bg-secondary: var(--button-bg-secondary-light);
     --button-text-primary: var(--button-text-primary-light);
     --button-text-secondary: var(--button-text-secondary-light);
+    --like-button-text: var(--like-button-text-light);
+    --like-button-text-hover: var(--like-button-text-hover-light);
+    --like-button-text-active: var(--like-button-text-active-light);
+    --like-button-bg: var(--like-button-bg-light);
+    --like-button-bg-hover: var(--like-button-bg-hover-light);
+    --like-button-bg-active: var(--like-button-bg-active-light);
+    --like-button-border: var(--like-button-border-light);
+    --like-button-border-active: var(--like-button-border-active-light);
+    --like-button-shadow: var(--like-button-shadow-light);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -149,6 +177,15 @@ p {
         --button-bg-secondary: var(--button-bg-secondary-dark);
         --button-text-primary: var(--button-text-primary-dark);
         --button-text-secondary: var(--button-text-secondary-dark);
+        --like-button-text: var(--like-button-text-dark);
+        --like-button-text-hover: var(--like-button-text-hover-dark);
+        --like-button-text-active: var(--like-button-text-active-dark);
+        --like-button-bg: var(--like-button-bg-dark);
+        --like-button-bg-hover: var(--like-button-bg-hover-dark);
+        --like-button-bg-active: var(--like-button-bg-active-dark);
+        --like-button-border: var(--like-button-border-dark);
+        --like-button-border-active: var(--like-button-border-active-dark);
+        --like-button-shadow: var(--like-button-shadow-dark);
     }
 }
 
@@ -175,6 +212,15 @@ p {
     --button-bg-secondary: var(--button-bg-secondary-light);
     --button-text-primary: var(--button-text-primary-light);
     --button-text-secondary: var(--button-text-secondary-light);
+    --like-button-text: var(--like-button-text-light);
+    --like-button-text-hover: var(--like-button-text-hover-light);
+    --like-button-text-active: var(--like-button-text-active-light);
+    --like-button-bg: var(--like-button-bg-light);
+    --like-button-bg-hover: var(--like-button-bg-hover-light);
+    --like-button-bg-active: var(--like-button-bg-active-light);
+    --like-button-border: var(--like-button-border-light);
+    --like-button-border-active: var(--like-button-border-active-light);
+    --like-button-shadow: var(--like-button-shadow-light);
 }
 
 [data-theme="dark"] {
@@ -199,6 +245,15 @@ p {
     --button-bg-secondary: var(--button-bg-secondary-dark);
     --button-text-primary: var(--button-text-primary-dark);
     --button-text-secondary: var(--button-text-secondary-dark);
+    --like-button-text: var(--like-button-text-dark);
+    --like-button-text-hover: var(--like-button-text-hover-dark);
+    --like-button-text-active: var(--like-button-text-active-dark);
+    --like-button-bg: var(--like-button-bg-dark);
+    --like-button-bg-hover: var(--like-button-bg-hover-dark);
+    --like-button-bg-active: var(--like-button-bg-active-dark);
+    --like-button-border: var(--like-button-border-dark);
+    --like-button-border-active: var(--like-button-border-active-dark);
+    --like-button-shadow: var(--like-button-shadow-dark);
 }
 
 body {
@@ -790,8 +845,50 @@ footer {
     display: none;
 }
 
+/* Like / Unlike Button + Pill styling */
+.stat-box {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.like-pill {
+    color: var(--like-button-text);
+    background-color: var(--like-button-bg);
+    padding: 0.5rem 1rem 0.5rem 1.25rem;
+    border: 1px solid var(--like-button-border);
+    border-radius: 0.5rem;
+    line-height: 27px;
+    text-align: center;
+}
+
+.like-btn {
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.like-btn:hover {
+    color: var(--like-button-text-hover);
+    background-color: var(--like-button-bg-hover);
+    transition: all 250ms ease-in;
+}
+
+.like-btn:active {
+    background-color: var(--like-button-bg-active);
+    border: 1px solid var(--like-button-border-active);
+}
+
+.liked {
+    background-color: var(--like-button-bg-active);
+    border: 1px solid var(--like-button-border-active);
+    color: var(--like-button-text-active);
+
+}
+
 /* to be deleted only in for development purposes */
 .temp-div {
     height: 600px;
 }
 /* end of temporary styling */
+
