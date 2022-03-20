@@ -56,6 +56,7 @@ def viewRecipeHx(request, pk):
     }
     return render(request, 'recipes/snippets/recipe_detail.html/', context)
 
+@login_required
 def likeRecipe(request, pk):
     recipe = get_object_or_404(Recipe, id=request.POST.get('recipe_id'))
     profile = get_object_or_404(Profile, user=request.user)

@@ -78,8 +78,9 @@
 <!-- feature section encouraging people to search recipes -->
 <section class="account-container mt-2 p-2">
     <h2>Search our <span>Recipes</span></h2>
-    <div class="search-form-container mt-2">
-        <!-- search recipes form -->
+    {% include 'recipes/snippets/recipe_search.html' %}
+    <!-- <div class="search-form-container mt-2">
+        search recipes form
         <form class="search-form my-1 flex flex-column" id="search-form" action="{% url 'recipes' %}" method="GET">
         
             <div class="flex flex-column flex-sm-row">
@@ -90,7 +91,7 @@
             <input class="btn primary-action mt-2" type="submit" value="Search" />
         </form>
         <span class="search-chef"></span>
-    </div>
+    </div> -->
 </section>
 <!-- section to highlight some recipes  -->
 <section class="account-container mt-2 p-2">

@@ -813,6 +813,7 @@ footer {
 
 .recipe-results {
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .recipe-card {

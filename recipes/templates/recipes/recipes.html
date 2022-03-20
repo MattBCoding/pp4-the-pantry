@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 {% load cloudinary %}
 {% block body %}
-<section>
+
     <section class="account-container mt-2 p-2">
-        <div class="container">
-          <div class="">
+        
+          
             <h2>Search for <span>Recipes</span></h2>
-          </div>
+          {% include 'recipes/snippets/recipe_search.html' %}
   
-          <div>
-            <!-- search recipes form -->
+          <!-- <div>
+            search recipes form
             <form class="search-form" id="search-form" action="{% url 'recipes' %}" method="get">
               <div class="my-1">
                 <label for="formInput#search">Search By Recipe</label>
@@ -20,21 +20,21 @@
   
             </form>
   
-          </div>
-        </div>
+          </div> -->
+        
       </section>
       <!-- Search Result: Recipe List -->
       <section class="account-container mt-2 p-2">
-        <div class="container">
+
           <div class="flex recipe-results">
   
               {% for recipe in recipes %}
               {% include 'recipes/snippets/recipe_card.html' %}
   
-            {% endfor %}
+              {% endfor %}
             
           </div>
-        </div>
+       
       </section>
-</section>
+
 {% endblock body %}

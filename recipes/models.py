@@ -32,12 +32,6 @@ class Recipe(models.Model):
     def get_hx_url(self):
         return reverse("view-recipe-hx", kwargs={"pk": self.id})
 
-    def get_ingredients(self):
-        return self.ingredient_set.all()
-
-    def get_steps(self):
-        return self.step_set.all()
-
     def get_update_url(self):
         return reverse("update-recipe", kwargs={"pk": self.id})
     
