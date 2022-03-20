@@ -29,39 +29,7 @@
           <div class="flex recipe-results">
   
               {% for recipe in recipes %}
-              <a class="recipe-card" href="{% url 'view-recipe' recipe.id %}">
-                  <div class="card">
-                    <div class="card-container m-1">
-                      <div class="card-img-top">
-                          {% cloudinary recipe.featured_image %}
-                      </div>
-                  
-                      <div class="card-body">
-                        <div class="title-container flex">
-                          <h5 class="card-title">{{ recipe.title }}</h5>
-                          <!-- insert if statement to check if user has added this recipe to their favourites -->
-                          <!-- icon if they have added -->
-                          <!-- <i class="fa-solid fa-heart"></i> -->
-                          <!-- icon if they haven't added -->
-                          <i class="fa-regular fa-heart"></i>
-                        </div>
-                          {% if recipe.owner.username != None %}
-                          <h6 class="card-subtitle mb-2 text-muted">{{ recipe.owner.username }}</h6>
-                          {% endif %}
-                          <div>
-                            {% if recipe.youtube_link %}
-                            <i class="fa-brands fa-youtube"></i>
-                            {% endif %}
-                            <!-- insert if statement to check if user has liked this recipe -->
-                            <!-- icon if they have added -->
-                            <!-- <i class="fa-solid fa-thumbs-up"></i> -->
-                            <!-- icon if they haven't added -->
-                            <i class="fa-regular fa-thumbs-up"></i>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-              </a>
+              {% include 'recipes/snippets/recipe_card.html' %}
   
             {% endfor %}
             
