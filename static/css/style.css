@@ -552,7 +552,7 @@ main {
 }
 
 .register-card-container {
-    flex-direction: column-reverse;
+    /* flex-direction: column-reverse; */
     background-color: var(--bg-tertiary);
 }
 
@@ -598,9 +598,24 @@ main {
     z-index: 5;
 }
 
+.sad-chef-watermark {
+    position: absolute;
+    top: 0;
+    background: url(https://res.cloudinary.com/mattbcoding/image/upload/v1647779529/half-sad-chef_snmdjm.png) 100% 50%/contain no-repeat;
+    height: 100%;
+    width: 100%;
+    z-index: 5;
+}
+
 .register-card-content {
     position: relative;
     z-index: 10;
+}
+
+.search-form-container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
 }
 
 .not-btn {
@@ -613,7 +628,7 @@ main {
 
 /* footer styling */
 footer {
-    height: 200px;
+    /* height: 200px; */
     background-color: var(--primary-color);
     color: var(--text-secondary);
 }
@@ -646,6 +661,10 @@ footer {
     transform: scale(1.05);
 }
 
+.copyright {
+    color: var(--button-text-primary);
+}
+
 /* profile card styling */
 .profile-list {
     background-color: var(--bg-secondary);
@@ -666,6 +685,19 @@ footer {
 .profile-card .card-title,
 .profile-card .card-subtitle {
     text-transform: capitalize;
+}
+/* Profile Detail page styling */
+
+.profile-detail-container {
+    background-color: var(--bg-tertiary);
+}
+
+.profile-button-container {
+    flex-direction: column;
+    flex-shrink: 0;
+    gap: 0.5rem;
+    align-items: flex-start;
+    /* justify-content: flex-start; */
 }
 
 /* Edit Profile page styling */
@@ -752,9 +784,31 @@ footer {
 
 /* Recipe search results */
 
+.search-form {
+    position: relative;
+    z-index: 10;
+    flex-grow: 1;
+    gap: 0.5rem;
+}
+
+.search-form > div {
+    gap: 0.5rem;
+}
+
+.search-chef {
+    position: relative;
+    flex-grow: 0;
+    top: 0;
+    z-index: 5;
+    width: 100px;
+    height: 100px;
+    background: url(https://res.cloudinary.com/mattbcoding/image/upload/v1647779953/search-chef_ew18lg.png) 100% 50%/contain no-repeat;
+}
+
 .search-bar {
     border: 1px solid var(--button-bg-primary);
     width: clamp(5rem, 90%, 35rem);
+    min-width: fit-content;
 }
 
 .recipe-results {
@@ -892,3 +946,8 @@ footer {
 }
 /* end of temporary styling */
 
+@media screen and (min-width: 576px){
+    .search-bar {
+        width: clamp(5rem, 69%, 35rem);
+    }
+}

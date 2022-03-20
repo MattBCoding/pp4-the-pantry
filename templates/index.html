@@ -11,18 +11,33 @@
 <section class="account-container mt-2 p-2 register-section flex">
     <h2>Register Section Heading</h2>
     <p class="">Everyone is welcome at The Pantry, you can search and browse through any and all of our recipes for free. Joining us is a free and simple process, just register for a secure account and you'll be able to take advantage of all our member benefits immediately.</p>
-    <div class="register-card-container flex p-2">
+    <div class="register-card-container flex-column-reverse flex-md-row flex p-2">
         <div class="register-card non-member mt-2 py-2">
-            <h5>Non-Member</h5>
-            <ul class="mt-2">
-                <li class="active-li"><i class="fa-solid fa-check"></i><div>Browse our recipe collection</div></li>
-                <li class="active-li"><i class="fa-solid fa-check"></i><div>Search our recipe collection</div></li>
-                <li class="inactive-li"><i class="fa-solid fa-xmark"></i><div>Add your own recipes to our collection</div></li>
-                <li class="inactive-li"><i class="fa-solid fa-xmark"></i><div>Save your favourite recipes for easy access</div></li>
-                <li class="inactive-li"><i class="fa-solid fa-xmark"></i><div>Interact with our community of amateur chefs</div></li>
-                <li class="inactive-li"><i class="fa-solid fa-xmark"></i><div>Advanced search options</div></li>
-            </ul>
-            <div class="secondary-action btn not-btn">No Action Needed</div>
+            <div class="sad-chef-watermark"></div>
+            <div class="register-card-content">
+                <h5>Non-Member</h5>
+                <ul class="mt-2">
+                    <li class="active-li"><i class="fa-solid fa-check"></i>
+                        <div>Browse our recipe collection</div>
+                    </li>
+                    <li class="active-li"><i class="fa-solid fa-check"></i>
+                        <div>Search our recipe collection</div>
+                    </li>
+                    <li class="inactive-li"><i class="fa-solid fa-xmark"></i>
+                        <div>Add your own recipes to our collection</div>
+                    </li>
+                    <li class="inactive-li"><i class="fa-solid fa-xmark"></i>
+                        <div>Save your favourite recipes for easy access</div>
+                    </li>
+                    <li class="inactive-li"><i class="fa-solid fa-xmark"></i>
+                        <div>Interact with our community of amateur chefs</div>
+                    </li>
+                    <li class="inactive-li"><i class="fa-solid fa-xmark"></i>
+                        <div>Advanced search options</div>
+                    </li>
+                </ul>
+                <div class="secondary-action btn not-btn">No Action Needed</div>
+            </div>
         </div>
         <div class="register-card member mt-2 py-2">
             <div class="happy-chef-watermark"></div>
@@ -30,18 +45,30 @@
             <div class="register-card-content">
                 <h5>Member</h5>
                 <ul class="mt-2">
-                    <li class="active-li"><i class="fa-solid fa-check"></i><div>Browse our recipe collection</div></li>
-                    <li class="active-li"><i class="fa-solid fa-check"></i><div>Search our recipe collection</div></li>
-                    <li class="active-li"><i class="fa-solid fa-check"></i><div>Add your own recipes to our collection</div></li>
-                    <li class="active-li"><i class="fa-solid fa-check"></i><div>Save your favourite recipes for easy access</div></li>
-                    <li class="active-li"><i class="fa-solid fa-check"></i><div>Interact with our community of amateur chefs</div></li>
-                    <li class="active-li"><i class="fa-solid fa-check"></i><div>Advanced search options</div></li>
+                    <li class="active-li"><i class="fa-solid fa-check"></i>
+                        <div>Browse our recipe collection</div>
+                    </li>
+                    <li class="active-li"><i class="fa-solid fa-check"></i>
+                        <div>Search our recipe collection</div>
+                    </li>
+                    <li class="active-li"><i class="fa-solid fa-check"></i>
+                        <div>Add your own recipes to our collection</div>
+                    </li>
+                    <li class="active-li"><i class="fa-solid fa-check"></i>
+                        <div>Save your favourite recipes for easy access</div>
+                    </li>
+                    <li class="active-li"><i class="fa-solid fa-check"></i>
+                        <div>Interact with our community of amateur chefs</div>
+                    </li>
+                    <li class="active-li"><i class="fa-solid fa-check"></i>
+                        <div>Advanced search options</div>
+                    </li>
                 </ul>
                 {% if user.is_authenticated %}
                 <div class="primary-action btn not-btn">Hi {{profile.username}}</div>
-
+        
                 {% else %}
-                <a href="{% url 'account_signup' %}"class="primary-action btn">Register Now</a>
+                <a href="{% url 'account_signup' %}" class="primary-action btn">Register Now</a>
                 {% endif %}
             </div>
         </div>
@@ -50,26 +77,20 @@
 
 <!-- feature section encouraging people to search recipes -->
 <section class="account-container mt-2 p-2">
-    <h2>Recipe Search Section Heading</h2>
-    <div class="container">
-        <div class="">
-          <h2>Search our <span>Recipes</span></h2>
-        </div>
-
-        <div>
-          <!-- search recipes form -->
-          <form class="search-form" id="search-form" action="{% url 'recipes' %}" method="GET">
-            <div class="my-1">
-              <label for="formInput#search">Search By Recipe</label>
-              <input class="mx-2 ps-1 search-bar" id="formInput#search" type="text" name="search_query"
-                value="{{search_query}}" placeholder="Search Our Recipes" />
-              </div>
-              <input class="btn primary-action mt-2" type="submit" value="Search" />
-
-          </form>
-
-        </div>
-      </div>
+    <h2>Search our <span>Recipes</span></h2>
+    <div class="search-form-container mt-2">
+        <!-- search recipes form -->
+        <form class="search-form my-1 flex flex-column" id="search-form" action="{% url 'recipes' %}" method="GET">
+        
+            <div class="flex flex-column flex-sm-row">
+                <label class="flex-shrink-0" for="formInput#search">Search By Recipe</label>
+                <input class="ps-2 search-bar flex-grow-1 flex-shrink-0" id="formInput#search" type="text" name="search_query"
+                    value="{{search_query}}" placeholder="Search Our Recipes" />
+            </div>
+            <input class="btn primary-action mt-2" type="submit" value="Search" />
+        </form>
+        <span class="search-chef"></span>
+    </div>
 </section>
 <!-- section to highlight some recipes  -->
 <section class="account-container mt-2 p-2">
