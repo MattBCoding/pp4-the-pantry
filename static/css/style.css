@@ -526,8 +526,6 @@ select {
 /* temp styling for all auth templates to make them readable */
 .account-container {
     background-color: var(--bg-secondary);
-    /* margin: 1rem 1rem 0; */
-    /* padding: 1rem; */
 }
 
 .account-menu-list {
@@ -544,6 +542,57 @@ main {
 }
 
 /* Home page styling */
+.hero-container {
+    background-color: var(--bg-secondary);
+    position: relative;
+}
+
+.hero-text {
+    width: 100%;
+    height: 100%;
+}
+
+#hero-text-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+#hero-text-container > div {
+    background-color: var(--primary-color);
+    box-shadow: -2vmin -1vmin 0 #064e3bc4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 81% 19% 68% 32% / 37% 29% 71% 63%;
+    width: min(100%, 550px);
+    
+}
+
+#hero-text-container > div > div {
+    background-color: var(--primary-color);
+    box-shadow: 0vmin 4vmin 0 rgb(6 78 59 / 60%);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#hero-text-container > div > div > div {
+    background-color: var(--primary-color);
+    box-shadow: 7vmin -2vmin 0 rgb(6 78 59 / 60%);
+    border-radius: 81% 19% 68% 32% / 37% 29% 71% 63% ;
+}
+
+
+.hero-text h2,
+.hero-text h4 {
+    color: #ffffff;
+}
+
+
 .register-section {
     flex-direction: column;
     justify-content: center;
@@ -552,7 +601,6 @@ main {
 }
 
 .register-card-container {
-    /* flex-direction: column-reverse; */
     background-color: var(--bg-tertiary);
 }
 
@@ -568,14 +616,7 @@ main {
     display: flex;
     gap: 0.5rem;
     align-items: center;
-    /* justify-content: center; */
 }
-
-/* .active-li > i,
-.inactive-li > i {
-    font-size: inherit;
-    padding-right: 0.5rem;
-} */
 
 .active-li > i {
     color: var(--primary-color);
@@ -584,10 +625,6 @@ main {
 .inactive-li > i {
     color: var(--accent-color);
 }
-
-/* .register-card li > div {
-    display: inline;
-} */
 
 .happy-chef-watermark {
     position: absolute;
