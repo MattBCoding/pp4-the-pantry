@@ -345,6 +345,28 @@ select {
     align-items: center;
 }
 
+.primary-navigation > li,
+#account-menu > li {
+    transition: box-shadow 250ms linear;
+    /* box-sizing: border-box; */
+}
+
+.primary-navigation > li:hover,
+#account-menu > li:hover {
+    /* border-bottom: 0.2rem inset #ffffff; */
+    box-shadow: 0 0.2rem #ffffff;
+}
+
+[data-theme="light"] #account-menu > li:hover {
+    /* border-bottom: 0.2rem inset var(--primary-color); */
+    box-shadow: 0 0.2rem var(--primary-color);
+}
+[data-theme="light"] #account-menu > .sign-out:hover,
+#account-menu > .sign-out:hover {
+    /* border-bottom: 0.2rem inset var(--alert-primary) */
+    box-shadow: 0 0.2rem var(--alert-primary);
+}
+
 .primary-navigation a {
     text-decoration: none;
 }
@@ -426,10 +448,6 @@ select {
         color: var(--text-primary);
     }
 
-    .primary-navigation > .active {
-        border-bottom: .2rem solid var(--primary-color);
-    }
-
     .mobile-nav-toggle {
         display: block;
         position: absolute;
@@ -448,6 +466,7 @@ select {
     .mobile-nav-toggle[aria-expanded="true"] {
         background-image: url(https://res.cloudinary.com/mattbcoding/image/upload/v1645611935/icon-close_wznjg2.svg);
         background-color: var(--alert-primary);
+        position: fixed;
     }
 
     .mobile-nav-toggle:focus-visible {
@@ -494,7 +513,7 @@ select {
     background-color: var(--bg-quaternary);
     border-radius: 50%;
     position: absolute;
-    top: 8%;
+    top: 6%;
     left: 5%;
     transition: all .9s;
     background-color: #ffc400;
@@ -662,7 +681,6 @@ main {
     color: var(--button-text-primary);
 }
 
-
 /* footer styling */
 footer {
     /* height: 200px; */
@@ -790,8 +808,6 @@ footer {
     transition: all 0.6s ease;
 }
 
-
-
 /* Recipe Create/Edit styling */
 .hidden {
     display: none;
@@ -848,9 +864,25 @@ footer {
     min-width: fit-content;
 }
 
+.recipe-results-container {
+    position: relative;
+}
+
+.note-chef-watermark {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: url(https://res.cloudinary.com/mattbcoding/image/upload/v1647878131/note-taking-chef_ljpirw.png) 100% 50%/contain no-repeat;
+    height: 100%;
+    width: 100%;
+    z-index: 5;
+}
+
 .recipe-results {
     flex-wrap: wrap;
     justify-content: center;
+    position: relative;
+    z-index: 10;
 }
 
 .recipe-card {
@@ -917,6 +949,10 @@ footer {
     font-size: 1.25rem;
     align-self: baseline;
     justify-self: flex-end;
+}
+
+.liked-thumbs-up {
+    color:var(--alert-primary);
 }
 
 /* HTMX styling */

@@ -11,7 +11,7 @@ from cloudinary.models import CloudinaryField
 
 class Profile(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False, related_name='profile')
     username = models.CharField(max_length=50, blank=True, null=True)
     headline = models.CharField(max_length=200, blank=True, null=True)
     bio = models.TextField(blank=True, null=True)

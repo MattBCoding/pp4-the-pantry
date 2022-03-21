@@ -38,6 +38,10 @@ class Recipe(models.Model):
     def total_likes(self):
         return self.likes.count()
 
+    def get_likes(self):
+        return self.likes_set.all()
+
+
 
 class Ingredient(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)

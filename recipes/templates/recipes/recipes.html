@@ -2,39 +2,17 @@
 {% load cloudinary %}
 {% block body %}
 
-    <section class="account-container mt-2 p-2">
-        
-          
-            <h2>Search for <span>Recipes</span></h2>
-          {% include 'recipes/snippets/recipe_search.html' %}
-  
-          <!-- <div>
-            search recipes form
-            <form class="search-form" id="search-form" action="{% url 'recipes' %}" method="get">
-              <div class="my-1">
-                <label for="formInput#search">Search By Recipe</label>
-                <input class="mx-2 ps-1 search-bar" id="formInput#search" type="text" name="search_query"
-                  value="{{search_query}}" placeholder="Search by Recipe Name" />
-                </div>
-                <input class="btn primary-action" type="submit" value="Search" />
-  
-            </form>
-  
-          </div> -->
-        
-      </section>
-      <!-- Search Result: Recipe List -->
-      <section class="account-container mt-2 p-2">
-
-          <div class="flex recipe-results">
-  
-              {% for recipe in recipes %}
-              {% include 'recipes/snippets/recipe_card.html' %}
-  
-              {% endfor %}
-            
-          </div>
-       
-      </section>
-
+<section class="account-container mt-2 p-2">
+    <h2>Search for <span>Recipes</span></h2>
+    {% include 'recipes/snippets/recipe_search.html' %}
+</section>
+<!-- Search Result: Recipe List -->
+<section class="account-container mt-2 p-2 recipe-results-container">
+    <div class="note-chef-watermark"></div>
+    <div class="flex recipe-results">
+        {% for recipe in recipes %}
+            {% include 'recipes/snippets/recipe_card.html' %}
+        {% endfor %}
+    </div>
+</section>
 {% endblock body %}

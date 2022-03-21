@@ -18,7 +18,18 @@
         </div>
         <div class="col-sm-8 py-2 py-sm-0">
             <p>request.user = {{ request.user }}</p>
-        
+            <p>request.user.profile.username = {{ request.user.profile.username }}</p>
+            <p>request.user.user.id = {{ request.user.user.id }}</p>
+            {% if request.user in profile_set.all %}
+                <p>request.user is in the set</p>
+            {% endif %}
+
+            
+            {% for profile in request.user.profile.all %}
+            <p>{{profile.username}}</p>
+            {% endfor %}
+            
+
             <p>id = {{ profile.id }}</p>
             <p>user = {{ profile.user }}</p>
             <p>username = {{ profile.username }}</p>
