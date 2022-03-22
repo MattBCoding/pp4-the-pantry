@@ -25,3 +25,6 @@ class Profile(models.Model):
 
     def get_liked(self):
         return self.recipe_likes.all()
+    
+    def get_favourited(self):
+        return self.recipe_favourites.all()

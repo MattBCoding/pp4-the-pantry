@@ -6,6 +6,8 @@ from .forms import DeleteUserForm, ProfileForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib import messages
+from django.db.models import Q
+from recipes.models import Recipe
 
 
 # Create your views here.
@@ -74,3 +76,15 @@ def deleteUser(request, pk):
     form = DeleteUserForm()
     context = {'form': form}
     return render(request, 'profiles/delete_user.html', context)
+
+@login_required
+def myFavourites(request, pk):
+    profile = Profile.objects.get(user=pk)
+    # my_favourites = profile.get_favourited()
+    # favourites = Recipe.objects.distinct(my_favourites)
+    # print(favourites)
+    context = {
+        'profile': profile,
+        # 'favourites': favourites
+    }
+    return render(request, 'profiles/my_favourites.html', context)

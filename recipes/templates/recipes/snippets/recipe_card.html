@@ -13,7 +13,13 @@
                   <!-- icon if they have added -->
                   <!-- <i class="fa-solid fa-heart"></i> -->
                   <!-- no icon if they haven't added -->
-                  <i class="fa-regular fa-heart"></i>
+                  {% for profile in request.user.profile.all %}
+                  {% for favouriterecipe in profile.get_favourited %}
+                  {% if favouriterecipe.id == recipe.id %}
+                  <i class="fa-solid fa-heart liked-thumbs-up"></i>
+                  {% endif %}
+                  {% endfor %}
+                  {% endfor %}
                 </div>
               {% if recipe.owner.username != None %}
               <h6 class="card-subtitle mb-2 text-muted">{{ recipe.owner.username }}</h6>
