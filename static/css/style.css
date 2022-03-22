@@ -963,10 +963,13 @@ footer {
 
 .htmx-request .htmx-indicator {
     display: inline;
+    background-color: var(--bg-secondary);
 }
 
 .htmx-inverted-indicator {
     display: inline;
+    background-color: var(--bg-secondary);
+
 }
 
 .htmx-request .htmx-inverted-indicator {

@@ -18,6 +18,7 @@ class Recipe(models.Model):
     # steps = models.CharField(max_length=300, blank=True, null=True)
     created_on = models.DateTimeField(auto_now=True)
     likes = models.ManyToManyField(Profile, related_name='recipe_likes')
+    favourites = models.ManyToManyField(Profile, related_name='recipe_favourites')
     #add tags
 
     def __str__(self):
@@ -40,6 +41,9 @@ class Recipe(models.Model):
 
     def get_likes(self):
         return self.likes_set.all()
+    
+    def get_favourites(self):
+        return self.favourites_set.all()
 
 
 

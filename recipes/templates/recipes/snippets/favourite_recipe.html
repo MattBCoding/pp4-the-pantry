@@ -1,0 +1,17 @@
+{% if favourited %}
+<form action="{% url 'favourite-recipe' recipe.pk %}" method="POST" hx-post="{% url 'favourite-recipe' recipe.pk %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-swap="outerHTML">
+    {% csrf_token %}
+    <button type="submit" name="recipe_id" value="{{ recipe.pk }}" class="btn like-pill like-btn liked">
+        <i class="fa-solid fa-heart"></i>
+        <span class="favourites-text"> Remove from Favourites </span>
+    </button>
+</form>
+{% else %}
+<form action="{% url 'favourite-recipe' recipe.pk %}" method="POST" hx-post="{% url 'favourite-recipe' recipe.pk %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-swap="outerHTML">
+    {% csrf_token %}
+    <button type="submit" name="recipe_id" value="{{ recipe.pk }}" class="btn like-pill like-btn">
+        <i class="fa-regular fa-heart"></i>
+        <span class="favourites-text"> Add to Favourites </span>
+    </button>
+</form>
+{% endif %}

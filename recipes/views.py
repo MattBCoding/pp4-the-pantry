@@ -1,3 +1,4 @@
+from wsgiref import headers
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Profile, Recipe, Step, Ingredient
@@ -40,11 +41,14 @@ def viewRecipeHx(request, pk):
         recipe = Recipe.objects.get(id=pk)
         total_likes = recipe.total_likes()
         liked = False
+        favourited = False
         if request.user.is_authenticated:
             if request.user is not recipe.owner.user:
                 current_user = get_object_or_404(Profile, user=request.user)
                 if recipe.likes.filter(id=current_user.id).exists():
                     liked = True
+                    if recipe.favourites.filter(id=current_user.id).exists():
+                        favourited = True
     except:
         recipe = None
     if recipe is None:
@@ -52,7 +56,8 @@ def viewRecipeHx(request, pk):
     context = {
         'recipe': recipe,
         'total_likes': total_likes,
-        'liked': liked
+        'liked': liked,
+        'favourited': favourited
     }
     return render(request, 'recipes/snippets/recipe_detail.html/', context)
 
@@ -61,21 +66,59 @@ def likeRecipe(request, pk):
     recipe = get_object_or_404(Recipe, id=request.POST.get('recipe_id'))
     profile = get_object_or_404(Profile, user=request.user)
     liked = False
+    favourited = False
     if recipe.likes.filter(id=profile.id).exists():
+        if recipe.favourites.filter(id=profile.id).exists():
+            recipe.favourites.remove(profile.id)
+            favourited = False
         recipe.likes.remove(profile.id)
         liked = False
+
     else:
         recipe.likes.add(profile.id)
         liked = True
+        favourited = False
+
     if request.htmx:
         total_likes = recipe.total_likes()
         context = {
             'recipe': recipe,
             'total_likes': total_likes,
-            'liked': liked
+            'liked': liked,
+            'favourited': favourited,
         }
-        return render(request, 'recipes/snippets/like_recipe.html/', context)
+        headers = {
+            'HX-Trigger':'liked',
+        }
+        return render(request, 'recipes/snippets/like_recipe.html/', context, headers)
     return HttpResponseRedirect(reverse('view-recipe', args=[str(pk)]))
+
+@login_required
+def favouriteRecipe(request, pk):
+    recipe = get_object_or_404(Recipe, id=request.POST.get('recipe_id'))
+    profile = get_object_or_404(Profile, user=request.user)
+    favourited = False
+    if recipe.favourites.filter(id=profile.id).exists():
+        recipe.favourites.remove(profile.id)
+        favourited = False
+    else:
+        recipe.favourites.add(profile.id)
+        favourited = True
+    if request.method == 'GET':
+        context = {
+            'recipe': recipe,
+            'favourited': favourited
+        }
+        return render(request, 'recipes/snippets/favourite_recipe.html/', context)
+
+    if request.htmx:
+        context = {
+            'recipe': recipe,
+            'favourited': favourited
+        }
+        return render(request, 'recipes/snippets/favourite_recipe.html/', context)
+    return HttpResponseRedirect(reverse('view-recipe', args=[str(pk)]))
+    
 
 @login_required
 def addRecipe(request):

@@ -10,9 +10,14 @@
             {% if recipe.description != None %}
             <p>{{ recipe.description }}</p>
             {% endif %}
-            <div class="mt-2 flex stat-box">
+            <div class="mt-2 flex stat-box flex-md-column">
                 {% include 'recipes/snippets/like_recipe.html' %}
                 
+                <div id="favourite-container" hx-trigger="liked from:body" hx-get="{% url 'favourite-recipe' recipe.pk %}">
+                    <!-- {% if liked %} -->
+                    {% include 'recipes/snippets/favourite_recipe.html' %}
+                    <!-- {% endif %} -->
+                </div>
             </div>
             {% if request.user == recipe.owner.user %}
             <div class="flex m-2 recipe-button-container">
