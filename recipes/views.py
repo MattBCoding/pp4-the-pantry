@@ -6,6 +6,7 @@ from .utils import searchRecipes
 from .forms import IngredientForm, RecipeForm, StepForm
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from django.contrib import messages
 
 
 # Create your views here.
@@ -134,7 +135,7 @@ def addRecipe(request):
             recipe = form.save(commit=False)
             recipe.owner = profile
             recipe.save()
-
+            messages.success(request, 'Your recipe was created successfully!')
             if request.htmx:
                 print('REQUEST IS HTMX -------------------------->')
                 headers = {
@@ -163,9 +164,11 @@ def updateRecipe(request, pk):
     if form.is_valid():
         print('FORM IS VALID FROM updateRecipe------------------------->')
         form.save()
+        messages.success(request, 'Your recipe was updated successfully!')
 
     if request.htmx:
         print('REQUEST IS HTMX FROM updateRecipe------------------------->')
+        # messages.success(request, 'Your recipe was updated successfully!')
         context = context
         return render(request, 'recipes/snippets/recipe_form.html', context)
     
@@ -213,9 +216,11 @@ def updateIngredientHx(request, recipe_pk=None, pk=None):
         if instance is None:
             ingredient.recipe = recipe
         ingredient.save()
+        messages.success(request, 'Your ingredient was saved successfully!')
         context['ingredient'] = ingredient
         return render(request, 'recipes/snippets/ingredient_detail.html/', context)
     if not form.is_valid():
+        # messages.error(request, 'Please complete the ingredient form.')
         print('something is wrong with the form')
     
     return render(request, 'recipes/snippets/ingredient_form.html/', context)
@@ -261,9 +266,11 @@ def updateStepHx(request, recipe_pk=None, pk=None):
         if instance is None:
             step.recipe = recipe
         step.save()
+        messages.success(request, 'Your step was saved successfully!')
         context['step'] = step
         return render(request, 'recipes/snippets/step_detail.html/', context)
     if not form.is_valid():
+        # messages.error(request, 'Please complete the step form.')
         print('something is wrong with the form')
     
     return render(request, 'recipes/snippets/step_form.html/', context)
@@ -280,6 +287,7 @@ def deleteIngredientHx(request, recipe_pk=None, pk=None):
         raise Http404
     if request.method == 'POST':
         ingredient.delete()
+        messages.success(request, 'The ingredient was deleted!')
         return_url = reverse('update-recipe', kwargs={'pk': recipe_pk})
         if request.htmx:
             print('HTMX request ----------------------------->')
@@ -307,6 +315,7 @@ def deleteStepHx(request, recipe_pk=None, pk=None):
         raise Http404
     if request.method == 'POST':
         step.delete()
+        messages.success(request, 'The step was deleted!')
         return_url = reverse('update-recipe', kwargs={'pk': recipe_pk})
         if request.htmx:
             print('HTMX request ----------------------------->')
@@ -329,6 +338,7 @@ def deleteRecipe(request, pk):
     recipe = owner.recipe_set.get(id=pk)
     if request.method == 'POST':
         recipe.delete()
+        messages.success(request, 'The recipe was deleted!')
         # NEED TO UPDATE DELETE REDIRECT
         # so that it redirects to appropriate place based on where the user came from
         return redirect('home')
