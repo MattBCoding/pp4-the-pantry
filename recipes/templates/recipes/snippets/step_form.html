@@ -3,10 +3,16 @@
       method="POST"
       hx-post="{% if url %}{{ url }}{% else %}.{% endif %}" 
       hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
-      hx-swap="outerHTML">
+      hx-swap="outerHTML"
+      id="add-step-form">
     {% csrf_token %}
-    {{ stepform.as_p }}
-    
+
+    {% for field in stepform %}
+  <div class="flex mt-2 form-pair">
+    {{field.label_tag}}
+    {{field}}
+  </div>
+  {% endfor %}
     <div class="htmx-indicator">Loading....</div>
-    <button class="btn primary-action mt-2 htmx-inverted-indicator" type="submit">Submit</button>
+    <button class="btn primary-action mt-2 htmx-inverted-indicator" type="submit" id="add-step-form-submit">Submit</button>
 </form>
