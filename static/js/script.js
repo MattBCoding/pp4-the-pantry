@@ -251,43 +251,64 @@ function enableButton(button) {
 }
 
 // const editProfileFormCont = document.getElementsByClassName('edit-profile-form-input-container');
+// document.addEventListener('input', (event) => {
+//     if (event.target.id == 'id_username') {
+//         const field = document.getElementById('id_username');
+//         updateCharContainer(field);
+//     } else if (event.target.id == 'id_headline') {
+//         const field = document.getElementById('id_headline');
+//         updateCharContainer(field);
+//     } else if (event.target.id == 'id_bio') {
+//         const field = document.getElementById('id_bio');
+//         updateCharContainer(field);
+//     } else if (event.target.id == 'id_location') {
+//         const field = document.getElementById('id_location');
+//         updateCharContainer(field);
+//     } else if (event.target.id == 'id_social_youtube') {
+//         const field = document.getElementById('id_social_youtube');
+//         updateCharContainer(field);
+//     } else if (event.target.id == 'id_social_website') {
+//         const field = document.getElementById('id_social_website');
+//         updateCharContainer(field);
+//     } else if (event.target.id == 'id_title') {
+//         const field = document.getElementById('id_title');
+//         updateCharContainer(field);
+//     } else if (event.target.id == 'id_description') {
+//         const field = document.getElementById('id_description');
+//         updateCharContainer(field);
+//     } else if (event.target.id == 'id_youtube_link') {
+//         const field = document.getElementById('id_youtube_link');
+//         updateCharContainer(field);
+//     } else if (event.target.id == 'id_ingredient') {
+//         const field = document.getElementById('id_ingredient');
+//         updateCharContainer(field);
+//     } else if (event.target.id == 'id_quantity') {
+//         const field = document.getElementById('id_quantity');
+//         updateCharContainer(field);
+//     } else if (event.target.id == 'id_step') {
+//         const field = document.getElementById('id_step');
+//         updateCharContainer(field);
+//     }
+// })
+
 document.addEventListener('input', (event) => {
-    if (event.target.id == 'id_username') {
-        const field = document.getElementById('id_username');
-        updateCharContainer(field);
-    } else if (event.target.id == 'id_headline') {
-        const field = document.getElementById('id_headline');
-        updateCharContainer(field);
-    } else if (event.target.id == 'id_bio') {
-        const field = document.getElementById('id_bio');
-        updateCharContainer(field);
-    } else if (event.target.id == 'id_location') {
-        const field = document.getElementById('id_location');
-        updateCharContainer(field);
-    } else if (event.target.id == 'id_social_youtube') {
-        const field = document.getElementById('id_social_youtube');
-        updateCharContainer(field);
-    } else if (event.target.id == 'id_social_website') {
-        const field = document.getElementById('id_social_website');
-        updateCharContainer(field);
-    } else if (event.target.id == 'id_title') {
-        const field = document.getElementById('id_title');
-        updateCharContainer(field);
-    } else if (event.target.id == 'id_description') {
-        const field = document.getElementById('id_description');
-        updateCharContainer(field);
-    } else if (event.target.id == 'id_youtube_link') {
-        const field = document.getElementById('id_youtube_link');
-        updateCharContainer(field);
-    } else if (event.target.id == 'id_ingredient') {
-        const field = document.getElementById('id_ingredient');
-        updateCharContainer(field);
-    } else if (event.target.id == 'id_quantity') {
-        const field = document.getElementById('id_quantity');
-        updateCharContainer(field);
-    } else if (event.target.id == 'id_step') {
-        const field = document.getElementById('id_step');
-        updateCharContainer(field);
+    const elementIds = ['id_username',
+                        'id_headline',
+                        'id_bio',
+                        'id_location',
+                        'id_social_youtube',
+                        'id_social_website',
+                        'id_title',
+                        'id_description',
+                        'id_youtube_link',
+                        'id_ingredient',
+                        'id_quantity',
+                        'id_step'];
+    for (const elementId of elementIds) {
+        if (event.target.id == elementId) {
+            const field = document.getElementById(elementId);
+            updateCharContainer(field);
+        }
     }
 })
 
