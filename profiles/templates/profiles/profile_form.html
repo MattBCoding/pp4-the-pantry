@@ -1,19 +1,21 @@
 {% extends 'base.html' %}
 {% load cloudinary %}
 {% block body %}
-<h2>Profile Form Page</h2>
-<section class="account-container">
+<!--Edit profile form page-->
+<section class="account-container p-2">
     <h2>Please complete your profile</h2>
     <div class="form-container">
         <form class="edit-profile-form" action="{% url 'edit-profile' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {% for field in form %}
-            <div>
-                <label for="formInput#text">{{field.label}}</label>
+            <div class="px-2 mt-2 edit-profile-form-input-container">
+                <label for="{{field.label|lower}}">{{field.label}}</label>
                 {{field}}
+                <!-- container div for character countdown to be inserted-->
+                <div class="char-remaining" id="{{field.label|lower}}-char-remaining"></div>
             </div>
             {% endfor %}
-            <input class="btn primary-action" type="submit" value="submit" />
+            <button class="btn primary-action m-2 mt-4" type="submit" value="submit">Submit</button>
         </form>
     </div>
 </section>

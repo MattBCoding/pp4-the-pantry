@@ -87,6 +87,7 @@ p {
     --like-button-border-light: var(--bg-quaternary-light);
     --like-button-border-active-light: var(--alert-primary-light);
     --like-button-shadow-light: #00127750;
+    --border-light: #000000;
 
     /* dark */
     --primary-color-dark: #064e3b;
@@ -117,6 +118,7 @@ p {
     --like-button-border-dark: var(--bg-quaternary-dark);
     --like-button-border-active-dark: var(--alert-primary-dark);
     --like-button-shadow-dark: #00127731;
+    --border-dark: #ffffff;
 }
 
 :root {
@@ -151,6 +153,7 @@ p {
     --like-button-border: var(--like-button-border-light);
     --like-button-border-active: var(--like-button-border-active-light);
     --like-button-shadow: var(--like-button-shadow-light);
+    --border: var(--border-light);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -186,6 +189,7 @@ p {
         --like-button-border: var(--like-button-border-dark);
         --like-button-border-active: var(--like-button-border-active-dark);
         --like-button-shadow: var(--like-button-shadow-dark);
+        --border: var(--border-dark);
     }
 }
 
@@ -221,6 +225,7 @@ p {
     --like-button-border: var(--like-button-border-light);
     --like-button-border-active: var(--like-button-border-active-light);
     --like-button-shadow: var(--like-button-shadow-light);
+    --border: var(--border-light);    
 }
 
 [data-theme="dark"] {
@@ -254,6 +259,7 @@ p {
     --like-button-border: var(--like-button-border-dark);
     --like-button-border-active: var(--like-button-border-active-dark);
     --like-button-shadow: var(--like-button-shadow-dark);
+    --border: var(--border-dark);
 }
 
 body {
@@ -313,6 +319,10 @@ select {
 .text-muted {
     color: var(--text-primary)!important;
     opacity: 0.7;
+}
+
+.btn:disabled {
+
 }
 
 /* primary header */
@@ -532,6 +542,12 @@ select {
     background-color: var(--button-bg-primary);
     color: var(--button-text-primary);
     width: clamp(3rem, 100%, 180px);
+}
+
+.primary-action:hover {
+    /* box-shadow: 0vmin 4vmin 0 var(--border); */
+    border: 1px solid var(--border);
+    color: var(--button-text-primary);
 }
 
 .secondary-action {
@@ -763,7 +779,13 @@ footer {
 
 .edit-profile-form input,
 .edit-profile-form textarea {
-    width: 50%;
+    width: 100%;
+}
+
+.char-remaining {
+    font-size: 0.8rem;
+    text-align: end;
+    min-height: 20px;
 }
 
 /* Recipe detail page styling */
@@ -969,7 +991,11 @@ footer {
 .htmx-inverted-indicator {
     display: inline;
     background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
 
+.htmx-inverted-indicator:hover {
+    color: var(--text-primary);
 }
 
 .htmx-request .htmx-inverted-indicator {

@@ -13,6 +13,7 @@
                 <div class="flex mt-2 form-pair">
                     {{field.label_tag}}
                     {{field}}
+                    <div class="char-remaining" id="{{field.label|lower}}-char-remaining"></div>
                 </div>
                 {% endfor %}
             
