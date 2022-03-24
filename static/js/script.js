@@ -250,4 +250,61 @@ function enableButton(button) {
     button.disabled = false;
 }
 
+// const editProfileFormCont = document.getElementsByClassName('edit-profile-form-input-container');
+document.addEventListener('input', (event) => {
+    if (event.target.id == 'id_username') {
+        const field = document.getElementById('id_username');
+        updateCharContainer(field);
+    } else if (event.target.id == 'id_headline') {
+        const field = document.getElementById('id_headline');
+        updateCharContainer(field);
+    } else if (event.target.id == 'id_bio') {
+        const field = document.getElementById('id_bio');
+        updateCharContainer(field);
+    } else if (event.target.id == 'id_location') {
+        const field = document.getElementById('id_location');
+        updateCharContainer(field);
+    } else if (event.target.id == 'id_social_youtube') {
+        const field = document.getElementById('id_social_youtube');
+        updateCharContainer(field);
+    } else if (event.target.id == 'id_social_website') {
+        const field = document.getElementById('id_social_website');
+        updateCharContainer(field);
+    } else if (event.target.id == 'id_title') {
+        const field = document.getElementById('id_title');
+        updateCharContainer(field);
+    } else if (event.target.id == 'id_description') {
+        const field = document.getElementById('id_description');
+        updateCharContainer(field);
+    } else if (event.target.id == 'id_youtube_link') {
+        const field = document.getElementById('id_youtube_link');
+        updateCharContainer(field);
+    } else if (event.target.id == 'id_ingredient') {
+        const field = document.getElementById('id_ingredient');
+        updateCharContainer(field);
+    } else if (event.target.id == 'id_quantity') {
+        const field = document.getElementById('id_quantity');
+        updateCharContainer(field);
+    } else if (event.target.id == 'id_step') {
+        const field = document.getElementById('id_step');
+        updateCharContainer(field);
+    }
+})
 
+function updateCharContainer(field) {
+    const max = field.getAttribute('maxlength');
+    const remaining = max - field.value.length;
+    const charContainer = field.nextElementSibling;
+    charContainer.textContent = `${remaining} Characters Remaining`;
+    if (remaining < (max * 0.1)) {
+        charContainer.style.color = 'var(--alert-primary)';
+    } else if (remaining >= (max * 0.1)) {
+        charContainer.style.color = 'var(--text-primary)';
+    };
+
+    if (remaining == 0){
+        charContainer.style.fontSize = '1.25rem';
+    } else {
+        charContainer.style.fontSize = '0.8rem';
+    };
+}
