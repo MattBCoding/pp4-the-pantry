@@ -37,6 +37,9 @@
                 {% endfor %}
                 {% endfor %}
               </div>
+              {% if not recipe.get_ingredients or not recipe.get_steps %}
+              <div class="incomplete">Recipe Incomplete</div>
+              {% endif %}
         <div>
         </div>
       </div>

@@ -28,3 +28,6 @@ class Profile(models.Model):
     
     def get_favourited(self):
         return self.recipe_favourites.all()
+    
+    def get_own(self):
+        return self.owner.all()

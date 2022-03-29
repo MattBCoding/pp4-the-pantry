@@ -991,6 +991,7 @@ footer {
     margin: 0 auto;
     background-color: var(--bg-quaternary);
     border-radius: 5px;
+    position: relative;
 }
 
 .card-container {
@@ -1040,6 +1041,18 @@ footer {
 
 .liked-thumbs-up {
     color:var(--alert-primary);
+}
+
+.incomplete {
+    position: absolute;
+    top: 30%;
+    padding: 0.25rem;
+    font-size: 1.5rem;
+    color: var(--alert-primary);
+    background-color: var(--alert-secondary);
+    transform: rotate(-45deg);
+    border: 2px dashed var(--alert-primary);
+    margin: 0 auto;
 }
 
 /* HTMX styling */

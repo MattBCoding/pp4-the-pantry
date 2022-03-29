@@ -9,7 +9,7 @@ from cloudinary.models import CloudinaryField
 # Create your models here.
 class Recipe(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
-    owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=False, blank=False)
+    owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=False, blank=False, related_name='owner')
     title = models.CharField(max_length=100, blank=False, null=False)
     description = models.CharField(max_length=300, blank=True, null=True)
     featured_image = CloudinaryField('image', default="https://res.cloudinary.com/mattbcoding/image/upload/v1645726300/recipe-placeholder_g50h2a.jpg")
