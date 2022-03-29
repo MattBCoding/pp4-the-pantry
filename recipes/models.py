@@ -1,7 +1,5 @@
-from enum import unique
 from django.db import models
 import uuid
-
 from django.urls import reverse
 from profiles.models import Profile
 from cloudinary.models import CloudinaryField
