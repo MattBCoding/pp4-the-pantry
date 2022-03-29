@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
 {% load cloudinary %}
 {% block body %}
+<!-- feature section encouraging people to search recipes -->
+<section class="account-container mt-2 p-2">
+    <h2>Search our <span>Recipes</span></h2>
+    {% include 'recipes/snippets/recipe_search.html' %}
+</section>
 
 <!-- hero section introducing site -->
-<section class="account-container hero-container">
+<section class="account-container hero-container mt-2">
     <div class="hero-text p-2 flex flex-column flex-md-row">
         <div id="hero-text-container" class="p-4">
             <div class="p-4">
@@ -24,7 +29,7 @@
 
 <!-- section to encourage people to register -->
 <section class="account-container mt-2 p-2 register-section flex">
-    <h2>Register Section Heading</h2>
+    <h2>Member Benefits</h2>
     <p class="">Everyone is welcome at The Pantry, you can search and browse through any and all of our recipes for free. Joining us is a free and simple process, just register for a secure account and you'll be able to take advantage of all our member benefits immediately.</p>
     <div class="register-card-container flex-column-reverse flex-md-row flex p-2">
         <div class="register-card non-member mt-2 py-2">
@@ -90,11 +95,6 @@
     </div>
 </section>
 
-<!-- feature section encouraging people to search recipes -->
-<section class="account-container mt-2 p-2">
-    <h2>Search our <span>Recipes</span></h2>
-    {% include 'recipes/snippets/recipe_search.html' %}
-</section>
 <!-- section to highlight some recipes  -->
 <section class="account-container mt-2 p-2">
     <h2>Example Recipes Section Heading</h2>

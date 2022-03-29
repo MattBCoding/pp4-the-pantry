@@ -74,16 +74,18 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({m
 // when someone clicks the hamburger menu button
 // if the nav is closed, open it
 // if the nav is open, close it
-accountToggle.addEventListener('click', () => {
-    const visibility = accountMenu.getAttribute('data-visible');
-    if (visibility === 'false') {
-        accountMenu.setAttribute('data-visible', true);
-        accountToggle.setAttribute('aria-expanded', true);
-    } else {
-        accountMenu.setAttribute('data-visible', false);
-        accountToggle.setAttribute('aria-expanded', false);
-    }
-})
+if (accountToggle) {
+    accountToggle.addEventListener('click', () => {
+        const visibility = accountMenu.getAttribute('data-visible');
+        if (visibility === 'false') {
+            accountMenu.setAttribute('data-visible', true);
+            accountToggle.setAttribute('aria-expanded', true);
+        } else {
+            accountMenu.setAttribute('data-visible', false);
+            accountToggle.setAttribute('aria-expanded', false);
+        }
+    })
+}
 
 // adds csrf token to htmx submissions
 // document.body.addEventListener('htmx:configRequest', (event) => {
@@ -329,3 +331,11 @@ function updateCharContainer(field) {
         charContainer.style.fontSize = '0.8rem';
     };
 }
+
+// auto dismiss messages
+window.setTimeout(function(){
+    const message = document.getElementsByClassName('alert')[0];
+    if (message){
+        message.remove();
+    }
+}, 3000);

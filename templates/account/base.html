@@ -1,29 +1,6 @@
 {% extends "base.html" %}
 {% block body %}
 <section class="account-container p-2">
-  {% if messages %}
-  <div>
-    <strong>Messages:</strong>
-    <ul>
-      {% for message in messages %}
-      <li>{{message}}</li>
-      {% endfor %}
-    </ul>
-  </div>
-  {% endif %}
-
-  <div>
-    <strong>Menu:</strong>
-    <ul class="account-menu-list flex">
-      {% if user.is_authenticated %}
-      <li><a class="secondary-action btn" href="{% url 'account_email' %}">Change E-mail</a></li>
-      <li><a class="secondary-action btn" href="{% url 'account_logout' %}">Sign Out</a></li>
-      {% else %}
-      <li><a class="secondary-action btn" href="{% url 'account_login' %}">Sign In</a></li>
-      <li><a class="secondary-action btn" href="{% url 'account_signup' %}">Sign Up</a></li>
-      {% endif %}
-    </ul>
-  </div>
   {% block content %}
   {% endblock %}
   {% endblock %}

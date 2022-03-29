@@ -1,4 +1,4 @@
-from pyexpat.errors import messages
+from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from .models import Profile
@@ -35,6 +35,7 @@ def editProfile(request):
             if form.is_valid():
                 form.save()
                 id = request.user.id
+                messages.success(request, 'Profile updated')
                 return redirect('user-profile', id)
                 # path = 'profiles/profile/{id}/'
                 # return redirect(reverse(path.format(id=request.user.id)))

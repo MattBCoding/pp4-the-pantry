@@ -5,17 +5,15 @@
 {% block content %}
 <h2>{% trans "Sign Out" %}</h2>
 
-<p>{% trans 'Are you sure you want to sign out?' %}</p>
+<p class="mt-2">{% trans 'Are you sure you want to sign out?' %}</p>
 
-<form method="post" action="{% url 'account_logout' %}">
+<form class="login my-2 sign-in-form" method="post" action="{% url 'account_logout' %}">
   {% csrf_token %}
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
   {% endif %}
   <button class="primary-action btn" type="submit">{% trans 'Sign Out' %}</button>
 </form>
-<div>
-  <p>Test Message to see if this template is pulling through</p>
-</div>
+
 
 {% endblock %}

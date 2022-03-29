@@ -568,6 +568,58 @@ select {
     padding: 0;
 }
 
+.sign-in-button:hover {
+    color: var(--button-text-primary);
+    border: 1px solid var(--button-text-primary);
+    transition: all 0.6s ease;
+}
+
+.sign-in-form > p {
+    margin-top: 0.5rem;
+}
+
+.sign-in-form > p > input {
+    width: clamp(18rem, 100%, 50rem);
+}
+
+.sign-in-form > p > input:hover,
+.sign-in-form > p > input:active {
+    border: 1px solid var(--border);
+}
+
+.sign-in-form > p:nth-last-of-type(1) {
+    margin-bottom: 0.5rem;
+}
+
+.sign-in-form > p:nth-last-of-type(1) > input[type="checkbox"] {
+    width: auto;
+    margin-left: 0.5rem;
+}
+
+.sign-in-form > .primary-action:hover {
+    color: var(--button-text-primary);
+    border: 1px solid var(--button-text-primary);
+    transition: all 0.6s ease;
+}
+
+.sign-in-form > .secondary-action:hover {
+    /* background-color: var(--alert-primary);
+    color: var(--button-text-primary); */
+    border: 1px solid var(--button-text-primary);
+    transition: all 0.6s ease;
+}
+
+.signup label {
+    margin-bottom: 0.5rem;
+}
+
+.errorlist {
+    margin-top: 0.5rem;
+    background-color: var(--alert-secondary);
+    color: var(--alert-primary);
+    border: 1px solid var(--alert-primary);
+}
+
 body.flex {
     flex-direction: column;
 }
@@ -761,6 +813,7 @@ footer {
 
 .profile-detail-container {
     background-color: var(--bg-tertiary);
+    margin: 0;
 }
 
 .profile-button-container {
@@ -769,6 +822,18 @@ footer {
     gap: 0.5rem;
     align-items: flex-start;
     /* justify-content: flex-start; */
+}
+
+.profile-button-container > .primary-action:hover{
+    color: var(--button-text-primary);
+    border: 1px solid var(--button-text-primary);
+    transition: all 0.6s ease;
+}
+.profile-button-container > .secondary-action:hover {
+    background-color: var(--alert-primary);
+    color: var(--button-text-primary);
+    border: 1px solid var(--button-text-primary);
+    transition: all 0.6s ease;
 }
 
 /* Edit Profile page styling */
