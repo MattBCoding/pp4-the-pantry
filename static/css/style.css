@@ -620,6 +620,31 @@ select {
     border: 1px solid var(--alert-primary);
 }
 
+.password_change label,
+.add_email label {
+    width: clamp(7rem, 100%, 20rem);
+    margin-top: 0.5rem;
+}
+
+.password_change input,
+.add_email input {
+    width: clamp(18rem, 100%, 50rem);
+    margin-top: 0.25rem;
+}
+
+.email_list .primary-action:hover {
+    color: var(--button-text-primary);
+    border: 1px solid var(--button-text-primary);
+    transition: all 0.6s ease;
+}
+
+.email_list .secondary-action:hover {
+    background-color: var(--alert-primary);
+    color: var(--button-text-primary);
+    border: 1px solid var(--button-text-primary);
+    transition: all 0.6s ease;
+}
+
 body.flex {
     flex-direction: column;
 }
@@ -1118,7 +1143,13 @@ footer {
     background-color: var(--like-button-bg-active);
     border: 1px solid var(--like-button-border-active);
     color: var(--like-button-text-active);
+}
 
+/* messages styling */
+.alert-error {
+    background-color: var(--alert-secondary);
+    color: var(--alert-primary);
+    border: 1px solid var(--alert-primary);
 }
 
 /* to be deleted only in for development purposes */

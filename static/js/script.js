@@ -336,6 +336,11 @@ function updateCharContainer(field) {
 window.setTimeout(function(){
     const message = document.getElementsByClassName('alert')[0];
     if (message){
-        message.remove();
+        // prevent error messages from being removed automatically
+        if (message.classList.contains('alert-error')){
+            pass;
+        } else {
+            message.remove();
+        }
     }
 }, 3000);

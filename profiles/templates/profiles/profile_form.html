@@ -19,4 +19,9 @@
         </form>
     </div>
 </section>
+<section class="account-container mt-2 p-2">
+    <h2>Account Options</h2>
+    <a class="btn primary-action mt-2 me-2" href="{% url 'account_change_password' %}">Change Password</a>
+    <a class="btn primary-action mt-2 me-2" href="{% url 'account_email' %}">Change Email</a>
+</section>
 {% endblock %}
