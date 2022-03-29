@@ -29,7 +29,7 @@
         <div class="col-md-9 mt-1">
             <div>
                 <h5>Ingredients</h5>
-                <ul>
+                <ul class="mt-2">
                     {% for ingredient in recipe.get_ingredients %}
                     <li>
                         {{ ingredient.quantity }} of {{ ingredient.ingredient }}
@@ -39,7 +39,7 @@
             </div>
             <div>
                 <h5>Steps</h5>
-                <ul>
+                <ul class="mt-2">
                     {% for step in recipe.get_steps %}
                     <li>
                         {{ step.step }}
@@ -48,7 +48,7 @@
                 </ul>
             </div>
             {% if recipe.youtube_link %}
-            <a href="{{ recipe.youtube_link }}" target="_blank" class="youtube-link">Watch this recipe on YouTube</a>
+            <a href="{{ recipe.youtube_link }}" target="_blank" class="youtube-link btn mb-2"><i class="fa-brands fa-youtube-square"></i></a>
             {% endif %}
         </div>
     </div>

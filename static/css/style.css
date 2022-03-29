@@ -920,6 +920,35 @@ footer {
     transition: all 0.6s ease;
 }
 
+.youtube-link {
+    text-decoration: none;
+    font-size: 1.5rem;
+    background-color: var(--button-bg-secondary);
+    color: var(--button-text-primary);
+    width: clamp(3rem, 100%, 180px);
+    line-height: 1rem;
+}
+
+.youtube-link:hover {
+    background-color: var(--alert-primary);
+    color: var(--button-text-primary);
+    border: 1px solid var(--button-text-primary);
+    transition: all 0.6s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .youtube-link:hover > i {
+    font-size: 1.5rem;
+} */
+
+.youtube-link:hover::after{
+    content: ' Watch';
+    font-size: 1rem;
+    padding-left: 1rem;
+}
+
 /* Recipe Create/Edit styling */
 .hidden {
     display: none;
@@ -946,6 +975,22 @@ footer {
 .ingredient-form-container {
     background-color: var(--bg-quaternary);
 }
+
+.edit-step-btn:hover,
+.edit-ingredient-btn:hover {
+    color: var(--button-text-primary);
+    border: 1px solid var(--button-text-primary);
+    transition: all 0.6s ease;
+}
+
+.delete-step-btn:hover,
+.delete-ingredient-btn:hover {
+    background-color: var(--alert-primary);
+    color: var(--button-text-primary);
+    border: 1px solid var(--button-text-primary);
+    transition: all 0.6s ease;
+}
+
 
 /* Recipe search results */
 
