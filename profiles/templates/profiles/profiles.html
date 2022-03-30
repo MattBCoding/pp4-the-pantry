@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 {% load cloudinary %}
 {% block body %}
-<section class="profile-list">
+<section class="account-container mt-2 p-2">
+    <h2>Search for Users</h2>
+    {% include 'profiles/snippets/profile_search.html' %}
+</section>
+
+<!-- Results of search for users -->
+<section class="account-container mt-2 p-2">
     <h2 class="my-2">Profiles Page</h2>
     <div class="container flex recipe-results">
         {% for profile in profiles %}
@@ -22,5 +28,6 @@
             </a>
         {% endfor %}
     </div>
+
 </section>
 {% endblock %}

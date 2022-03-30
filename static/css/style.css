@@ -810,11 +810,7 @@ footer {
 }
 
 /* profile card styling */
-.profile-list {
-    background-color: var(--bg-secondary);
-    padding: 1rem;
-    margin: 1rem;
-}
+
 
 /* Profile Detail page styling */
 

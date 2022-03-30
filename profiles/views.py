@@ -8,12 +8,18 @@ from django.contrib.auth import logout
 from django.contrib import messages
 from django.db.models import Q
 from recipes.models import Recipe
+from .utils import searchProfiles
 
 
 # Create your views here.
 def profiles(request):
-    profiles = Profile.objects.all().exclude(Q(username__isnull=True)).order_by('username')
-    context = {'profiles': profiles}
+    # profiles = Profile.objects.all().exclude(Q(username__isnull=True)).order_by('username')
+    # context = {'profiles': profiles}
+    profiles, search_query = searchProfiles(request)
+    context = {
+        'profiles': profiles,
+        'search_query': search_query
+    }
     return render(request, 'profiles/profiles.html', context)
 
 
