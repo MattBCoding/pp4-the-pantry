@@ -6,7 +6,11 @@
     <div class="row profile-detail-container py-2 mt-2">
         <div class="col-sm-4 align-items-center justify-content-center">
             <span class="img-container">
+                {% if profile.username %}
                 {% cloudinary profile.profile_image alt=profile.username %}
+                {% else %}
+                {% cloudinary profile.profile_image alt='default profile photo' %}
+                {% endif %}
             </span>
 
             {% if request.user == profile.user %}

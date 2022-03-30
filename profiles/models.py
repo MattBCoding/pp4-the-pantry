@@ -18,7 +18,7 @@ class Profile(models.Model):
     social_website = models.URLField(max_length=200, blank=True, null=True)
 
     def __str__(self):
-        return str(self.username)
+        return str(self.user)
 
     def get_liked(self):
         return self.recipe_likes.all()
