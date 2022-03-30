@@ -321,10 +321,6 @@ select {
     opacity: 0.7;
 }
 
-.btn:disabled {
-
-}
-
 /* primary header */
 #logo {
     height: 100px;
@@ -820,20 +816,6 @@ footer {
     margin: 1rem;
 }
 
-.profile-card {
-    width: max(250px, 25%);
-    background-color: var(--bg-tertiary);
-}
-
-.profile-card > .card-img-top {
-    max-height: 60%;
-    object-fit: cover;
-}
-
-.profile-card .card-title,
-.profile-card .card-subtitle {
-    text-transform: capitalize;
-}
 /* Profile Detail page styling */
 
 .profile-detail-container {

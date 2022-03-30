@@ -3,7 +3,7 @@
     {% csrf_token %}
     <button type="submit" name="recipe_id" value="{{ recipe.pk }}" class="btn like-pill like-btn liked">
         <i class="fa-solid fa-heart"></i>
-        <span class="favourites-text"> Remove from Favourites </span>
+        <span class="favourites-text"> Unfavourite</span>
     </button>
 </form>
 {% else %}
@@ -11,7 +11,7 @@
     {% csrf_token %}
     <button type="submit" name="recipe_id" value="{{ recipe.pk }}" class="btn like-pill like-btn">
         <i class="fa-regular fa-heart"></i>
-        <span class="favourites-text"> Add to Favourites </span>
+        <span class="favourites-text"> Favourite</span>
     </button>
 </form>
 {% endif %}

@@ -1,21 +1,26 @@
 {% extends 'base.html' %}
-
+{% load cloudinary %}
 {% block body %}
-<h2>Profiles Page</h2>
 <section class="profile-list">
-    <div class="container flex">
+    <h2 class="my-2">Profiles Page</h2>
+    <div class="container flex recipe-results">
         {% for profile in profiles %}
-        <div class="card profile-card">
-            <img src="{{ profile.profile_image.url }}" class="card-img-top" alt="profile photo">
-            <div class="card-body">
-                <h5 class="card-title">{{ profile.username }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{ profile.location }}</h6>
-                <p class="card-text">{{ profile.headline }}</p>
-                <!-- insert link to filtered search results for this user-profile -->
-                <a href="" class="btn secondary action">Recipes</a>
-            </div>
-        </div> 
+            <a class="recipe-card" href="{% url 'user-profile' profile.user.id %}">
+                <div class="card">
+                    <div class="card-container m-1">
+                        <img src="{{ profile.profile_image.url }}" class="card-img-top" alt="profile photo">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ profile.username }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ profile.location }}</h6>
+                            <p class="card-text">{{ profile.headline }}</p>
+    
+                            <button class="btn primary-action">Recipes</button>
+    
+                        </div>
+                    </div>
+                </div>
+            </a>
         {% endfor %}
-        </div>
-    </section>
+    </div>
+</section>
 {% endblock %}
