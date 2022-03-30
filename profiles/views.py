@@ -12,7 +12,7 @@ from recipes.models import Recipe
 
 # Create your views here.
 def profiles(request):
-    profiles = Profile.objects.all()
+    profiles = Profile.objects.all().exclude(Q(username__isnull=True)).order_by('username')
     context = {'profiles': profiles}
     return render(request, 'profiles/profiles.html', context)
 

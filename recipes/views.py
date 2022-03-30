@@ -1,8 +1,7 @@
-from wsgiref import headers
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Profile, Recipe, Step, Ingredient
-from .utils import searchRecipes
+from .utils import paginateRecipes, searchRecipes
 from .forms import IngredientForm, RecipeForm, StepForm
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.urls import reverse
@@ -22,9 +21,11 @@ def home(request):
 
 def recipes(request):
     recipes, search_query = searchRecipes(request)
+    custom_range, recipes = paginateRecipes(request, recipes, 8)
     context = {
         'recipes': recipes,
-        'search_query': search_query
+        'search_query': search_query,
+        'custom_range': custom_range
     }
     return render(request, 'recipes/recipes.html/', context)
 

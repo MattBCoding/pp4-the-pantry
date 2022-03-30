@@ -14,5 +14,32 @@
             {% include 'recipes/snippets/recipe_card.html' %}
         {% endfor %}
     </div>
+    {% if recipes.has_other_pages %}
+    <div id="pagination">
+        <ul class="container">
+            {% if recipes.has_previous %}
+            <li>
+                <a href="?page={{ recipes.previous_page_number }}" class="btn page-btn primary-action">Previous</a> data-page="{{ recipes.previous_page_number }}">&#10094; Prev</a>
+            </li>
+            {% endif %}
+            {% for page in custom_range %}
+            {% if page == recipes.number %}
+            <li>
+                <a href="?page={{page}}" class="btn page-btn page-btn-alt primary-action" data-page="{{ page }}">{{ page }}</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="?page={{page}}" class="btn page-btn primary-action" data-page="{{ page }}">{{ page }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+            {% if recipes.has_next %}
+            <li>
+                <a href="?page={{ recipes.next_page_number }}" class="btn page-btn primary-action" data-page="{{ recipes.next_page_number }}">Next &#10095;</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+    {% endif %}
 </section>
 {% endblock body %}

@@ -344,3 +344,17 @@ window.setTimeout(function(){
         }
     }
 }, 3000);
+
+let pageBtns = document.getElementsByClassName('page-btn')
+let pagination = document.getElementById('pagination')
+let searchForm = document.getElementById('search-form')
+if (searchForm){
+    for (let i = 0; i < pageBtns.length; i++) {
+        pageBtns[i].addEventListener('click', function(e){
+            e.preventDefault()
+            let page = this.dataset.page
+            searchForm.innerHTML += `<input value=${page} name="page" hidden />`
+            searchForm.submit()
+        })
+    }
+}
