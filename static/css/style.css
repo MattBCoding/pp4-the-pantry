@@ -1107,6 +1107,17 @@ footer {
     margin: 0 auto;
 }
 
+/* Pagination */
+#pagination {
+    position: relative;
+    z-index: 10;
+}
+
+#pagination li {
+    text-decoration: none;
+    list-style: none;
+}
+
 /* HTMX styling */
 
 .htmx-indicator {

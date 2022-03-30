@@ -15,11 +15,11 @@
         {% endfor %}
     </div>
     {% if recipes.has_other_pages %}
-    <div id="pagination">
-        <ul class="container">
+    <div id="pagination" class="mt-2 p-2">
+        <ul class="container flex flex-row justify-content-center align-items-center gap-4">
             {% if recipes.has_previous %}
             <li>
-                <a href="?page={{ recipes.previous_page_number }}" class="btn page-btn primary-action">Previous</a> data-page="{{ recipes.previous_page_number }}">&#10094; Prev</a>
+                <a href="?page={{ recipes.previous_page_number }}" class="btn page-btn primary-action" data-page="{{ recipes.previous_page_number }}">&#10094; Prev</a>
             </li>
             {% endif %}
             {% for page in custom_range %}

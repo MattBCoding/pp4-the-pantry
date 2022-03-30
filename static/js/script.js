@@ -352,7 +352,7 @@ if (searchForm){
     for (let i = 0; i < pageBtns.length; i++) {
         pageBtns[i].addEventListener('click', function(e){
             e.preventDefault()
-            let page = this.dataset.page
+            let page = this.dataset.page;
             searchForm.innerHTML += `<input value=${page} name="page" hidden />`
             searchForm.submit()
         })
