@@ -1,0 +1,27 @@
+{% if query_set.has_other_pages %}
+    <div id="pagination" class="mt-2 p-2">
+        <ul class="container flex flex-row justify-content-center align-items-center gap-4">
+            {% if query_set.has_previous %}
+            <li>
+                <a href="?page={{ query_set.previous_page_number }}" class="btn page-btn primary-action" data-page="{{ query_set.previous_page_number }}">&#10094; Prev</a>
+            </li>
+            {% endif %}
+            {% for page in custom_range %}
+            {% if page == query_set.number %}
+            <li>
+                <a href="?page={{page}}" class="btn page-btn page-btn-alt primary-action" data-page="{{ page }}">{{ page }}</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="?page={{page}}" class="btn page-btn primary-action" data-page="{{ page }}">{{ page }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+            {% if query_set.has_next %}
+            <li>
+                <a href="?page={{ query_set.next_page_number }}" class="btn page-btn primary-action" data-page="{{ query_set.next_page_number }}">Next &#10095;</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+{% endif %}
