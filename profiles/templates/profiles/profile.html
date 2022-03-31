@@ -15,8 +15,8 @@
 
             {% if request.user == profile.user %}
             <div class="mt-2 flex profile-button-container flex-row flex-sm-column align-items-sm-center">
-                <a class="btn primary-action" href="{% url 'edit-profile' %}">Edit Profile</a>
-                <a class="btn secondary-action" href="{% url 'delete-user' profile.id %}">Delete My Account</a>
+                <a class="btn primary-action" href="{% url 'edit-profile' %}">Edit</a>
+                <a class="btn secondary-action" href="{% url 'delete-user' profile.id %}">Delete</a>
             </div>
             {% endif %}
         </div>
@@ -24,11 +24,16 @@
             <h5>{{ profile.headline }}</h5>
             <p class="mt-2">{{ profile.bio|slice:"800"|linebreaksbr }}</p>
             <h5 class="mt-2">{{ profile.location }}</h5>
-            {% if profile.social_youtube %}
-                <p class="mt-2">Visit my YouTube channel here: <a href="{{ profile.social_youtube }}" target="_blank">{{ profile.social_youtube }}</a></p>
-            {% endif %}
-            {% if profile.social_website %}
-                <p class="mt-2">Visit my personal website here: <a href="{{ profile.social_website }}" target="_blank">{{ profile.social_website }}</a></p>
+            {% if profile.social_youtube or profile.social_website %}
+            <p class="mt-2">You can find me here:</p>
+            <div class="profile-social-button-container mt-2">
+                {% if profile.social_youtube %}
+                    <a class="profile-youtube-btn btn" href="{{ profile.social_youtube }}" target="_blank" rel="noreferrer" rel="noopener" aria-label="Link to users youtube page (opens in new tab)"><i class="fa-brands fa-youtube-square"></i></a>
+                {% endif %}
+                {% if profile.social_website %}
+                    <a class="profile-website-btn btn" href="{{ profile.social_website }}" target="_blank" rel="noreferrer" rel="noopener" aria-label="Link to users website (opens in new tab)"><i class="fa-solid fa-globe"></i></a>
+                {% endif %}
+            </div>
             {% endif %}
         </div>
     </div>
