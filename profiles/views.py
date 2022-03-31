@@ -8,7 +8,7 @@ from django.contrib.auth import logout
 from django.contrib import messages
 from django.db.models import Q
 from recipes.models import Recipe
-from .utils import searchProfiles
+from .utils import paginateProfiles, searchProfiles
 
 
 # Create your views here.
@@ -16,9 +16,11 @@ def profiles(request):
     # profiles = Profile.objects.all().exclude(Q(username__isnull=True)).order_by('username')
     # context = {'profiles': profiles}
     profiles, search_query = searchProfiles(request)
+    custom_range, profiles = paginateProfiles(request, profiles, 4)
     context = {
         'profiles': profiles,
-        'search_query': search_query
+        'search_query': search_query,
+        'custom_range': custom_range
     }
     return render(request, 'profiles/profiles.html', context)
 

@@ -810,7 +810,10 @@ footer {
 }
 
 /* profile card styling */
-
+.profile-card-body {
+    flex-direction: column;
+    gap: 0;
+}
 
 /* Profile Detail page styling */
 

@@ -8,19 +8,23 @@
 
 <!-- Results of search for users -->
 <section class="account-container mt-2 p-2">
-    <h2 class="my-2">Profiles Page</h2>
+    <h2 class="mt-2 mb-3">Results</h2>
     <div class="container flex recipe-results">
         {% for profile in profiles %}
             <a class="recipe-card" href="{% url 'user-profile' profile.user.id %}">
                 <div class="card">
                     <div class="card-container m-1">
                         <img src="{{ profile.profile_image.url }}" class="card-img-top" alt="profile photo">
-                        <div class="card-body">
+                        <div class="card-body profile-card-body flex">
                             <h5 class="card-title">{{ profile.username }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ profile.location }}</h6>
-                            <p class="card-text">{{ profile.headline }}</p>
+                            {% if profile.headline|length >= 100 %}
+                            <p class="card-text flex-grow-1">{{ profile.headline|slice:"100" }}...</p>
+                            {% else %}
+                            <p class="card-text flex-grow-1">{{ profile.headline }}</p>
+                            {% endif %}
     
-                            <button class="btn primary-action mt-2">Recipes</button>
+                            <button class="btn primary-action mt-2 align-self-center">Recipes</button>
     
                         </div>
                     </div>
