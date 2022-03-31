@@ -4,21 +4,49 @@ const navToggle = document.getElementById('nav-toggle');
 const navButtonText = document.getElementById('nav-button-text');
 const accountToggle = document.getElementById('account-toggle');
 const accountMenu = document.getElementById('account-menu');
+const pageCover = document.getElementById('mobile-nav-page-cover');
 const storageKey = 'theme-preference';
 const colorModeToggle = document.getElementById('color-mode');
-  
+
+pageCover.addEventListener('click', () => {
+    nav.setAttribute('data-visible', false);
+    navToggle.setAttribute('aria-expanded', false);
+    accountMenu.setAttribute('data-visible', false);
+    accountToggle.setAttribute('aria-expanded', false);
+    pageCover.style.display = 'none';
+})
 
 navToggle.addEventListener('click', () => {
     const visibility = nav.getAttribute('data-visible');
     if (visibility === 'false') {
         nav.setAttribute('data-visible', true);
         navToggle.setAttribute('aria-expanded', true);
+        pageCover.style.display = 'block';
     } else {
         nav.setAttribute('data-visible', false);
         navToggle.setAttribute('aria-expanded', false);
+        accountMenu.setAttribute('data-visible', false);
+        accountToggle.setAttribute('aria-expanded', false);
+        pageCover.style.display = 'none';
+
     }
 })
 
+// when someone clicks the hamburger menu button
+// if the nav is closed, open it
+// if the nav is open, close it
+if (accountToggle) {
+    accountToggle.addEventListener('click', () => {
+        const visibility = accountMenu.getAttribute('data-visible');
+        if (visibility === 'false') {
+            accountMenu.setAttribute('data-visible', true);
+            accountToggle.setAttribute('aria-expanded', true);
+        } else {
+            accountMenu.setAttribute('data-visible', false);
+            accountToggle.setAttribute('aria-expanded', false);
+        }
+    })
+}
 // color scheme preference code adapted from 
 // https://github.com/argyleink/gui-challenges
 const changeTheme = () => {
@@ -71,21 +99,6 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({m
     setPreference()
 })
 
-// when someone clicks the hamburger menu button
-// if the nav is closed, open it
-// if the nav is open, close it
-if (accountToggle) {
-    accountToggle.addEventListener('click', () => {
-        const visibility = accountMenu.getAttribute('data-visible');
-        if (visibility === 'false') {
-            accountMenu.setAttribute('data-visible', true);
-            accountToggle.setAttribute('aria-expanded', true);
-        } else {
-            accountMenu.setAttribute('data-visible', false);
-            accountToggle.setAttribute('aria-expanded', false);
-        }
-    })
-}
 
 // adds csrf token to htmx submissions
 // document.body.addEventListener('htmx:configRequest', (event) => {

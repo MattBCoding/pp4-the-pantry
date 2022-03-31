@@ -198,11 +198,13 @@
     </div>
     <!-- hamburger menu toggle goes here-->
     <!-- mobile navigation menu button -->
-    <button id="nav-toggle" class="mobile-nav-toggle" aria-controls="primary-navigation">
-        <span id="nav-button-text" class="sr-only" aria-expanded="false">Menu</span>
+    <button id="nav-toggle" class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Navigation Menu Button">
+        <!-- <span id="nav-button-text" class="sr-only" aria-expanded="false" role="menubar">Navigation Menu</span> -->
     </button>
     <!-- navigation bar on every page -->
     <nav>
+        <!-- container to cover screen when nav is open -->
+        <div id="mobile-nav-page-cover"></div>
         <ul id="primary-navigation" data-visible="false" class="primary-navigation flex">
             <li class="active">
                 <a href="{% url 'home' %}">Home</a>
@@ -219,8 +221,8 @@
             
             {% if user.is_authenticated %}
             <li class="dropdown">
-                <button id="account-toggle" class="account-nav-toggle" aria-controls="account-menu">
-                    <svg id="user-icon" data-name="user-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 696 512">
+                <button id="account-toggle" class="account-nav-toggle" aria-controls="account-menu" aria-expanded="false" aria-label="Account Menu">
+                    <svg id="user-icon" aria-hidden="true" focusable="false" data-name="user-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 696 512">
                         <defs>
             
                         </defs>
@@ -229,26 +231,30 @@
                         <path class="user-icon-contents"
                             d="M523.64,214H673.36a11.61,11.61,0,0,1,8.2,19.84l-74.83,74.89a11.65,11.65,0,0,1-16.46,0l-74.83-74.89a11.61,11.61,0,0,1,8.2-19.84Z" />
                     </svg>
-                    <span id="account-button-text" class="sr-only" aria-expanded="false">Account</span>
+                    <!-- <span id="account-button-text" class="sr-only" aria-expanded="false" role="menubar">Account Menu</span> -->
                 </button>
-                <ul id="account-menu" data-visible="false" class="account-navigation flex">
-                    <li>
-                        <a href="{% url 'user-profile' user.id %}">My Profile</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'add-recipe' %}">Add a Recipe</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'my-favourites' user.id %}">My Favourites</a>
-                    </li>
-                    <li>
-                        <a href="">My Messages</a>
-                    </li>
-                    <div class="dropdown-divider"></div>
-                    <li class="sign-out">
-                        <a href="{% url 'account_logout' %}">Sign Out</a>
-                    </li>
-                </ul>
+                <div id="account-menu" class="account-navigation flex" data-visible="false">
+                    <ul class="account-navigation flex">
+                        <li>
+                            <a href="{% url 'user-profile' user.id %}">My Profile</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'add-recipe' %}">Add a Recipe</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'my-favourites' user.id %}">My Favourites</a>
+                        </li>
+                        <li>
+                            <a href="">My Messages</a>
+                        </li>
+                    </ul>
+                        <hr class="dropdown-divider"></hr>
+                    <ul class="account-navigation flex">    
+                        <li class="sign-out">
+                            <a href="{% url 'account_logout' %}">Sign Out</a>
+                        </li>
+                    </ul>
+                </div>
             </li>
             <!-- end of user logged in user account dropdown menu -->
             {% else %}
@@ -256,9 +262,12 @@
                 <a href="{% url 'account_login' %}">Login / Register</a>
             </li>
             {% endif %}
-            
-            <!-- light/dark mode checkbox toggle -->
-            <input type="checkbox" name="" id="color-mode">
+            <li>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn settings-btn" data-bs-toggle="modal" data-bs-target="#modal">
+                    <i class="fa-solid fa-gear"></i>
+                </button>
+            </li>
         </ul>
     </nav>
 </header>
