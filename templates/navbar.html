@@ -212,6 +212,7 @@
             <li>
                 <a href="{% url 'recipes' %}">Recipes</a>
             </li>
+            {% if user.is_authenticated %}
             <li>
                 <a href="{% url 'profiles' %}">Profiles</a>
             </li>
@@ -219,13 +220,10 @@
             <!-- dropdown menu and button shown if user logged in -->
             <!-- If user not logged in button to login/register  -->
             
-            {% if user.is_authenticated %}
             <li class="dropdown">
                 <button id="account-toggle" class="account-nav-toggle" aria-controls="account-menu" aria-expanded="false" aria-label="Account Menu">
                     <svg id="user-icon" aria-hidden="true" focusable="false" data-name="user-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 696 512">
-                        <defs>
-            
-                        </defs>
+                        <defs></defs>
                         <path class="user-icon-contents"
                             d="M252,104a96,96,0,1,0,96,96A96,96,0,0,0,252,104Zm0,144a48,48,0,1,1,48-48A48,48,0,0,1,252,248ZM252,8C115,8,4,119,4,256S115,504,252,504,500,393,500,256,389,8,252,8Zm0,448a198.84,198.84,0,0,1-130.1-48.4,86.15,86.15,0,0,1,69.6-39.5c20.8,6.4,40.6,9.6,60.5,9.6a200.45,200.45,0,0,0,60.5-9.6,86.39,86.39,0,0,1,69.6,39.5A198.84,198.84,0,0,1,252,456Zm162.7-84.1C390.3,340.5,352.6,320,309.6,320c-10.2,0-26,9.6-57.6,9.6s-47.4-9.6-57.6-9.6c-42.9,0-80.6,20.5-105.1,51.9A198.57,198.57,0,0,1,52,256C52,145.7,141.7,56,252,56s200,89.7,200,200A198.57,198.57,0,0,1,414.7,371.9Z" />
                         <path class="user-icon-contents"
@@ -244,9 +242,9 @@
                         <li>
                             <a href="{% url 'my-favourites' user.id %}">My Favourites</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="">My Messages</a>
-                        </li>
+                        </li> -->
                     </ul>
                         <hr class="dropdown-divider"></hr>
                     <ul class="account-navigation flex">    

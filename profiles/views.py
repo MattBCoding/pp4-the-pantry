@@ -12,6 +12,7 @@ from .utils import paginateProfiles, searchProfiles
 
 
 # Create your views here.
+@login_required
 def profiles(request):
     # profiles = Profile.objects.all().exclude(Q(username__isnull=True)).order_by('username')
     # context = {'profiles': profiles}
@@ -24,7 +25,7 @@ def profiles(request):
     }
     return render(request, 'profiles/profiles.html', context)
 
-
+@login_required
 def userProfile(request, pk):
     profile = Profile.objects.get(user=pk)
     context = {'profile':profile}
