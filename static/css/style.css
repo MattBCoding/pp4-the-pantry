@@ -960,6 +960,10 @@ footer {
     width: 100%;
 }
 
+.recipe-break {
+    overflow-wrap: break-word;
+}
+
 .recipe-button-container {
     flex-wrap: wrap;
     justify-items: center;

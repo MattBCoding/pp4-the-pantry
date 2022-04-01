@@ -8,7 +8,11 @@
 
             <div class="card-body">
                 <div class="title-container flex">
+                  {% if recipe.title|length >= 60 %}
+                    <h5 class="card-title">{{ recipe.title|slice:"60" }}...</h5>
+                  {% else %}
                     <h5 class="card-title">{{ recipe.title }}</h5>
+                  {% endif %}
                   <!-- insert if statement to check if user has added this recipe to their favourites -->
                   <!-- icon if they have added -->
                   <!-- <i class="fa-solid fa-heart"></i> -->
@@ -21,8 +25,10 @@
                   {% endfor %}
                   {% endfor %}
                 </div>
-              {% if recipe.owner.username != None %}
+              {% if recipe.owner.username %}
               <h6 class="card-subtitle mb-2 text-muted">{{ recipe.owner.username }}</h6>
+              {% else %}
+              <h6 class="card-subtitle mb-2 text-muted">Anonymous</h6>
               {% endif %}
               <div>
                 {% if recipe.youtube_link %}

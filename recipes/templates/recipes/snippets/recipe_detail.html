@@ -1,16 +1,20 @@
 {% load cloudinary %}
-<section class="account-container flex">
+<section class="account-container flex py-2">
     <div class="row recipe-detail">
-        <div class="recipe-header col-md-3">
-            <div class="profile-image my-2">
+        <div class="recipe-header col-md-4">
+            <div class="profile-image mt-2">
             {% cloudinary recipe.featured_image alt=recipe.title %}
             </div>
-            <h2>{{ recipe.title }} </h2>
+            <h2 class="recipe-break">{{recipe.title}}</h2>
+            {% if recipe.owner.username %}
             <h5>{{ recipe.owner.username }}</h5>
-            {% if recipe.description != None %}
-            <p>{{ recipe.description }}</p>
+            {% else %}
+            <h5>Anonymous</h5>
             {% endif %}
-            <div class="mt-2 flex stat-box flex-md-column">
+            {% if recipe.description != None %}
+            <p class="recipe-break">{{ recipe.description }}</p>
+            {% endif %}
+            <div class="my-2 flex stat-box flex-md-column justify-content-center">
                 {% include 'recipes/snippets/like_recipe.html' %}
                 
                 <div id="favourite-container" hx-trigger="liked from:body" hx-get="{% url 'favourite-recipe' recipe.pk %}">
@@ -20,18 +24,18 @@
                 </div>
             </div>
             {% if request.user == recipe.owner.user %}
-            <div class="flex m-2 recipe-button-container">
+            <div class="flex m-2 recipe-button-container justify-content-center">
                 <a class="btn primary-action mt-1" href="{% url 'update-recipe' recipe.id %}?next={{ request.path|urlencode }}">Edit Recipe</a>
                 <a class="btn secondary-action mt-1" href="{% url 'delete-recipe' recipe.id %}?next={{ request.path|urlencode }}">Delete Recipe</a>
             </div>
             {% endif %}
         </div>
-        <div class="col-md-9 mt-1">
+        <div class="col-md-8 py-2">
             <div>
                 <h5>Ingredients</h5>
                 <ul class="mt-2">
                     {% for ingredient in recipe.get_ingredients %}
-                    <li>
+                    <li class="mt-1">
                         {{ ingredient.quantity }} of {{ ingredient.ingredient }}
                     </li>
                     {% endfor %}
@@ -41,7 +45,7 @@
                 <h5>Steps</h5>
                 <ul class="mt-2">
                     {% for step in recipe.get_steps %}
-                    <li>
+                    <li class="mt-1">
                         {{ step.step }}
                     </li>
                     {% endfor %}
