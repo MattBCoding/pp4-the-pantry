@@ -9,6 +9,7 @@
 <!-- Search Result: Recipe List -->
 <section class="account-container mt-2 p-2 recipe-results-container">
     <h2 class="mt-2 mb-3">Results</h2>
+    {% if recipes %}
     <div class="note-chef-watermark"></div>
     <div class="flex recipe-results">
         {% for recipe in recipes %}
@@ -16,5 +17,12 @@
         {% endfor %}
     </div>
     {% include 'snippets/pagination.html' with query_set=recipes custom_range=custom_range %}
+    {% else %}
+    <!-- no results found -->
+    <div class="no-results flex flex-column flex-sm-row">
+        <p>There were no recipes matching that request.. try something else!</p>
+        <div class="no-results-watermark"></div>
+    </div>
+    {% endif %}
 </section>
 {% endblock body %}
