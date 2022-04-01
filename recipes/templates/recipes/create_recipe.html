@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
 {% load cloudinary %}
 {% block body %}
-<h2>create recipe Page</h2>
 <section class="account-container p-2 mt-2 mx-2">
     <div id="create-recipe">
         <h2>Please create your recipe</h2>
-        <div class="form-container p-2">
+        <div class="form-container p-2 mt-2">
             <h4>Step 1</h4>
             <form class="create-recipe-form" action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}

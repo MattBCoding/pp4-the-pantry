@@ -1212,9 +1212,9 @@ footer {
 }
 
 .htmx-inverted-indicator {
-    display: inline;
+    /* display: inline;
     background-color: var(--bg-secondary);
-    color: var(--text-primary);
+    color: var(--text-primary); */
 }
 
 .htmx-inverted-indicator:hover {
