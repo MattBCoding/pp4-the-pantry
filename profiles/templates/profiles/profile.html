@@ -34,28 +34,32 @@
         </div>
         <div class="col-sm-8 py-2 py-sm-0">
             {% if request.user == profile.user %}
-                {% if profile.headline %}
-                <h5>{{ profile.headline }}</h5>
-                {% else %}
-                <h5>Your profile headline will go here, please complete your profile</h5>
-                {% endif %}
+            {% if profile.headline %}
+            <h5>{{ profile.headline }}</h5>
             {% else %}
-                {% if profile.headline %}
-                <h5>{{ profile.headline }}</h5>
-                {% else %}
-                <h5>This User has chosen not to have a headline</h5>
-                {% endif %}
+            <h5>Your profile headline will go here, if you provide one. Other users can not see this message.</h5>
+            {% endif %}
+            {% else %}
+            {% if profile.headline %}
+            <h5>{{ profile.headline }}</h5>
+            {% else %}
+            <h5>This User has chosen not to have a headline</h5>
+            {% endif %}
             {% endif %}
             <p class="mt-2">{{ profile.bio|slice:"800"|linebreaksbr }}</p>
             {% if request.user == profile.user %}
-                {% if profile.location %}
-                <h5 class="mt-2">{{ profile.location }}</h5>
-                {% else %}
-                <h5 class="mt-2">Your location will go here, please complete your profile.</h5>
-                {% endif %}
+            {% if profile.location %}
+            <h5 class="mt-2">{{ profile.location }}</h5>
             {% else %}
-                {% if profile.location %}
-                <h5 class="mt-2">{{ profile.location }}</h5>
+            <h5 class="mt-2">Your location will go here, if you provide one. Other users can not see this message.</h5>
+            {% if profile.username == None %}
+            <p class="mt-2">When your profile does not have a username that you have set associated with it, it will not appear in search results and any recipes you create will be credited to "Anonymous".</p>
+            <p>You might choose to keep anonymous, which is completely fine. We just wanted to let you know how the site works. So you can choose.</p>
+            {% endif %}
+            {% endif %}
+            {% else %}
+            {% if profile.location %}
+            <h5 class="mt-2">{{ profile.location }}</h5>
                 {% else %}
                 <h5 class="mt-2">This User has chosen not to disclose their location.</h5>
                 {% endif %}    
@@ -99,9 +103,13 @@
 <section class="account-container liked-recipes p-2 mt-2">
     <h2 class="mt-2">Liked Recipes</h2>
     <div class="my-2 flex recipe-results mt-2 p-2">
+        {% if profile.get_liked %}
         {% for recipe in profile.get_liked %}
         {% include 'recipes/snippets/recipe_card.html' %}
         {% endfor %}
+        {% else %}
+        <p>Recipes that you like will appear here. When you like a recipe, you will also get the option to add it to your favourites for quick access from the user menu.</p>
+        {% endif %}
     </div>
 
 </section>

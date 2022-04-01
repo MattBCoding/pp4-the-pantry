@@ -85,18 +85,16 @@
                     </li>
                 </ul>
                 {% if user.is_authenticated %}
+                {% if profile.username %}
                 <div class="primary-action btn not-btn">Hi {{profile.username}}</div>
-        
+                {% else %}
+                <div class="primary-action btn not-btn">Hi Anonymous</div>
+                {% endif %}
                 {% else %}
                 <a href="{% url 'account_signup' %}" class="primary-action btn">Register Now</a>
                 {% endif %}
             </div>
         </div>
     </div>
-</section>
-
-<!-- section to highlight some recipes  -->
-<section class="account-container mt-2 p-2">
-    <h2>Example Recipes Section Heading</h2>
 </section>
 {% endblock body %}
