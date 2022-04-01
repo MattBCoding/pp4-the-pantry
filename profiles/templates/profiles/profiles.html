@@ -10,6 +10,7 @@
 <section class="account-container mt-2 p-2">
     <h2 class="mt-2 mb-3">Results</h2>
     <div class="container flex recipe-results">
+        {% if profiles %}
         {% for profile in profiles %}
             <a class="recipe-card" href="{% url 'user-profile' profile.user.id %}">
                 <div class="card">
@@ -31,6 +32,14 @@
                 </div>
             </a>
         {% endfor %}
+        {% else %}
+        <!-- no results found -->
+        <div class="profile-no-results flex flex-column flex-sm-row">
+            <p>There were no profiles matching that request.. try something else!</p>
+            <div class="no-results-watermark"></div>
+
+        </div>
+        {% endif %}
     </div>
     {% include 'snippets/pagination.html' with query_set=profiles custom_range=custom_range %}
 </section>

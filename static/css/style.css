@@ -871,6 +871,23 @@ footer {
     gap: 0;
 }
 
+/* Profile search results */
+.profile-no-results {
+    min-height: min(300px, 60vh);
+    width: 100%;
+}
+
+.profile-no-results > p {
+    width: 100%;
+    align-self: flex-start;
+}
+
+.no-results-watermark {
+    background: url(https://res.cloudinary.com/mattbcoding/image/upload/v1648809079/frustrated-chef_uh9syg.png) center center/contain no-repeat;
+    height: 100%;
+    width: 100%;
+}
+
 /* Profile Detail page styling */
 
 .profile-detail-container {
