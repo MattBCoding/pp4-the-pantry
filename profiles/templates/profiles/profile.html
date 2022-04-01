@@ -2,7 +2,19 @@
 {% load cloudinary %}
 {% block body %}
 <section class="account-container mt-2 p-2">
-    <h2 class="mt-2">Profile Page for {{ profile.username }}</h2>
+    {% if request.user == profile.user %}
+        {% if profile.username == None %}
+        <h2 class="mt-2">Please click edit to complete your profile!</h2>
+        {% else %}
+        <h2 class="mt-2">Profile Page for {{ profile.username }}</h2>
+        {% endif %}
+    {% else %}
+        {% if profile.username == None %}
+        <h2 class="mt-2">This User wishes to remain anonymous</h2>
+        {% else %}
+        <h2 class="mt-2">Profile Page for {{ profile.username }}</h2>
+        {% endif %}
+    {% endif %}
     <div class="row profile-detail-container py-2 mt-2">
         <div class="col-sm-4 align-items-center justify-content-center">
             <span class="img-container">
@@ -21,9 +33,34 @@
             {% endif %}
         </div>
         <div class="col-sm-8 py-2 py-sm-0">
-            <h5>{{ profile.headline }}</h5>
+            {% if request.user == profile.user %}
+                {% if profile.headline %}
+                <h5>{{ profile.headline }}</h5>
+                {% else %}
+                <h5>Your profile headline will go here, please complete your profile</h5>
+                {% endif %}
+            {% else %}
+                {% if profile.headline %}
+                <h5>{{ profile.headline }}</h5>
+                {% else %}
+                <h5>This User has chosen not to have a headline</h5>
+                {% endif %}
+            {% endif %}
             <p class="mt-2">{{ profile.bio|slice:"800"|linebreaksbr }}</p>
-            <h5 class="mt-2">{{ profile.location }}</h5>
+            {% if request.user == profile.user %}
+                {% if profile.location %}
+                <h5 class="mt-2">{{ profile.location }}</h5>
+                {% else %}
+                <h5 class="mt-2">Your location will go here, please complete your profile.</h5>
+                {% endif %}
+            {% else %}
+                {% if profile.location %}
+                <h5 class="mt-2">{{ profile.location }}</h5>
+                {% else %}
+                <h5 class="mt-2">This User has chosen not to disclose their location.</h5>
+                {% endif %}    
+            {% endif %}
+            <!-- <h5 class="mt-2">{{ profile.location }}</h5> -->
             {% if profile.social_youtube or profile.social_website %}
             <p class="mt-2">You can find me here:</p>
             <div class="profile-social-button-container mt-2">
@@ -43,12 +80,21 @@
 <section class="account-container liked-recipes p-2 mt-2">
     <h2 class="mt-2">My Recipes</h2>
     <div class="my-2 flex recipe-results mt-2 p-2">
-        {% for recipe in profile.get_own %}
-        {% include 'recipes/snippets/recipe_card.html' %}
-        {% endfor %}
+        {% if profile.get_own %}
+            {% for recipe in profile.get_own %}
+            {% include 'recipes/snippets/recipe_card.html' %}
+            {% endfor %}
+        {% else %}
+            {% if request.user == profile.user %}
+                <p>Why not create a recipe and share it with everyone else.</p>
+            {% else %}
+                <p>This User has not yet created any recipes to share</p>
+            {% endif %}
+        {% endif %}
     </div>
 
 </section>
+{% if request.user == profile.user %}
 <!-- Section for profile owners liked recipes -->
 <section class="account-container liked-recipes p-2 mt-2">
     <h2 class="mt-2">Liked Recipes</h2>
@@ -59,4 +105,5 @@
     </div>
 
 </section>
+{% endif %}
 {% endblock %}
