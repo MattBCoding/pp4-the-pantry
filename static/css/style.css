@@ -167,7 +167,8 @@ p {
         --bg-secondary: var(--bg-secondary-dark);
         --bg-tertiary: var(--bg-tertiary-dark);
         --bg-quaternary: var(--bg-quaternary-dark);
-        --bg-image: url(https://res.cloudinary.com/mattbcoding/image/upload/v1645611935/bg-dark_pzxv3k.png);
+        --bg-image: url(https://res.cloudinary.com/mattbcoding/image/upload/v1648771500/bg-darkv2_not9ep.png);
+        /* --bg-image: url(https://res.cloudinary.com/mattbcoding/image/upload/v1645611935/bg-dark_pzxv3k.png); */
         --alert-primary: var(--alert-primary-dark);
         --alert-secondary: var(--alert-secondary-dark);
         --success-primary: var(--success-primary-dark);
@@ -237,7 +238,8 @@ p {
     --bg-secondary: var(--bg-secondary-dark);
     --bg-tertiary: var(--bg-tertiary-dark);
     --bg-quaternary: var(--bg-quaternary-dark);
-    --bg-image: url(https://res.cloudinary.com/mattbcoding/image/upload/v1645611935/bg-dark_pzxv3k.png);
+    --bg-image: url(https://res.cloudinary.com/mattbcoding/image/upload/v1648771500/bg-darkv2_not9ep.png);
+    /* --bg-image: url(https://res.cloudinary.com/mattbcoding/image/upload/v1645611935/bg-dark_pzxv3k.png); */
     --alert-primary: var(--alert-primary-dark);
     --alert-secondary: var(--alert-secondary-dark);
     --success-primary: var(--success-primary-dark);
