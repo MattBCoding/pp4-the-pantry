@@ -42,13 +42,18 @@ def editProfile(request):
         if request.method == 'POST':
             form = ProfileForm(request.POST, request.FILES, instance=profile)
             if form.is_valid():
-                form.save()
-                id = request.user.id
-                messages.success(request, 'Profile updated')
-                return redirect('user-profile', id)
-                # path = 'profiles/profile/{id}/'
-                # return redirect(reverse(path.format(id=request.user.id)))
-                # return redirect(reverse('home'))
+                try:
+                    form.save()
+                    id = request.user.id
+                    messages.success(request, 'Profile updated')
+                    return redirect('user-profile', id)
+                    # path = 'profiles/profile/{id}/'
+                    # return redirect(reverse(path.format(id=request.user.id)))
+                    # return redirect(reverse('home'))
+                except:
+                    messages.error(request, 'ERROR: Profile could not be updated - Did you try to upload something other than an image?')
+                    context = {'form': form}
+                    return render(request, 'profiles/profile_form.html', context) 
         else:
             form = ProfileForm(instance=profile)
         # form = ProfileForm(instance=profile)
