@@ -347,17 +347,16 @@ function updateCharContainer(field) {
 
 // auto dismiss messages
 window.setTimeout(function(){
-    const message = document.getElementsByClassName('alert')[0];
-    if (message){
+    let message = document.getElementsByClassName('alert');
+    Array.from(message).forEach(ele => {
         // prevent error messages from being removed automatically
-        if (message.classList.contains('alert-error')){
-            pass;
-        } else {
-            message.remove();
+        if (!ele.classList.contains('alert-error')){
+            ele.remove();
         }
-    }
+    })
 }, 3000);
 
+// controls the pagination buttons to ensure they go to correct part of dataset
 let pageBtns = document.getElementsByClassName('page-btn')
 let pagination = document.getElementById('pagination')
 let searchForm = document.getElementById('search-form')
