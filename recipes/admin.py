@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Recipe, Ingredient, Step
 
-# Register your models here.
+
 class RecipeIngredient(admin.StackedInline):
     model = Ingredient
     extra = 0
