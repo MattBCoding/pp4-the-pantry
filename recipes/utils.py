@@ -2,15 +2,13 @@ from django.db.models import Q
 from .models import Recipe
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+
 def searchRecipes(request):
     search_query = ''
 
     if request.GET.get('search_query'):
         search_query = request.GET.get('search_query')
-    
-    # ingredients = Ingredient.objects.filter(ingredient=True)
-    # steps = Step.objects.filter
-    
+
     recipes = Recipe.objects.distinct().filter(
         Q(title__icontains=search_query) |
         Q(description__icontains=search_query) |
@@ -21,6 +19,7 @@ def searchRecipes(request):
         ).order_by('title')
 
     return recipes, search_query
+
 
 def paginateRecipes(request, recipes, results):
     page = request.GET.get('page')
@@ -33,7 +32,7 @@ def paginateRecipes(request, recipes, results):
     except EmptyPage:
         page = paginator.num_pages
         recipes = paginator.page(page)
-    
+
     leftIndex = (int(page) - 1)
     if leftIndex < 1:
         leftIndex = 1
