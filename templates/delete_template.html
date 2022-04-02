@@ -4,7 +4,7 @@
 <section class="account-container flex">
     
     <h5>Confirm Delete</h5>
-    <form action="" class="" method="POST">
+    <form action="." method="POST">
         {% csrf_token %}
         <p>Are you sure you want to delete "{{object}}"?</p>
         <a href="{% url 'view-recipe' object.id %}" class="btn primary-action">Go Back</a>
