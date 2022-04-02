@@ -2,45 +2,79 @@
 {% load cloudinary %}
 {% block body %}
 <section class="account-container mt-2 p-2">
-    <h2 class="mt-2">Profile Page for {{ profile.user }}</h2>
-    <div class="row profile-detail-container py-2">
+    {% if request.user == profile.user %}
+        {% if profile.username == None %}
+        <h2 class="mt-2">Please click edit to complete your profile!</h2>
+        {% else %}
+        <h2 class="mt-2">Profile Page for {{ profile.username }}</h2>
+        {% endif %}
+    {% else %}
+        {% if profile.username == None %}
+        <h2 class="mt-2">This User wishes to remain anonymous</h2>
+        {% else %}
+        <h2 class="mt-2">Profile Page for {{ profile.username }}</h2>
+        {% endif %}
+    {% endif %}
+    <div class="row profile-detail-container py-2 mt-2">
         <div class="col-sm-4 align-items-center justify-content-center">
             <span class="img-container">
+                {% if profile.username %}
                 {% cloudinary profile.profile_image alt=profile.username %}
+                {% else %}
+                {% cloudinary profile.profile_image alt='default profile photo' %}
+                {% endif %}
             </span>
 
             {% if request.user == profile.user %}
             <div class="mt-2 flex profile-button-container flex-row flex-sm-column align-items-sm-center">
-                <a class="btn primary-action" href="{% url 'edit-profile' %}">Edit Profile</a>
-                <a class="btn secondary-action" href="{% url 'delete-user' profile.id %}">Delete My Account</a>
+                <a class="btn primary-action" href="{% url 'edit-profile' %}">Edit</a>
+                <a class="btn secondary-action" href="{% url 'delete-user' profile.id %}">Delete</a>
             </div>
             {% endif %}
         </div>
         <div class="col-sm-8 py-2 py-sm-0">
-            <p>request.user = {{ request.user }}</p>
-            <p>request.user.profile.username = {{ request.user.profile.username }}</p>
-            <p>request.user.user.id = {{ request.user.user.id }}</p>
-            {% if request.user in profile_set.all %}
-                <p>request.user is in the set</p>
+            {% if request.user == profile.user %}
+            {% if profile.headline %}
+            <h5>{{ profile.headline }}</h5>
+            {% else %}
+            <h5>Your profile headline will go here, if you provide one. Other users can not see this message.</h5>
             {% endif %}
-
-            
-            {% for profile in request.user.profile.all %}
-            <p>{{profile.username}}</p>
-            {% endfor %}
-            
-
-            <p>id = {{ profile.id }}</p>
-            <p>user = {{ profile.user }}</p>
-            <p>username = {{ profile.username }}</p>
-            <p>headline = {{ profile.headline }}</p>
-            <p>bio = {{ profile.bio|slice:"800"|linebreaksbr }}</p>
-            <p>location = {{ profile.location }}</p>
-            {% if profile.social_youtube %}
-                <p>youtube = <a href="{{ profile.social_youtube }}" target="_blank">{{ profile.social_youtube }}</a></p>
+            {% else %}
+            {% if profile.headline %}
+            <h5>{{ profile.headline }}</h5>
+            {% else %}
+            <h5>This User has chosen not to have a headline</h5>
             {% endif %}
-            {% if profile.social_website %}
-                <p>website = <a href="{{ profile.social_website }}" target="_blank">{{ profile.social_website }}</a></p>
+            {% endif %}
+            <p class="mt-2">{{ profile.bio|slice:"800"|linebreaksbr }}</p>
+            {% if request.user == profile.user %}
+            {% if profile.location %}
+            <h5 class="mt-2">{{ profile.location }}</h5>
+            {% else %}
+            <h5 class="mt-2">Your location will go here, if you provide one. Other users can not see this message.</h5>
+            {% if profile.username == None %}
+            <p class="mt-2">When your profile does not have a username that you have set associated with it, it will not appear in search results and any recipes you create will be credited to "Anonymous".</p>
+            <p>You might choose to keep anonymous, which is completely fine. We just wanted to let you know how the site works. So you can choose.</p>
+            {% endif %}
+            {% endif %}
+            {% else %}
+            {% if profile.location %}
+            <h5 class="mt-2">{{ profile.location }}</h5>
+                {% else %}
+                <h5 class="mt-2">This User has chosen not to disclose their location.</h5>
+                {% endif %}    
+            {% endif %}
+            <!-- <h5 class="mt-2">{{ profile.location }}</h5> -->
+            {% if profile.social_youtube or profile.social_website %}
+            <p class="mt-2">You can find me here:</p>
+            <div class="profile-social-button-container mt-2">
+                {% if profile.social_youtube %}
+                    <a class="profile-youtube-btn btn" href="{{ profile.social_youtube }}" target="_blank" rel="noreferrer" rel="noopener" aria-label="Link to users youtube page (opens in new tab)"><i class="fa-brands fa-youtube-square"></i></a>
+                {% endif %}
+                {% if profile.social_website %}
+                    <a class="profile-website-btn btn" href="{{ profile.social_website }}" target="_blank" rel="noreferrer" rel="noopener" aria-label="Link to users website (opens in new tab)"><i class="fa-solid fa-globe"></i></a>
+                {% endif %}
+            </div>
             {% endif %}
         </div>
     </div>
@@ -50,9 +84,27 @@
 <section class="account-container liked-recipes">
     <h2 class="mt-2">My Favourite Recipes</h2>
     <div class="my-2 flex recipe-results mt-2 p-2">
+        {% if profile.get_favourited %}
         {% for recipe in profile.get_favourited %}
         {% include 'recipes/snippets/recipe_card.html' %}
         {% endfor %}
+        {% else %}
+        <h5 class="my-2">You have not saved any recipes to your favourites. To do so follow these steps:</h5>
+        <ul>
+            <li>
+                <p>Search for a recipe on the recipes page</p>
+            </li>
+            <li>
+                <p>Click the like button to like the recipe, this will enable the favourite button</p>
+            </li>
+            <li>
+                <p>Click the favourite button to add your recipe to this favourites list.</p>
+            </li>
+            <li>
+                <p>Liked recipes will appear on your main profile page, favourite recipes will appear here for quicker access.</p>
+            </li>
+        </ul>
+        {% endif %}
     </div>
 
 </section>
