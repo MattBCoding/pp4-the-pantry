@@ -1,15 +1,3 @@
-
-/* 
-Bootstrap breakpoints
-Breakpoint	        Class infix Dimensions
-X-Small	            None	    <576px
-Small	            sm	        ≥576px
-Medium	            md	        ≥768px
-Large	            lg	        ≥992px
-Extra large	        xl	        ≥1200px
-Extra extra large	xxl	        ≥1400px 
-*/
-
 /* import the fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
@@ -50,9 +38,9 @@ h6,
 p {
     font-weight: 400;
 }
-
 /* end of reset */
 
+/* define root variables */
 * {
     padding: 0;
     margin: 0;
@@ -168,7 +156,6 @@ p {
         --bg-tertiary: var(--bg-tertiary-dark);
         --bg-quaternary: var(--bg-quaternary-dark);
         --bg-image: url(https://res.cloudinary.com/mattbcoding/image/upload/v1648771500/bg-darkv2_not9ep.png);
-        /* --bg-image: url(https://res.cloudinary.com/mattbcoding/image/upload/v1645611935/bg-dark_pzxv3k.png); */
         --alert-primary: var(--alert-primary-dark);
         --alert-secondary: var(--alert-secondary-dark);
         --success-primary: var(--success-primary-dark);
@@ -239,7 +226,6 @@ p {
     --bg-tertiary: var(--bg-tertiary-dark);
     --bg-quaternary: var(--bg-quaternary-dark);
     --bg-image: url(https://res.cloudinary.com/mattbcoding/image/upload/v1648771500/bg-darkv2_not9ep.png);
-    /* --bg-image: url(https://res.cloudinary.com/mattbcoding/image/upload/v1645611935/bg-dark_pzxv3k.png); */
     --alert-primary: var(--alert-primary-dark);
     --alert-secondary: var(--alert-secondary-dark);
     --success-primary: var(--success-primary-dark);
@@ -309,7 +295,7 @@ select {
     padding: 0;
     margin: -1px;
     overflow: hidden;
-    clip: rect(0, 0, 0, 0);
+    clip-path: inset(0 0 0 0);
     white-space: nowrap;
     border: 0;
 }
@@ -356,24 +342,20 @@ select {
 .primary-navigation > li,
 #account-menu li {
     transition: box-shadow 250ms linear;
-    /* box-sizing: border-box; */
 }
 
 .primary-navigation > li:hover,
 #account-menu li:hover,
 .settings-btn:hover {
-    /* border-bottom: 0.2rem inset #ffffff; */
     box-shadow: 0 0.2rem #ffffff;
 }
 
 [data-theme="light"] #account-menu li:hover,
 [data-theme="light"] .settings-btn:hover {
-    /* border-bottom: 0.2rem inset var(--primary-color); */
     box-shadow: 0 0.2rem var(--primary-color);
 }
 [data-theme="light"] #account-menu .sign-out:hover,
 #account-menu .sign-out:hover {
-    /* border-bottom: 0.2rem inset var(--alert-primary) */
     box-shadow: 0 0.2rem var(--alert-primary);
 }
 
@@ -398,7 +380,7 @@ select {
     background: transparent;
     border: 0;
     width: 2rem;
-    aspect-ratio: 1;
+    aspect-ratio: 1/1;
 }
 
 #user-icon {
@@ -445,91 +427,7 @@ select {
     color: #ffffff;
 }
 
-@media (max-width: 800px) {
-    #mobile-nav-page-cover {
-        display: none;
-        position: fixed;
-        height: 100vh;
-        width: 100vw;
-        background-color: black;
-        top: 0;
-        left: 0;
-        z-index: 999;
-        opacity: 0.5;
-    }
-
-    .primary-navigation {
-        position: fixed;
-        z-index: 1000;
-        background: var(--bg-quaternary);
-        top: 0;
-        right: 0;
-        max-width: 180px;
-        padding: min(20rem, 15vh) 2rem;
-        flex-direction: column;
-        gap: 3rem;
-        height: 100vh;
-        color: var(--text-primary);
-        transform: translateX(100%);
-        transition: transform 500ms ease-in-out;
-    }
-
-    .primary-navigation[data-visible="true"] {
-        transform: translateX(0);
-    }
-    
-    .primary-navigation a {
-        color: var(--text-primary);
-    }
-
-    .mobile-nav-toggle {
-        display: block;
-        position: absolute;
-        z-index: 2000;
-        right: 1rem;
-        top: 2rem;
-        background: transparent;
-        border: 0;
-        background-image: url(https://res.cloudinary.com/mattbcoding/image/upload/v1645611935/icon-hamburger_v1i4ph.svg);
-        background-repeat: no-repeat;
-        background-position: center;
-        width: 1.5rem;
-        aspect-ratio: 1;
-    }
-
-    .mobile-nav-toggle[aria-expanded="true"] {
-        background-image: url(https://res.cloudinary.com/mattbcoding/image/upload/v1645611935/icon-close_wznjg2.svg);
-        background-color: var(--alert-primary);
-        position: fixed;
-    }
-
-    .mobile-nav-toggle:focus-visible {
-        outline: 5px solid white;
-        outline-offset: 5px;
-    }
-
-    #account-menu {
-        position: absolute;
-        top: -5rem;
-        left: -10rem;
-        background-color: var(--bg-primary);
-        color: var(--text-primary);
-        padding: 1rem;
-    }
-
-    #user-icon {
-        fill: var(--text-primary);
-        width: 100%;
-        height: 100%;
-    }
-
-    .settings-btn {
-        color: var(--text-primary);
-    }
-}
-
 /* light/dark mode toggle */
-
 #color-mode {
     flex-shrink: 0;
     -webkit-appearance: none;
@@ -573,7 +471,6 @@ select {
 }
 
 .primary-action:hover {
-    /* box-shadow: 0vmin 4vmin 0 var(--border); */
     border: 1px solid var(--border);
     color: var(--button-text-primary);
 }
@@ -589,6 +486,7 @@ select {
 body.modal-open {
     padding-right: 0;
 }
+
 .modal {
     z-index: 4000;
 }
@@ -609,8 +507,8 @@ body.modal-open {
 .btn-close:hover {
     background-color: var(--alert-primary);
 }
+
 /* allauth template styling */
-/* temp styling for all auth templates to make them readable */
 .account-container {
     background-color: var(--bg-secondary);
 }
@@ -655,8 +553,6 @@ body.modal-open {
 }
 
 .sign-in-form > .secondary-action:hover {
-    /* background-color: var(--alert-primary);
-    color: var(--button-text-primary); */
     border: 1px solid var(--button-text-primary);
     transition: all 0.6s ease;
 }
@@ -697,6 +593,7 @@ body.modal-open {
     transition: all 0.6s ease;
 }
 
+/* small content styling for body */
 body.flex {
     flex-direction: column;
 }
@@ -732,7 +629,6 @@ main {
     align-items: center;
     border-radius: 81% 19% 68% 32% / 37% 29% 71% 63%;
     width: min(100%, 550px);
-    
 }
 
 #hero-text-container > div > div {
@@ -750,12 +646,10 @@ main {
     border-radius: 81% 19% 68% 32% / 37% 29% 71% 63% ;
 }
 
-
 .hero-text h2,
 .hero-text h4 {
     color: #ffffff;
 }
-
 
 .register-section {
     flex-direction: column;
@@ -828,7 +722,6 @@ main {
 
 /* footer styling */
 footer {
-    /* height: 200px; */
     background-color: var(--primary-color);
     color: var(--text-secondary);
 }
@@ -889,7 +782,6 @@ footer {
 }
 
 /* Profile Detail page styling */
-
 .profile-detail-container {
     background-color: var(--bg-tertiary);
     margin: 0;
@@ -900,7 +792,6 @@ footer {
     flex-shrink: 0;
     gap: 0.5rem;
     align-items: flex-start;
-    /* justify-content: flex-start; */
 }
 
 .profile-button-container > .primary-action:hover{
@@ -908,6 +799,7 @@ footer {
     border: 1px solid var(--button-text-primary);
     transition: all 0.6s ease;
 }
+
 .profile-button-container > .secondary-action:hover {
     background-color: var(--alert-primary);
     color: var(--button-text-primary);
@@ -1003,10 +895,6 @@ footer {
     align-items: center;
 }
 
-/* .youtube-link:hover > i {
-    font-size: 1.5rem;
-} */
-
 .youtube-link:hover::after{
     content: ' Watch';
     font-size: 1rem;
@@ -1028,8 +916,7 @@ footer {
 }
 
 .form-pair > label {
-    width: clamp(7rem, 100%, 20rem);
-    
+    width: clamp(7rem, 100%, 20rem);   
 }
 
 .form-pair input {
@@ -1055,9 +942,7 @@ footer {
     transition: all 0.6s ease;
 }
 
-
 /* Recipe search results */
-
 .search-form {
     position: relative;
     z-index: 10;
@@ -1108,7 +993,6 @@ footer {
 
 .recipe-card {
     width: max(24%, 300px);
-    /* background-color: var(--bg-tertiary); */
     text-decoration: none;
     color: var(--text-primary);
 }
@@ -1201,7 +1085,6 @@ footer {
 }
 
 /* HTMX styling */
-
 .htmx-indicator {
     display: none;
 }
@@ -1209,12 +1092,6 @@ footer {
 .htmx-request .htmx-indicator {
     display: inline;
     background-color: var(--bg-secondary);
-}
-
-.htmx-inverted-indicator {
-    /* display: inline;
-    background-color: var(--bg-secondary);
-    color: var(--text-primary); */
 }
 
 .htmx-inverted-indicator:hover {
@@ -1272,14 +1149,93 @@ footer {
     border: 1px solid var(--alert-primary);
 }
 
-/* to be deleted only in for development purposes */
-.temp-div {
-    height: 600px;
-}
-/* end of temporary styling */
-
+/* media query to control size of search bar */
 @media screen and (min-width: 576px){
     .search-bar {
         width: clamp(5rem, 69%, 35rem);
+    }
+}
+
+/* media query to trigger mobile nav menu */
+@media (max-width: 800px) {
+    #mobile-nav-page-cover {
+        display: none;
+        position: fixed;
+        height: 100vh;
+        width: 100vw;
+        background-color: black;
+        top: 0;
+        left: 0;
+        z-index: 999;
+        opacity: 0.5;
+    }
+
+    .primary-navigation {
+        position: fixed;
+        z-index: 1000;
+        background: var(--bg-quaternary);
+        top: 0;
+        right: 0;
+        max-width: 180px;
+        padding: min(20rem, 15vh) 2rem;
+        flex-direction: column;
+        gap: 3rem;
+        height: 100vh;
+        color: var(--text-primary);
+        transform: translateX(100%);
+        transition: transform 500ms ease-in-out;
+    }
+
+    .primary-navigation[data-visible="true"] {
+        transform: translateX(0);
+    }
+    
+    .primary-navigation a {
+        color: var(--text-primary);
+    }
+
+    .mobile-nav-toggle {
+        display: block;
+        position: absolute;
+        z-index: 2000;
+        right: 1rem;
+        top: 2rem;
+        background: transparent;
+        border: 0;
+        background-image: url(https://res.cloudinary.com/mattbcoding/image/upload/v1645611935/icon-hamburger_v1i4ph.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 1.5rem;
+        aspect-ratio: 1/1;
+    }
+
+    .mobile-nav-toggle[aria-expanded="true"] {
+        background-image: url(https://res.cloudinary.com/mattbcoding/image/upload/v1645611935/icon-close_wznjg2.svg);
+        background-color: var(--alert-primary);
+        position: fixed;
+    }
+
+    .mobile-nav-toggle:focus-visible {
+        outline: 5px solid white;
+        outline-offset: 5px;
+    }
+
+    #account-menu {
+        position: absolute;
+        top: -5rem;
+        left: -10rem;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        padding: 1rem;
+    }
+
+    #user-icon {
+        fill: var(--text-primary);
+        width: 100%;
+        height: 100%;
+    }
+
+    .settings-btn {
+        color: var(--text-primary);
     }
 }
