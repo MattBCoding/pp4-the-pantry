@@ -3,8 +3,8 @@
 <section class="account-container flex">
 
     <h5>Confirm Delete</h5>
-    <form class="add-update-recipe-form" action="." method="POST" hx-post="."
-        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-swap="outerHTML">
+    <form class="add-update-recipe-form" action="." method="POST" data-hx-post="."
+        data-hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' data-hx-swap="outerHTML">
         {% csrf_token %}
         <p>Are you sure you want to delete "{{step}}"?</p>
         <a href="{{request.GET.next}}" class="btn primary-action mt-2">Go Back</a>

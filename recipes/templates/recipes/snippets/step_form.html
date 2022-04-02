@@ -1,9 +1,9 @@
 <form class="add-update-recipe-form" 
       action="." 
       method="POST"
-      hx-post="{% if url %}{{ url }}{% else %}.{% endif %}" 
-      hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
-      hx-swap="outerHTML"
+      data-hx-post="{% if url %}{{ url }}{% else %}.{% endif %}" 
+      data-hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+      data-hx-swap="outerHTML"
       id="add-step-form">
     {% csrf_token %}
 

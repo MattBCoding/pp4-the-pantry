@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load cloudinary %}
 {% block body %}
-<h2>Recipe Form Page</h2>
+
 <section class="account-container">
     <h2>Please complete your recipe</h2>
     <div class="form-container p-2">
@@ -16,7 +16,7 @@
             <div class="ingredient-form-container m-2">
                 <div id="ingredient-create"></div>
             </div>
-            <button hx-get="{{new_ingredient_url}}" hx-trigger="click" hx-target="#ingredient-create" hx-swap="beforeend" class="btn primary-action m-2" id="add-ingredient-form-button">Add Ingredient</button>
+            <button data-hx-get="{{new_ingredient_url}}" data-hx-trigger="click" data-hx-target="#ingredient-create" data-hx-swap="beforeend" class="btn primary-action m-2" id="add-ingredient-form-button">Add Ingredient</button>
             {% endif %}
         
         <h5>Steps</h5>
@@ -25,7 +25,7 @@
         {% endfor %}
         {% if new_step_url %}
         <div id="step-create"></div>
-        <button hx-get="{{new_step_url}}" hx-trigger="click" hx-target="#step-create" hx-swap="beforeend" class="btn primary-action m-2" id="add-step-form-button">Add Step</button>
+        <button data-hx-get="{{new_step_url}}" data-hx-trigger="click" data-hx-target="#step-create" data-hx-swap="beforeend" class="btn primary-action m-2" id="add-step-form-button">Add Step</button>
         {% endif %}
     </div>
     <a href="{% url 'view-recipe' recipe.id %}" class="btn primary-action m-2">Go Back</a>

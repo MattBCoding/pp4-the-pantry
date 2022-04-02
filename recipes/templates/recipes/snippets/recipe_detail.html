@@ -17,7 +17,7 @@
             <div class="my-2 flex stat-box flex-md-column justify-content-center">
                 {% include 'recipes/snippets/like_recipe.html' %}
                 
-                <div id="favourite-container" hx-trigger="liked from:body" hx-get="{% url 'favourite-recipe' recipe.pk %}">
+                <div id="favourite-container" data-hx-trigger="liked from:body" data-hx-get="{% url 'favourite-recipe' recipe.pk %}">
                     <!-- {% if liked %} -->
                     {% include 'recipes/snippets/favourite_recipe.html' %}
                     <!-- {% endif %} -->

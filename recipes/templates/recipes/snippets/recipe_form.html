@@ -1,18 +1,22 @@
 {% load cloudinary %}
 <form class="create-recipe-form" 
-      action="" 
+      action="." 
       method="POST" 
       enctype="multipart/form-data" 
-      hx-post="" 
-      hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
-      hx-swap="outerHTML"
-      hx-encoding="multipart/form-data">
+      data-hx-post="" 
+      data-hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+      data-hx-swap="outerHTML"
+      data-hx-encoding="multipart/form-data">
     {% csrf_token %}
     {% for field in form %}
     <div class="flex mt-2 form-pair">
         {{field.label_tag}}
         {{field}}
+        {% if field.label|lower == 'youtube link' %}
+        <div class="char-remaining" id="youtube-link-char-remaining"></div>
+        {% else %}
         <div class="char-remaining" id="{{field.label|lower}}-char-remaining"></div>
+        {% endif %}
     </div>
     {% endfor %}
     

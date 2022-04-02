@@ -1,7 +1,7 @@
 {% if user.is_authenticated %}
 {% if request.user != recipe.owner.user %}
 {% if liked %}
-<form id="like-form" action="{% url 'like-recipe' recipe.pk %}" method="POST" hx-post="{% url 'like-recipe' recipe.pk %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-swap="outerHTML" hx-trigger=liked>
+<form id="like-form" action="{% url 'like-recipe' recipe.pk %}" method="POST" data-hx-post="{% url 'like-recipe' recipe.pk %}" data-hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' data-hx-swap="outerHTML" data-hx-trigger=liked>
     {% csrf_token %}
     <button type="submit" name="recipe_id" value="{{ recipe.pk }}" class="btn like-pill like-btn liked">
         <i class="fa-solid fa-thumbs-up"></i>
@@ -10,7 +10,7 @@
     </button>
 </form>
 {% else %}
-<form id="like-form" action="{% url 'like-recipe' recipe.pk %}" method="POST" hx-post="{% url 'like-recipe' recipe.pk %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-swap="outerHTML" hx-trigger=liked>
+<form id="like-form" action="{% url 'like-recipe' recipe.pk %}" method="POST" data-hx-post="{% url 'like-recipe' recipe.pk %}" data-hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' data-hx-swap="outerHTML" data-hx-trigger=liked>
     {% csrf_token %}
     <button type="submit" name="recipe_id" value="{{ recipe.pk }}" class="btn like-pill like-btn">
         <i class="fa-regular fa-thumbs-up"></i>

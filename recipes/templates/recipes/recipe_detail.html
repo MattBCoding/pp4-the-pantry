@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block body %}
 
-<div hx-get="{{hx_url}}" hx-trigger="revealed">
+<div data-hx-get="{{hx_url}}" data-hx-trigger="revealed">
     <div class="htmx-indicator p-4 m-4">Loading...</div>
 </div>
 

@@ -1,5 +1,5 @@
-<form class="create-recipe-form" action="." method="POST" hx-post="{% if url %}{{ url }}{% else %}.{% endif %}"
-  hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-swap="outerHTML" id="add-ingredient-form">
+<form class="create-recipe-form" action="." method="POST" data-hx-post="{% if url %}{{ url }}{% else %}.{% endif %}"
+  data-hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' data-hx-swap="outerHTML" id="add-ingredient-form">
   {% csrf_token %}
   
   {% for field in ingredientform %}
