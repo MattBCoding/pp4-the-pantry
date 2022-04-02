@@ -13,8 +13,10 @@ const searchForm = document.getElementById('search-form');
 pageCover.addEventListener('click', () => {
     nav.setAttribute('data-visible', false);
     navToggle.setAttribute('aria-expanded', false);
-    accountMenu.setAttribute('data-visible', false);
-    accountToggle.setAttribute('aria-expanded', false);
+    if (accountMenu){
+        accountMenu.setAttribute('data-visible', false);
+        accountToggle.setAttribute('aria-expanded', false);
+    };
     pageCover.style.display = 'none';
 });
 
@@ -28,8 +30,10 @@ navToggle.addEventListener('click', () => {
     } else {
         nav.setAttribute('data-visible', false);
         navToggle.setAttribute('aria-expanded', false);
-        accountMenu.setAttribute('data-visible', false);
-        accountToggle.setAttribute('aria-expanded', false);
+        if (accountMenu) {
+            accountMenu.setAttribute('data-visible', false);
+            accountToggle.setAttribute('aria-expanded', false);
+        };
         pageCover.style.display = 'none';
 
     }
