@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 {% load cloudinary %}
 {% block body %}
-<section class="account-container flex p-2">
+<section class="account-container flex flex-column p-2">
     
     <h5>Confirm Delete</h5>
     <form action="." method="POST">
         {% csrf_token %}
         <p>Are you sure you want to delete your account?</p>
-        <p>This action can <strong>not</strong> be undone, your account, recipes</p>
-        <p>and favourites will all be lost for good.</p>
+        <p>This action can <strong>not</strong> be undone, your account, recipes and favourites will all be lost for good.</p>
         <br>
         <p>To delete your account enter the email address you registered with below and press delete:</p>
         {{ form.as_p }}

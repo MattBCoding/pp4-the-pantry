@@ -1229,6 +1229,11 @@ footer {
         padding: 1rem;
     }
 
+    #login-register-link {
+        position: relative;
+        left: 25%;
+    }
+
     #user-icon {
         fill: var(--text-primary);
         width: 100%;

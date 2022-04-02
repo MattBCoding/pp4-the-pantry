@@ -69,6 +69,8 @@ def deleteUser(request, pk):
                     user.delete()
                     messages.success(request, 'Account deleted!')
                     return redirect(reverse('home'))
+                else:
+                    messages.error(request, 'Incorrect email entered!')
 
     form = DeleteUserForm()
     context = {'form': form}
