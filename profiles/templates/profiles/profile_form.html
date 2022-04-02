@@ -9,10 +9,18 @@
             {% csrf_token %}
             {% for field in form %}
             <div class="px-2 mt-2 edit-profile-form-input-container">
-                <label for="{{field.label|lower}}">{{field.label}}</label>
+                {% if field.label == 'Image' %}
+                <label for="id_profile_image">{{field.label}}</label>
+                {% elif field.label == 'Social youtube' %}
+                <label for="id_social_youtube">{{field.label}}</label>
+                {% elif field.label == 'Social website' %}
+                <label for="id_social_website">{{field.label}}</label>
+                {% else %}
+                <label for="id_{{field.label|lower|slugify}}">{{field.label}}</label>
+                {%endif%}
                 {{field}}
                 <!-- container div for character countdown to be inserted-->
-                <div class="char-remaining" id="{{field.label|lower}}-char-remaining"></div>
+                <div class="char-remaining" id="{{field.label|lower|slugify}}-char-remaining"></div>
             </div>
             {% endfor %}
             <button class="btn primary-action m-2 mt-4" type="submit" value="submit">Submit</button>
