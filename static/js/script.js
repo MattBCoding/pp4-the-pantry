@@ -8,6 +8,7 @@ const storageKey = 'theme-preference';
 const colorModeToggle = document.getElementById('color-mode');
 const pageBtns = document.getElementsByClassName('page-btn');
 const searchForm = document.getElementById('search-form');
+const imageInput = document.getElementById('id_profile_image');
 
 // listen for click on rest of page when menu open to close menu
 pageCover.addEventListener('click', () => {
@@ -288,5 +289,17 @@ if (searchForm){
             searchForm.innerHTML += `<input value=${page} name="page" hidden />`;
             searchForm.submit();
         });
+    }
+}
+
+// looks for the image input field in the edit profile form
+// then captures the image href and inserts it as an image and modifies the attributes of the link.
+if (imageInput) {
+    if (imageInput.parentElement.matches(".edit-profile-form-input-container")) {
+        let secondPreviousSibling = imageInput.previousElementSibling.previousElementSibling;
+        let source = secondPreviousSibling.getAttribute('href');
+        secondPreviousSibling.innerHTML = `<img src=${source} alt="current profile image">`;
+        secondPreviousSibling.setAttribute('target', '_blank');
+        secondPreviousSibling.setAttribute('aria-label', 'opens the current profile image in a new window');
     }
 }
