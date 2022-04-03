@@ -1,5 +1,5 @@
-<div id="step-{{step.id}}">
+<div id="step-{{step.id}}" class="mt-1">
     <p>{{step.step}}</p>
-    <button data-hx-trigger="click" data-hx-get="{{ step.get_hx_edit_url }}" data-hx-target="#step-{{step.id}}"class="btn primary-action edit-step-btn me-2" id="edit-step-btn-{{step.id}}">Edit</button>
-    <a class="btn secondary-action delete-step-btn" href="{{ step.get_hx_delete_url }}?next={{ request.path|urlencode }}">Delete</a>
+    <button data-hx-trigger="click" data-hx-get="{{ step.get_hx_edit_url }}" data-hx-target="#step-{{step.id}}"class="btn primary-action edit-step-btn me-2 mt-1" id="edit-step-btn-{{step.id}}">Edit</button>
+    <a class="btn secondary-action delete-step-btn my-1" href="{{ step.get_hx_delete_url }}?next={{ request.path|urlencode }}">Delete</a>
 </div>
