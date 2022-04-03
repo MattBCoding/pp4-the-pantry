@@ -9,6 +9,7 @@ const colorModeToggle = document.getElementById('color-mode');
 const pageBtns = document.getElementsByClassName('page-btn');
 const searchForm = document.getElementById('search-form');
 const imageInput = document.getElementById('id_profile_image');
+const recipeImageInput = document.getElementById('id_featured_image');
 
 // listen for click on rest of page when menu open to close menu
 pageCover.addEventListener('click', () => {
@@ -301,5 +302,17 @@ if (imageInput) {
         secondPreviousSibling.innerHTML = `<img src=${source} alt="current profile image">`;
         secondPreviousSibling.setAttribute('target', '_blank');
         secondPreviousSibling.setAttribute('aria-label', 'opens the current profile image in a new window');
+    }
+}
+
+// looks for the image input field in the recipe form
+// then captures the image href and inserts it as an image and modifies the attributes of the link.
+if (recipeImageInput) {
+    if (recipeImageInput.parentElement.matches(".form-pair")) {
+        let secondPreviousSibling = recipeImageInput.previousElementSibling.previousElementSibling;
+        let source = secondPreviousSibling.getAttribute('href');
+        secondPreviousSibling.innerHTML = `<img src=${source} alt="current recipe featured image">`;
+        secondPreviousSibling.setAttribute('target', '_blank');
+        secondPreviousSibling.setAttribute('aria-label', 'opens the current recipe image in a new window');
     }
 }
