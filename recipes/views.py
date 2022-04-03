@@ -215,7 +215,6 @@ def updateIngredientHx(request, recipe_pk=None, pk=None):
         if instance is None:
             ingredient.recipe = recipe
         ingredient.save()
-        messages.success(request, 'Your ingredient was saved successfully!')
         context['ingredient'] = ingredient
         return render(request,
                       'recipes/snippets/ingredient_detail.html/',
@@ -253,7 +252,6 @@ def updateStepHx(request, recipe_pk=None, pk=None):
         if instance is None:
             step.recipe = recipe
         step.save()
-        messages.success(request, 'Your step was saved successfully!')
         context['step'] = step
         return render(request, 'recipes/snippets/step_detail.html/', context)
     return render(request, 'recipes/snippets/step_form.html/', context)
@@ -314,11 +312,11 @@ def deleteStepHx(request, recipe_pk=None, pk=None):
 
 @login_required
 def deleteRecipe(request, pk):
-    owner = get_object_or_404(Profile, user=request.user)
-    recipe = owner.recipe_set.get(id=pk)
-    if request.method == 'POST':
+    author = get_object_or_404(Profile, user=request.user)
+    recipe = get_object_or_404(Recipe, id=pk)
+    if recipe.owner == author:
         recipe.delete()
         messages.success(request, 'The recipe was deleted!')
         return redirect('home')
     context = {'object': recipe}
-    return render(request, 'delete_template.html', context)
+    return render(request, 'recipes/recipes.html', context)
