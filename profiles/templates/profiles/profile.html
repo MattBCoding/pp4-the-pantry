@@ -17,7 +17,7 @@
     {% endif %}
     <div class="row profile-detail-container py-2 mt-2">
         <div class="col-sm-4 align-items-center justify-content-center">
-            <span class="img-container">
+            <span class="img-container flex justify-content-center">
                 {% if profile.username %}
                 {% cloudinary profile.profile_image alt=profile.username %}
                 {% else %}
@@ -26,7 +26,7 @@
             </span>
 
             {% if request.user == profile.user %}
-            <div class="mt-2 flex profile-button-container flex-row flex-sm-column align-items-sm-center">
+            <div class="mt-2 flex profile-button-container flex-row flex-sm-column align-items-sm-center justify-content-center">
                 <a class="btn primary-action" href="{% url 'edit-profile' %}">Edit</a>
                 <a class="btn secondary-action" href="{% url 'delete-user' profile.id %}">Delete</a>
             </div>

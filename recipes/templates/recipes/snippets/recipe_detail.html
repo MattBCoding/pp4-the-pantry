@@ -26,7 +26,8 @@
             {% if request.user == recipe.owner.user %}
             <div class="flex m-2 recipe-button-container justify-content-center">
                 <a class="btn primary-action mt-1" href="{% url 'update-recipe' recipe.id %}?next={{ request.path|urlencode }}">Edit Recipe</a>
-                <a class="btn secondary-action mt-1" href="{% url 'delete-recipe' recipe.id %}?next={{ request.path|urlencode }}">Delete Recipe</a>
+                <button type="button" class="btn secondary-action mt-1" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete Recipe</button>
+                <!-- <a class="btn secondary-action mt-1" href="{% url 'delete-recipe' recipe.id %}?next={{ request.path|urlencode }}">Delete Recipe</a> -->
             </div>
             {% endif %}
         </div>
@@ -58,3 +59,25 @@
     </div>
     
 </section>
+<!-- delete modal -->
+<div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="modal-label" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="delete-modal-label">Delete</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <!-- light/dark mode checkbox toggle -->
+        <div class="flex flex-row justify-content-center">
+            <p>Are you sure you want to delete {{recipe.title}}</p>
+        </div>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn primary-action" data-bs-dismiss="modal">Close</button>
+        <a class="btn secondary-action mt-1" href="{% url 'delete-recipe' recipe.id %}">Delete Recipe</a>
+
+        </div>
+    </div>
+    </div>
+</div>

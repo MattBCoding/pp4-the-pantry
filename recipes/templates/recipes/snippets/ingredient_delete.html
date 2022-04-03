@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 {% block body %}
-<section class="account-container flex">
+<section class="account-container flex flex-column p-2">
 
     <h5>Confirm Delete</h5>
     <form class="add-update-recipe-form" action="." method="POST" data-hx-post="."
         data-hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' data-hx-swap="outerHTML">
         {% csrf_token %}
         <p>Are you sure you want to delete "{{ingredient}}"?</p>
-        <a href="{{request.GET.next}}" class="btn primary-action mt-2">Go Back</a>
+        <a href="{{request.GET.next}}" class="btn primary-action my-2">Go Back</a>
         <div class="htmx-indicator">Loading....</div>
-        <button class="btn secondary-action mt-2 htmx-inverted-indicator" type="submit">Submit</button>
+        <button class="btn secondary-action my-2 htmx-inverted-indicator" type="submit">Delete</button>
     </form>
 </section>
 {% endblock %}
