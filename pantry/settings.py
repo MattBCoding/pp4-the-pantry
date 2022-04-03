@@ -144,6 +144,7 @@ ACCOUNT_USERNAME_REQUIRED = False
 # this is the name of the url path that the user is taken to when they log in.
 # LOGIN_REDIRECT_URLNAME = 'user-profile'
 ACCOUNT_ADAPTER = 'profiles.adapter.MyAccountAdapter'
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = 'account_email'
 
 SITE_ID = 2
 
