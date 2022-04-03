@@ -18,9 +18,9 @@
                 {% include 'recipes/snippets/like_recipe.html' %}
                 
                 <div id="favourite-container" data-hx-trigger="liked from:body" data-hx-get="{% url 'favourite-recipe' recipe.pk %}">
-                    <!-- {% if liked %} -->
+                    {% if liked %}
                     {% include 'recipes/snippets/favourite_recipe.html' %}
-                    <!-- {% endif %} -->
+                    {% endif %}
                 </div>
             </div>
             {% if request.user == recipe.owner.user %}
@@ -52,7 +52,7 @@
                 </ul>
             </div>
             {% if recipe.youtube_link %}
-            <a href="{{ recipe.youtube_link }}" target="_blank" class="youtube-link btn mb-2"><i class="fa-brands fa-youtube-square"></i></a>
+            <a href="{{ recipe.youtube_link }}" target="_blank" class="youtube-link btn mb-2" aria-label="Watch a video of this recipe on YouTube (opens in a new tab)"><i class="fa-brands fa-youtube-square"></i></a>
             {% endif %}
         </div>
     </div>
