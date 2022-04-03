@@ -310,9 +310,11 @@ if (imageInput) {
 if (recipeImageInput) {
     if (recipeImageInput.parentElement.matches(".form-pair")) {
         let secondPreviousSibling = recipeImageInput.previousElementSibling.previousElementSibling;
-        let source = secondPreviousSibling.getAttribute('href');
-        secondPreviousSibling.innerHTML = `<img src=${source} alt="current recipe featured image">`;
-        secondPreviousSibling.setAttribute('target', '_blank');
-        secondPreviousSibling.setAttribute('aria-label', 'opens the current recipe image in a new window');
+        if (secondPreviousSibling != null) {
+            let source = secondPreviousSibling.getAttribute('href');
+            secondPreviousSibling.innerHTML = `<img src=${source} alt="current recipe featured image">`;
+            secondPreviousSibling.setAttribute('target', '_blank');
+            secondPreviousSibling.setAttribute('aria-label', 'opens the current recipe image in a new window');
+        }
     }
 }
