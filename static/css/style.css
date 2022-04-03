@@ -920,7 +920,7 @@ footer {
 }
 
 .form-pair input {
-    width: clamp(18rem, 100%, 50rem);
+    width: clamp(15rem, 100%, 50rem);
 }
 
 .ingredient-form-container {
