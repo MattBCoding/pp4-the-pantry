@@ -351,10 +351,10 @@ select {
     box-shadow: 0 0.2rem #ffffff;
 }
 
-[data-theme="light"] #account-menu li:hover,
-[data-theme="light"] .settings-btn:hover {
+[data-theme="light"] #account-menu li:hover {
     box-shadow: 0 0.2rem var(--primary-color);
 }
+
 [data-theme="light"] #account-menu .sign-out:hover,
 #account-menu .sign-out:hover {
     box-shadow: 0 0.2rem var(--alert-primary);
