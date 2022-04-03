@@ -14,6 +14,9 @@ class MyAccountAdapter(DefaultAccountAdapter):
     # email address. Needed for first login to take them to the profile page
     def confirm_email(self, request, email_address):
         user = User.objects.get(emailaddress=email_address)
-        newUserProfile = Profile(user=user)
-        newUserProfile.save()
+        try:
+            profile = Profile.objects.get(user=user)
+        except:
+            newUserProfile = Profile(user=user)
+            newUserProfile.save()
         return super().confirm_email(request, email_address)
