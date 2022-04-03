@@ -2,29 +2,33 @@
 {% load cloudinary %}
 {% block body %}
 
-<section class="account-container">
+<section class="account-container p-2">
     <h2 class="my-2">Please complete your recipe</h2>
     <div class="form-container p-2">
         {% include 'recipes/snippets/recipe_form.html' %}
-        <div class="ingredient-form-container m-2">
+        <div class="ingredient-form-container m-2 p-1">
             <h5>Ingredients</h5>
             {% for ingredient in recipe.get_ingredients %}
             {% include 'recipes/snippets/ingredient_detail.html' with ingredient=ingredient %}
             {% endfor %}
         </div>
-            {% if new_ingredient_url %}
-            <div class="ingredient-form-container m-2">
-                <div id="ingredient-create"></div>
-            </div>
-            <button data-hx-get="{{new_ingredient_url}}" data-hx-trigger="click" data-hx-target="#ingredient-create" data-hx-swap="beforeend" class="btn primary-action m-2" id="add-ingredient-form-button">Add Ingredient</button>
-            {% endif %}
+        {% if new_ingredient_url %}
+        <div class="ingredient-form-container m-2 p-1">
+            <div id="ingredient-create"></div>
+        </div>
+        <button data-hx-get="{{new_ingredient_url}}" data-hx-trigger="click" data-hx-target="#ingredient-create" data-hx-swap="beforeend" class="btn primary-action m-2" id="add-ingredient-form-button">Add Ingredient</button>
+        {% endif %}
         
-        <h5>Steps</h5>
-        {% for step in recipe.get_steps %}
-        {% include 'recipes/snippets/step_detail.html' with step=step %}
-        {% endfor %}
+        <div class="ingredient-form-container m-2 p-1">
+            <h5>Steps</h5>
+            {% for step in recipe.get_steps %}
+            {% include 'recipes/snippets/step_detail.html' with step=step %}
+            {% endfor %}    
+        </div>
         {% if new_step_url %}
-        <div id="step-create"></div>
+        <div class="ingredient-form-container m-2 p-1">
+            <div id="step-create"></div>
+        </div>
         <button data-hx-get="{{new_step_url}}" data-hx-trigger="click" data-hx-target="#step-create" data-hx-swap="beforeend" class="btn primary-action m-2" id="add-step-form-button">Add Step</button>
         {% endif %}
     </div>

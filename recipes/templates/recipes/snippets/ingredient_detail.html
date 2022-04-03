@@ -1,6 +1,6 @@
-<div id="ingredient-{{ingredient.id}}" class="mt-1">
+<div id="ingredient-{{ingredient.id}}" class="mt-1 p-1">
     <p>{{ingredient.ingredient}}</p>
     <p>{{ingredient.quantity}}</p>
-    <button data-hx-trigger="click" data-hx-get="{{ ingredient.get_hx_edit_url }}" data-hx-target="#ingredient-{{ingredient.id}}" class="btn primary-action edit-ingredient-btn me-2 mt-1" id="edit-ingredient-btn-{{ingredient.id}}">Edit</button>
+    <button data-hx-trigger="click" data-hx-get="{{ ingredient.get_hx_edit_url }}" data-hx-target="#ingredient-{{ingredient.id}}" class="btn primary-action edit-ingredient-btn me-2 my-1" id="edit-ingredient-btn-{{ingredient.id}}">Edit</button>
     <a class="btn secondary-action delete-ingredient-btn my-1" href="{{ ingredient.get_hx_delete_url }}?next={{ request.path|urlencode }}">Delete</a>
 </div>
