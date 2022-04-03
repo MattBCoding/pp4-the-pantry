@@ -10,6 +10,7 @@ def_image = def_image_one+def_image_two
 
 
 class Profile(models.Model):
+    '''Django database model for profile creation'''
     id = models.UUIDField(default=uuid.uuid4,
                           unique=True,
                           primary_key=True,

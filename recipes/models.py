@@ -12,6 +12,7 @@ def_image = def_image_one+def_image_two
 
 
 class Recipe(models.Model):
+    '''Django database model for recipe creation'''
     id = models.UUIDField(default=uuid.uuid4,
                           unique=True,
                           primary_key=True,
@@ -56,6 +57,7 @@ class Recipe(models.Model):
 
 
 class Ingredient(models.Model):
+    '''Django database model for ingredients for recipes'''
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     ingredient = models.CharField(max_length=100, blank=False, null=False)
     quantity = models.CharField(max_length=50, blank=False, null=False)
@@ -79,6 +81,7 @@ class Ingredient(models.Model):
 
 
 class Step(models.Model):
+    '''Django database model for steps for recipes'''
     step = models.CharField(max_length=800, blank=False, null=False)
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
 
