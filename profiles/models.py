@@ -21,7 +21,7 @@ class Profile(models.Model):
                              related_name='profile')
     username = models.CharField(max_length=50, blank=True, null=True)
     headline = models.CharField(max_length=200, blank=True, null=True)
-    bio = models.TextField(blank=True, null=True)
+    bio = models.TextField(max_length=800, blank=True, null=True)
     location = models.CharField(max_length=200, blank=True, null=True)
     profile_image = CloudinaryField('image', default=def_image)
     social_youtube = models.URLField(max_length=200, blank=True, null=True)
