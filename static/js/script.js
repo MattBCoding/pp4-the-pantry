@@ -18,7 +18,7 @@ pageCover.addEventListener('click', () => {
     if (accountMenu){
         accountMenu.setAttribute('data-visible', false);
         accountToggle.setAttribute('aria-expanded', false);
-    };
+    }
     pageCover.style.display = 'none';
 });
 
@@ -35,7 +35,7 @@ navToggle.addEventListener('click', () => {
         if (accountMenu) {
             accountMenu.setAttribute('data-visible', false);
             accountToggle.setAttribute('aria-expanded', false);
-        };
+        }
         pageCover.style.display = 'none';
 
     }
