@@ -24,7 +24,7 @@ Please note: To open any links in this document in a new browser tab, please pre
         * [Opportunities](#Opportunities)
     * [The Skeleton Plane](#The-Skeleton-Plane)
         * [Wireframes](#Wireframe-mockups)
-        * [Logic Flow](#Logic-flow)
+        * [Database Schema](#Database-Schema)
     * [The Surface Plane](#The-Surface-Plane)
 * [Features](#features)
 * [Future Enhancements](#future-enhancements)
@@ -619,9 +619,9 @@ Wireframes were also produced for each major page for both mobile and tablet dev
 
 #### Database Schema
 
-Several custom models were predicted to be required when building the site. The intention to utilise AllAuth for the user authentication system, which utilises the built in Django User Model removed the need to build a custom User model, however a custom User Profile was required. In order for the users to create Recipes a custom recipe model was required, which would be linked to the User Profile through using the profile as a foreign key. As each recipe could have a different number of ingredients or steps to it, it was decided to seperate out the ingredients and steps into their own model, and link them to the recipe through a foreign key. The database schema was planned using [DrawSQL app](https://drawsql.app/)
+Several custom models were predicted to be required when building the site. The intention to utilise AllAuth for the user authentication system, which utilises the built in Django User Model removed the need to build a custom User model, however a custom User Profile was required. In order for the users to create Recipes a custom recipe model was required, which would be linked to the User Profile through using the profile as a foreign key. As each recipe could have a different number of ingredients or steps to it, it was decided to seperate out the ingredients and steps into their own model, and link them to the recipe through a foreign key. The database schema was planned using [DrawSQL app](https://drawsql.app/). Limitations of the app prevented labelling the field types correctly, it did not include the option to override the types available and did not include textarea, cloudinary fields or url fields. The models in the app reflect the true field choice.
 
-![Database  Schema Diagram](/assets/wireframes/database-scheme.png)
+![Database Schema Diagram](/assets/wireframes/database-scheme.png)
 
 ### The Surface Plane
 
