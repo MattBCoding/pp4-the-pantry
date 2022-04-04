@@ -1,108 +1,241 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# The Pantry
 
-Welcome USER_NAME,
+## Introduction
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+![Screenshot of homepage](./assets/screenshots/main-menu-zoomed-in.png)
 
-## Gitpod Reminders
+[View the live website on Heroku](https://pp4-the-pantry.herokuapp.com/)
+Please note: To open any links in this document in a new browser tab, please press CTRL + Click.
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+## Table of Contents
+* [User Experience Design (UX)](#UX)
+    * [The Strategy Plane](#The-Strategy-Plane)
+        * [Site Goals](#Site-Goals)
+        * [Epics](#Epics)
+        * [User Stories](#User-Stories)
+    * [The Scope Plane](#The-Scope-Plane)
+    * [The Structure Plane](#The-Structure-Plane)
+        * [Opportunities](#Opportunities)
+    * [The Skeleton Plane](#The-Skeleton-Plane)
+        * [Wireframes](#Wireframe-mockups)
+        * [Logic Flow](#Logic-flow)
+    * [The Surface Plane](#The-Surface-Plane)
+* [Features](#features)
+* [Future Enhancements](#future-enhancements)
+* [Technologies Used](#technologies-used)
+* [Testing](#testing)
+* [Deployment](#deployment)
+* [Credits](#credits)
 
-`python3 -m http.server`
+## UX
+### The Strategy Plane
 
-A blue button should appear to click: _Make Public_,
+*  
 
-Another blue button should appear to click: _Open Browser_.
+#### Site Goals
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+* 
+* 
+* 
 
-A blue button should appear to click: _Make Public_,
+#### Epics
 
-Another blue button should appear to click: _Open Browser_.
+10 Epics were created which were then further developed into 38 User Stories. The details on each epic, along with the user stories linked to each one can be found in the project kanban board [here](https://github.com/MattBCoding/pp4-the-pantry/projects/1)
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+1. Initial Django setup [#1](https://github.com/MattBCoding/pp4-the-pantry/issues/1)
+2. User Profile [#2](https://github.com/MattBCoding/pp4-the-pantry/issues/2)
+3. User sign in or sign out [[#3](https://github.com/MattBCoding/pp4-the-pantry/issues/3)]
+4. User recipes [#4](https://github.com/MattBCoding/pp4-the-pantry/issues/4)]
+5. Recipe management [#5](https://github.com/MattBCoding/pp4-the-pantry/issues/5)] 
+6. Recipe searching [#6](https://github.com/MattBCoding/pp4-the-pantry/issues/6)
+7. recipe viewing [#7](https://github.com/MattBCoding/pp4-the-pantry/issues/7)
+8. recipe interaction [#8](https://github.com/MattBCoding/pp4-the-pantry/issues/8)
+9. site owner objectives [#9](https://github.com/MattBCoding/pp4-the-pantry/issues/9)
+10. recipe rating system [#28](https://github.com/MattBCoding/pp4-the-pantry/issues/28)
 
-To log into the Heroku toolbelt CLI:
+### User Stories
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+From the Epics, 38 User stories were created. Each story was assigned a classification of Must-Have, Should-Have, Could-Have or Won't Have. Each story was also assigned user story points, based on my best estimation for the time/difficulty of completing each story. A combination of being new to story estimation, inexperience with Django and time constraints during development left me completing 61 story points from the initial total of 131. From the initial 131 points, 82 were for Could Have stories. A number of these stories were created based on an ideal scenario of building out the project whilst I knew in the time available it would be unlikely I would complete those stories. I will however revisit them at a later time for a redevelopment of the project.
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+* 
+* 
+* 
 
-------
+### The Scope Plane
 
-## Release History
+**Features planned:**
+* 
+* 
+* 
+* 
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+### The Structure Plane
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+User Story:
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+> 
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+Acceptance Criteria:
+* 
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+Implementation:
+* 
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+User Story:
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+> 
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+Acceptance Criteria:
+* 
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+Implementation:
+* 
+*  
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+User Story:
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+> 
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+Acceptance Criteria:
+* 
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+Implementation:
+* 
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+#### Opportunities
 
-------
+Arising from user stories
+| Opportunities | Importance | Viability / Feasibility
+| ------ | :------: | :------: |
+| ** Provide a fun game environment ** | 5 | 5 |
+| ** Provide different difficulty levels ** | 5 | 5 |
+| ** Provide ability to control the time the game takes ** | 5 | 5 |
 
-## FAQ about the uptime script
+### The Skeleton Plane
+#### Wireframe mock-ups
 
-**Why have you added this script?**
+Given that the application will be run within a terminal emulator provided within the template, there are limited options available with regards to the layout of the webpage itself. Early on within the development of the theme, I located a suitable background graphic on iStock. To position the terminal appropriately for the background graphic, and keeping user experience in mind, I decided to centre the terminal horizontally on the screen. This positions the terminal window within the lower part of the rail around the ship in the background graphic. The run program button was centrally positioned to above the terminal window to emphasis its importance.
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+![Home Page Wireframe](/assets/wireframes/homepage-wireframe-900.png)
 
-**How will this affect me?**
+For the terminal window itself, I also produced a wireframe in the well-known design package Microsoft Excel. Whilst not traditionally used for this purpose, the terminal window dimensions of 80 columns wide by 24 rows high provided a restriction that I could duplicate in excel easily. This enabled me to work out the spacing requirements and dimensions of the elements on screen during the gameplay. Given that all the elements that would be displayed in the terminal are ASCII characters, creating an 80 x 24 grid in excel with one character per tile it enabled me to easily see if I could fit the total information required on each line. This was especially useful whilst calculating how to print the two game boards with a scoreboard in between them, given the line-by-line method in which the terminal prints.
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+![Terminal Game Play Wireframe](/assets/wireframes/wireframe-game-screen.png)
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+#### Logic Flow
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+To develop the logical steps required within the game, along with gaining an understanding of how the different game elements would interact, I created a flow chart detailing the individual steps for the game. Given the scope of the game logic involved the full flow chart resulted in a large image. The full image can be viewed here [Logic Flow Diagram](/assets/logic/logic-flow-full.png)
 
-**So….?**
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
 
-**Can I opt out?**
+### The Surface Plane
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+#### Design
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+Once I was happy with the overall layout of the page.
 
-**Anything more?**
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
 
----
+## Features
+#### Welcome Screen
 
-Happy coding!
+![Welcome Screen](/assets/screenshots/welcome-screen.png)
+
+
+
+
+
+
+
+
+
+
+
+
+## Future Enhancements
+
+
+
+
+
+
+## Testing
+
+### Testing Strategy
+
+
+
+#### Testing Overview
+
+Testing was divided into different sections to ensure everything was tested individually with test cases developed for each area.
+
+![Testing Schedule Overview](/assets/testing/tes-schedule.png)
+
+A full detailed breakdown of the testing procedures and methodology can be found in the testing.md file [here](TESTING.md)
+
+#### Validator Testing
+
+
+
+#### Notable Bugs
+
+
+
+#### Libraries Utilised
+##### Built in Python Libraries
+
+
+##### Other Libraries Used
+
+## Deployment
+
+The site was deployed via Heroku, and the live link can be found here - [The Pantry](https://pp4-the-pantry.herokuapp.com/)
+
+
+
+### Project Deployment
+
+To deploy the project through Heroku I followed these steps:
+* Sign up / Log in to [Heroku](https://www.heroku.com/)
+* From the main Heroku Dashboard page select 'New' and then 'Create New App'
+* Give the project a name - I entered Calcio-Jack and select a suitable region, then select create app. The name for the app must be unique.
+* This will create the app within Heroku and bring you to the deploy tab. From the submenu at the top, navigate to the settings tab.
+* This next step is required for creating the app when using the CI Python Deployment Template. If you created your own program without using the CI Template, you might not need to add a config var.
+* In the config vars section select the reveal config vars button. This will display the current config vars for the app, there should be nothing already there.
+* In the KEY input field input PORT all in capitals, then in the VALUE field input 8000 and select the Add button to the right.
+* Next select the add buildpack button below the config vars section.
+* In the pop-up window select Python as your first build pack and select save changes.
+* Then repeat the steps to add a node.js buildpack.
+* The order of the buildpacks is important, in the list Python should be first with Node.js second. If they are not in this order, you can click and drag them to rearrange.
+* Next navigate back to the deploy tab using the submenu at the top of the page.
+* In the deployment method section select the GitHub - Connect to GitHub button and follow the steps prompted if any to connect your GitHub account
+* In the Connect to GitHub section that appears, select the correct account, and enter the name of the repository and select search.
+* Once Heroku has located the repo select connect.
+* This will connect the repo to the app within Heroku. Below the Apps Connected to Heroku section will be the Automatic Deploys section.
+* In this section, confirm the correct branch of the repo is selected in the drop-down box, and then click the Enable Automatic Deploys button
+* This will ensure whenever you change something in the repo and push the changes to GitHub, Heroku will rebuild the app. If you prefer to do this manually you can utilise the manual deployment options further down. For this project I utilised the Automatic Deployment to enable me to check changes I made to the app as I developed it.
+* Heroku will now build the app for you. Once it has completed the build process you will see a 'Your App Was Successfully Deployed' message and a link to the app to visit the live site.
+
+## Credits
+
+### Code
+
+
+
+
+### Content
+
+#### Images
+
+#### Recipes
+
+#### Documentation
+
+
+### Acknowledgements
+
+I'd like to thank the following:
+* Daisy McGirr .
+* Sean and Ed at CI Tutor support for their patience and pointing me in the right direction when I went off course.
